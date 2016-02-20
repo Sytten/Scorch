@@ -4,12 +4,13 @@
 #include "Entities/Entity.h"
 #include "Helper/Vector2.h"
 
-class CannonBall : public Entity
+class CannonBall : public PhysicalEntity
 {
     public:
         CannonBall() = delete;
         CannonBall(double p_initialAngle, double p_initialPower, Vector2<double> m_initialPosition);
 
+        void collide(PhysicalEntity& p_collider);
         void update(double p_deltaTime);
 
     private:

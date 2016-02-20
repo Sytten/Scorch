@@ -4,8 +4,9 @@
 #include <memory>
 
 #include "Entities/CannonBall.h"
+#include "Entities/Entity.h"
 
-class Cannon
+class Cannon : Entity
 {
     public:
         Cannon();
@@ -17,6 +18,8 @@ class Cannon
         void angleDown();
 
         std::shared_ptr<CannonBall> fire();
+
+        void update(double p_deltaTime);
 
         bool reset();
 

@@ -1,14 +1,16 @@
 #ifndef CASTLE_H
 #define CASTLE_H
 
-#include "Entities/Entity.h"
+#include "Entities/PhysicalEntity.h"
 
-class Castle : public Entity
+class Castle : public PhysicalEntity
 {
     public:
         Castle(int p_initialLife);
 
         void update(double p_deltaTime);
+
+        void collide(PhysicalEntity& p_collider);
 
         bool stillAlive();
 

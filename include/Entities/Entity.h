@@ -8,6 +8,7 @@ class Entity
 {
     public:
         Entity(Vector2<double> p_position, Vector2<double> p_size);
+        virtual ~Entity();
 
         Vector2<double> getSize();
         Vector2<double> getPosition();
@@ -16,7 +17,7 @@ class Entity
         void scale(Vector2<double> p_scale);
         void move(Vector2<double> p_movement);
 
-        void update(double p_deltaTime) = 0;
+        virtual void update(double p_deltaTime) = 0;
 
     private:
         Vector2<double> m_position;

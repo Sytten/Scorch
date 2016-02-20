@@ -1,21 +1,24 @@
 #ifndef CANNONBALL_H
 #define CANNONBALL_H
 
-#include "Entities/Entity.h"
-#include "Helper/Vector2.h"
+#include <math.h>
+#include <iostream>
+
+#include "D:\\Qt\\include\\Entities\\PhysicalEntity.h"
+#include "D:\\Qt\\include\\Helper\\Vector2.h"
 
 class CannonBall : public PhysicalEntity
 {
     public:
-        CannonBall() = delete;
-        CannonBall(double p_initialAngle, double p_initialPower, Vector2<double> m_initialPosition);
+        CannonBall();
+        CannonBall(double p_initialAngle, double p_initialPower, Vector2<double> p_initialPosition);
 
-        void collide(PhysicalEntity& p_collider);
+       // void collide(PhysicalEntity& p_collider);
         void update(double p_deltaTime);
 
     private:
-        Vector2<double> const m_initialPosition;
-        Vector2<double> const m_initialVelocity;
+		Vector2<double>  m_initialPosition;
+		Vector2<double>  m_initialVelocity;
 
         double m_time;
 };

@@ -3,10 +3,10 @@
 
 #include <memory>
 
-#include "Entities/CannonBall.h"
-#include "Entities/Entity.h"
+#include "D:\\Qt\include\Entities\CannonBall.h"
+#include "D:\\Qt\include\Entities\Entity.h"
 
-class Cannon : Entity
+class Cannon //: public Entity
 {
     public:
         Cannon();
@@ -17,7 +17,7 @@ class Cannon : Entity
         void angleUp();
         void angleDown();
 
-        std::shared_ptr<CannonBall> fire();
+       // std::shared_ptr<CannonBall> fire();
 
         void update(double p_deltaTime);
 
@@ -25,12 +25,13 @@ class Cannon : Entity
 
     private:
         double m_angle;
-        double const m_maxAngle;
-        double const m_minAngle;
+        double const m_maxAngle = 90;
+        double const m_minAngle = 0;
 
         double m_power;
-        double const m_maxPower;
-        double const m_minPower;
+        double const m_maxPower = 100;
+        double const m_minPower = 0;
+
 };
 
 #endif // CANNON_H

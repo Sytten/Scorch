@@ -1,7 +1,7 @@
 #ifndef PHYSICALENTITY_H
 #define PHYSICALENTITY_H
 
-#include <Entity.h>
+#include "Entity.h"
 
 
 class PhysicalEntity : public Entity
@@ -10,7 +10,7 @@ class PhysicalEntity : public Entity
         PhysicalEntity();
         virtual ~PhysicalEntity();
 
-        virtual void collide(PhysicalEntity& p_collider) = 0;
+      //  virtual void collide(PhysicalEntity& p_collider);
 };
 
 #endif // PHYSICALENTITY_H

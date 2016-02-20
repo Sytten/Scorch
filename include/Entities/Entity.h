@@ -1,13 +1,18 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "Helper/Vector2.h"
-#include "Helper/IDGenerator.h"
+#define MAX_NUM_OBJ 80;
+
+#include "D:\\Qt\include\Helper\Vector2.h"
+#include "D:\\Qt\include\Helper\IDGenerator.h"
+
+#include <iostream>
 
 class Entity
 {
     public:
-        Entity(Vector2<double> p_position, Vector2<double> p_size);
+		Entity();
+		Entity(Vector2<double> p_position, Vector2<double> p_size);
         virtual ~Entity();
 
         Vector2<double> getSize();
@@ -23,7 +28,9 @@ class Entity
         Vector2<double> m_position;
         Vector2<double> m_size;
 
-        int const m_id;
+        int  m_id;
+		int timeCalled = 0;
 };
+
 
 #endif // ENTITY_H

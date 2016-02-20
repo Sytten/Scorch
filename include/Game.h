@@ -2,10 +2,12 @@
 #define GAME_H
 
 #include <memory>
-
+#include <iostream>
 #include "Player.h"
-#include "Inputs/InputHandler.h"
-#include "Entities/CannonBall.h"
+
+//#include "D:\\Qt\\include\\Player.h"
+//#include "D:\\Qt\\include\\Inputs\\InputHandler.h"
+//#include "D:\\Qt\\include\\Entities\\CannonBall.h"
 
 enum State {
     Play,
@@ -22,9 +24,10 @@ class Game
         void pause();
 
     private:
-        std::shared_ptr<Player> m_player1;
-        std::shared_ptr<Player> m_player2;
-        std::shared_ptr<CannonBall> m_currentCannonBall;
+       std::shared_ptr<Player> m_player1;
+       std::shared_ptr<Player> m_player2;
+       std::shared_ptr<CannonBall> m_currentCannonBall;
+		State currentState;
 };
 
 #endif // GAME_H

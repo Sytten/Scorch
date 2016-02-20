@@ -1,7 +1,7 @@
 #ifndef FPGARECEIVER_H
 #define FPGARECEIVER_H
 
-#include "Inputs/Input.h"
+#include "D://Qt/include/Inputs/Input.h"
 
 class FPGAReceiver
 {

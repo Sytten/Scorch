@@ -7,6 +7,7 @@
 #include "Entities/Cannon.h"
 #include "Entities/Castle.h"
 
+
 class Player
 {
     public:
@@ -22,7 +23,7 @@ class Player
 
         void update(double p_deltaTime);
 
-        std::shared_ptr<CannonBall> fire();
+        //std::shared_ptr<CannonBall> fire();
 
     private:
         Cannon m_cannon;

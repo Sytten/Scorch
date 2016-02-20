@@ -1,4 +1,4 @@
-#include "Inputs/FPGAReceiver.h"
+#include "D://Qt/include/Inputs/FPGAReceiver.h"
 
 FPGAReceiver::FPGAReceiver()
 {

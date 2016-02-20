@@ -2,7 +2,7 @@
 #define CANNONBALL_H
 
 #include "Entities/Entity.h"
-#include "Vector2.h"
+#include "Helper/Vector2.h"
 
 class CannonBall : public Entity
 {

@@ -1,6 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <memory>
+
 #include "Entities/CannonBall.h"
 #include "Entities/Cannon.h"
 #include "Entities/Castle.h"
@@ -20,7 +22,7 @@ class Player
 
         void update(double p_deltaTime);
 
-        std::unique_ptr<CannonBall> fire();
+        std::shared_ptr<CannonBall> fire();
 
     private:
         Cannon m_cannon;

@@ -1,6 +1,8 @@
 #ifndef CANNON_H
 #define CANNON_H
 
+#include <memory>
+
 #include "Entities/CannonBall.h"
 
 class Cannon
@@ -14,7 +16,7 @@ class Cannon
         void angleUp();
         void angleDown();
 
-        std::unique_ptr<CannonBall> fire();
+        std::shared_ptr<CannonBall> fire();
 
         bool reset();
 

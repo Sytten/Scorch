@@ -1,6 +1,6 @@
 #include "Entity.h"
 
-Entity::Entity()
+Entity::Entity() : m_id(IDGenerator::generateID())
 {
     //ctor
 }

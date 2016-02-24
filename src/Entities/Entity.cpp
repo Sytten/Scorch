@@ -2,10 +2,27 @@
 
 using namespace std;
 
+int Entity::timesCalled = 0;
+
 Entity::Entity()
 {
 #ifdef GAME_DEBUG
 	cout << "Entity::Entity" << endl;
+#endif
+	
+	m_size.x = 1;
+	m_size.y = 1;
+
+	m_id = timesCalled;
+	 
+	m_position.x = 0;
+	m_position.y = 0;
+
+	timesCalled++;
+
+#ifdef GAME_DEBUG
+	cout << "Entity number " << m_id << " was created at position x:" << m_position.x << ", y:" << m_position.y 
+		 << " of size " << m_size.x << " by" << m_size.y << endl;
 #endif
 }
 
@@ -17,10 +34,13 @@ Entity::Entity(Vector2<double> p_position, Vector2<double> p_size)
 	m_position = p_position;
 	m_size = p_size;
 
-	m_id = timeCalled;
-	timeCalled++;
+	m_id = timesCalled;
+	timesCalled++;
 
-	cout << "Entity number " << m_id << " was created at position x:" << p_position.x << ", y:" << p_position.y << " of size " << p_size.x << " by" << p_size.y << endl;
+#ifdef GAME_DEBUG
+	cout << "Entity number " << m_id << " was created at position x:" << m_position.x << ", y:" << m_position.y 
+		 << " of size " << m_size.x << " by" << m_size.y << endl;
+#endif
 
 }
 
@@ -34,23 +54,23 @@ Entity::~Entity()
 Vector2<double> Entity::getSize()
 {
 #ifdef GAME_DEBUG
-	cout << "Entity::getSize" << endl;
+	cout << "Entity::getSize()" << endl;
 #endif
-	return Vector2<double>();
+	return m_size;
 }
 
 Vector2<double> Entity::getPosition()
 {
 #ifdef GAME_DEBUG
-	cout << "Entity::getPosition" << endl;
+	cout << "Entity::getPosition()" << endl;
 #endif
-	return Vector2<double>();
+	return m_position;
 }
 
 int Entity::getID()
 {
 #ifdef GAME_DEBUG
-	cout << "Entity::getID" << endl;
+	cout << "Entity::getID()" << endl;
 #endif
 	return m_id;
 }
@@ -58,13 +78,17 @@ int Entity::getID()
 void Entity::scale(Vector2<double> p_scale)
 {
 #ifdef GAME_DEBUG
-		cout << "Entity::scale" << endl;
+		cout << "Entity::scale(Vector2<double>)" << endl;
 #endif
 }
 
 void Entity::move(Vector2<double> p_movement)
 {
 #ifdef GAME_DEBUG
-	cout << "Entity::move" << endl;
+	cout << "Entity::move(Vector2<double>)" << endl;
+	cout << "Entity::move(Vector2<double>)" << "To be moved X:" << p_movement.x << " and Y:" << p_movement.y << endl;
 #endif
+	m_position.x += p_movement.x;
+	m_position.y += p_movement.y;
+
 }

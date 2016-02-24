@@ -30,7 +30,7 @@ class Entity
         Vector2<double> m_size;
 
         int  m_id;
-		int timeCalled = 0;
+		static int timesCalled;
 };
 
 

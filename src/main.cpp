@@ -24,7 +24,8 @@ using namespace std;
 int main()
 {
    	Game current;
-	//current.play();
-	//current.pause();
+
+    current.play();
+
     return 0;
 }

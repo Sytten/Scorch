@@ -4,13 +4,12 @@
 #include "Entities/PhysicalEntity.h"
 #include <iostream>
 
-#define INITIAL_LIFE 5
+#define INITIAL_LIFE 100
 
 class Castle : public PhysicalEntity
 {
     public:
 		Castle();
-        Castle(int p_initialLife);
 
 		///TEMP pour tests
 		Castle(int p_initialLife, int p_id);

@@ -2,6 +2,7 @@
 #define PHYSICALENTITY_H
 
 #include "Entity.h"
+#include "CollisionChecker.h"
 
 
 class PhysicalEntity : public Entity

@@ -54,7 +54,8 @@ void CannonBall::update(double p_deltaTime)
 #ifdef GAME_DEBUG
 	cout << "CannonBall::update(double)" << endl;
 #endif
-
+    CollisionChecker::checkCollisions(*this);
+    m_done = true;
 }
 
 void CannonBall::collide(PhysicalEntity& p_collider)
@@ -66,19 +67,7 @@ void CannonBall::collide(PhysicalEntity& p_collider)
 	//TODO Add collision event
 
 #ifdef GAME_DEBUG
-	static int hitCount = 0;
-
-	hitCount++;
-
-	if(hitCount >= 2)
-	{
-		cout << "CannonBall hit" << endl;
-		m_done = true;
-	}
-	else
-	{
-		cout << "CannonBall miss" << endl;
-	}
+    cout << "CannonBall hit" << endl;
 #endif
 }
 

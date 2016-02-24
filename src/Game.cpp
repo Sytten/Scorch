@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Game::Game() : m_player1(new Player()), m_player2(new Player()), m_currentCannonBall(nullptr), m_currentState(Exit), m_player1Turn(true)
+Game::Game() : m_player1(new Player(1001)), m_player2(new Player(1002)), m_currentCannonBall(nullptr), m_currentState(Exit), m_player1Turn(true)
 {
 #ifdef GAME_DEBUG
 	cout << "Game generation" << endl;
@@ -14,7 +14,7 @@ void Game::play()
 #ifdef GAME_DEBUG
     cout << "Game is starting" << endl;
 
-    int iteration = 0;
+    int iteration = 1;
 #endif
 
 	m_currentState = Play;
@@ -40,48 +40,60 @@ void Game::play()
 
             case 3:
                 m_currentCannonBall = m_player1->fire();
+                iteration++;
+                break;
+
+            case 4:
                 if(!m_player1Turn)
                     iteration++;
                 break;
 
-            case 4:
+            case 5:
                 pause();
                 iteration++;
                 break;
 
-            case 5:
+            case 6:
                 m_player2->increaseAngle();
                 m_player2->increaseAngle();
                 m_player2->decreaseAngle();
                 iteration++;
                 break;
 
-            case 6:
+            case 7:
                 m_player2->increasePower();
                 m_player2->increasePower();
                 m_player2->decreasePower();
                 iteration++;
                 break;
 
-            case 7:
-                m_currentCannonBall = m_player2->fire();
-                if(m_player1Turn)
-                    iteration++;
-                break;
-
             case 8:
-                m_player1->increaseAngle();
+                m_currentCannonBall = m_player2->fire();
                 iteration++;
                 break;
 
             case 9:
+                if(m_player1Turn)
+                    iteration++;
+                break;
+
+            case 10:
+                m_player1->increaseAngle();
+                iteration++;
+                break;
+
+            case 11:
                 m_player1->increasePower();
                 m_player1->increasePower();
                 iteration++;
                 break;
 
-            case 10:
+            case 12:
                 m_currentCannonBall = m_player1->fire();
+                iteration++;
+                break;
+
+            case 13:
                 if(!m_player1Turn)
                     iteration++;
                 break;
@@ -135,7 +147,7 @@ void Game::pause()
 
     while(m_currentState == Pause)
     {
-        for(int i = 10; i > 0; i++)
+        for(int i = 10; i > 0; i--)
         {
 #ifdef GAME_DEBUG
             cout << i << endl;

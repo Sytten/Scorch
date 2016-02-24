@@ -29,7 +29,7 @@ class Player
 
     private:
         Cannon m_cannon;
-        Castle m_castle;
+        std::shared_ptr<Castle> m_castle;
 };
 
 #endif // PLAYER_H

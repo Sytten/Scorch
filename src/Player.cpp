@@ -3,25 +3,21 @@
 using namespace std;
 
 
-Player::Player()
+Player::Player() : m_castle(new Castle())
 {
 #ifdef GAME_DEBUG
 	cout << "Player::Player()" << endl;
 #endif
-	cout << "Joueur est cree" << endl;
-
-	m_castle = Castle();
-	m_cannon = Cannon();
+    CollisionChecker::registerEntity(m_castle);
 }
 
 ////TEMP pour tests
-Player::Player(int p_id)
+Player::Player(int p_id) : m_castle(new Castle(5, p_id))
 {
 #ifdef GAME_DEBUG
 	cout << "Player::Player(int)" << endl;
 #endif
-	m_castle = Castle(5, p_id);
-	m_cannon = Cannon();
+    CollisionChecker::registerEntity(m_castle);
 }
 
 void Player::increasePower()
@@ -62,7 +58,10 @@ bool Player::isAlive()
 #ifdef GAME_DEBUG
 	cout << "Player::isAlive()" << endl;
 #endif
-	return m_castle.stillAlive();
+    if(m_castle)
+        return m_castle->stillAlive();
+    else
+        return false;
 }
 
 void Player::update(double p_deltaTime)

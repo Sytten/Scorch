@@ -2,8 +2,9 @@
 #define COLLISIONCHECKER_H
 
 #include <memory>
+#include <vector>
 
-#include "Entities/PhysicalEntity.h"
+class PhysicalEntity;
 
 class CollisionChecker
 {
@@ -16,7 +17,7 @@ class CollisionChecker
         //static bool unregisterEntity(int p_oldEntityID);
 
     private:
-        static vector<std::weak_ptr<PhysicalEntity> > m_entities;
+        static std::vector<std::weak_ptr<PhysicalEntity> > m_entities;
 };
 
 #endif // COLLISIONCHECKER_H

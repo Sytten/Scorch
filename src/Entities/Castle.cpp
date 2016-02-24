@@ -11,14 +11,6 @@ Castle::Castle()
 	m_life = INITIAL_LIFE;
 }
 
-Castle::Castle(int p_initialLife)
-{
-#ifdef GAME_DEBUG
-	cout << "Castle::Castle(int)" << endl;
-#endif
-	m_life = p_initialLife;
-}
-
 Castle::Castle(int p_initialLife, int p_id)
 {
 #ifdef GAME_DEBUG
@@ -26,7 +18,6 @@ Castle::Castle(int p_initialLife, int p_id)
 #endif
 	m_life = p_initialLife;
 	m_id = p_id;
-
 }
 
 Castle::~Castle()

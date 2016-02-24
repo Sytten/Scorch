@@ -1,4 +1,9 @@
 #include "CollisionChecker.h"
+#include "Entities/PhysicalEntity.h"
+
+using namespace std;
+
+std::vector<std::weak_ptr<PhysicalEntity> > CollisionChecker::m_entities;
 
 CollisionChecker::CollisionChecker()
 {
@@ -20,13 +25,15 @@ bool CollisionChecker::checkCollisions(PhysicalEntity& p_entity)
                 if(entity->getID() == 1002)
                 {
                     entity->collide(p_entity);
-                    p_entity->collide(entity);
+                    p_entity.collide(*entity);
                 }
             }
             else
                 m_entities.erase(m_entities.begin()+i);
         }
     }
+    else
+        cout << "CannonBall missed" << endl;
 
     numberOfCalls++;
 #endif

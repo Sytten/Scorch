@@ -17,14 +17,15 @@
 *************************************************/
 
 
-#include "C:\Users\Phil\Documents\Visual Studio 2015\Projects\Console_Scorch_P19\Console_Scorch_P19\include/Game.h"
+#include "Game.h"
 
 using namespace std;
 
 int main()
 {
    	Game current;
-	//current.play();
-	//current.pause();
+
+    current.play();
+
     return 0;
 }

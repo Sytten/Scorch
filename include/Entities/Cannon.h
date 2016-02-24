@@ -3,8 +3,8 @@
 
 #include <memory>
 
-#include "D:\\Qt\include\Entities\CannonBall.h"
-#include "D:\\Qt\include\Entities\Entity.h"
+#include "Entities/CannonBall.h"
+#include "Entities/Entity.h"
 
 class Cannon //: public Entity
 {

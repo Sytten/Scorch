@@ -1,4 +1,4 @@
-#include "D:\\Qt\\include\Entities\PhysicalEntity.h"
+#include "Entities/PhysicalEntity.h"
 
 PhysicalEntity::PhysicalEntity()
 {

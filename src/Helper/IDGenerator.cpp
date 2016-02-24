@@ -1,4 +1,4 @@
-#include "D:\\Qt\include\Helper\IDGenerator.h"
+#include "Helper/IDGenerator.h"
 
 int IDGenerator::m_currentID = 0;
 

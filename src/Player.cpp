@@ -1,5 +1,5 @@
-#include "C:\Users\Phil\Documents\Visual Studio 2015\Projects\Console_Scorch_P19\Console_Scorch_P19\include/Player.h"
-#include "C:\Users\Phil\Documents\Visual Studio 2015\Projects\Console_Scorch_P19\Console_Scorch_P19\include\Entities\Cannon.h"
+#include "Player.h"
+#include "Entities/Cannon.h"
 
 using namespace std;
 
@@ -15,7 +15,7 @@ void Player::increasePower()
 }
 
 void Player::decreasePower()
-{ 
+{
 	m_cannon.powerDown();
 }
 

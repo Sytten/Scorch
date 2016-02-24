@@ -1,7 +1,7 @@
 #ifndef CASTLE_H
 #define CASTLE_H
 
-#include "D:\\Qt\include\Entities\PhysicalEntity.h"
+#include "Entities/PhysicalEntity.h"
 #include <iostream>
 
 

@@ -1,11 +1,11 @@
-#include "D:\\Qt\include\Entities\Cannon.h"
+#include "Entities/Cannon.h"
 
 using namespace std;
 
 Cannon::Cannon()
 {
 	cout << "un canon est construit" << endl;
-	//ctor   
+	//ctor
 }
 
 void Cannon::powerUp()
@@ -42,7 +42,7 @@ void Cannon::angleDown()
 
 void Cannon::update(double p_deltaTime)
 {
-	
+
 }
 
 bool Cannon::reset()

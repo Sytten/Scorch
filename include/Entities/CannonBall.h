@@ -4,8 +4,8 @@
 #include <math.h>
 #include <iostream>
 
-#include "D:\\Qt\\include\\Entities\\PhysicalEntity.h"
-#include "D:\\Qt\\include\\Helper\\Vector2.h"
+#include "Entities/PhysicalEntity.h"
+#include "Helper/Vector2.h"
 
 class CannonBall : public PhysicalEntity
 {

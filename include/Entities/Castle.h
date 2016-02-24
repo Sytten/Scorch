@@ -4,7 +4,7 @@
 #include "Entities/PhysicalEntity.h"
 #include <iostream>
 
-#define INITIAL_LIFE 100
+#define INITIAL_LIFE 5
 
 class Castle : public PhysicalEntity
 {

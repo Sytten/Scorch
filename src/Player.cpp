@@ -39,3 +39,8 @@ void Player::update(double p_deltaTime)
 {
 
 }
+
+std::shared_ptr<CannonBall> fire()
+{
+    return Cannon.fire();
+}

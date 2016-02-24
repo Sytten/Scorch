@@ -22,7 +22,7 @@ class Player
 
         void update(double p_deltaTime);
 
-        //std::shared_ptr<CannonBall> fire();
+        std::shared_ptr<CannonBall> fire();
 
     private:
         Cannon m_cannon;

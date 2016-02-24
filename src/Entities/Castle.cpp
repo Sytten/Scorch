@@ -19,6 +19,16 @@ Castle::Castle(int p_initialLife)
 	m_life = p_initialLife;
 }
 
+Castle::Castle(int p_initialLife, int p_id)
+{
+#ifdef GAME_DEBUG
+	cout << "Castle::Castle(int, int)" << endl;
+#endif
+	m_life = p_initialLife;
+	m_id = p_id;
+
+}
+
 Castle::~Castle()
 {
 #ifdef GAME_DEBUG

@@ -12,6 +12,9 @@ class Player
     public:
         Player();
 
+		///TEMP pour tests
+		Player(int p_id);
+
         void increasePower();
         void decreasePower();
 

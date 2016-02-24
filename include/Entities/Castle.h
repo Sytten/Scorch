@@ -12,6 +12,9 @@ class Castle : public PhysicalEntity
 		Castle();
         Castle(int p_initialLife);
 
+		///TEMP pour tests
+		Castle(int p_initialLife, int p_id);
+
 		~Castle();
 
         void update(double p_deltaTime);

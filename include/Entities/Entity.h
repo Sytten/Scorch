@@ -14,6 +14,8 @@ class Entity
     public:
 		Entity();
 		Entity(Vector2<double> p_position, Vector2<double> p_size);
+
+
         virtual ~Entity();
 
         Vector2<double> getSize() const;
@@ -29,8 +31,11 @@ class Entity
         Vector2<double> m_position;
         Vector2<double> m_size;
 
-        int  m_id;
+        
 		static int timesCalled;
+
+	protected:
+		int  m_id;
 };
 
 

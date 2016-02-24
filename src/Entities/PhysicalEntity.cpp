@@ -1,11 +1,22 @@
 #include "Entities/PhysicalEntity.h"
 
+using namespace std;
+
 PhysicalEntity::PhysicalEntity()
 {
-    //ctor
+#ifdef GAME_DEBUG
+	cout << "PhysicalEntity::PhysicalEntity()" << endl;
+#endif
 }
 
 PhysicalEntity::~PhysicalEntity()
 {
-    //dtor
+#ifdef GAME_DEBUG
+	cout << "PhysicalEntity::~PhysicalEntity()" << endl;
+#endif
+}
+
+void PhysicalEntity::collide(PhysicalEntity& p_collider)
+{
+
 }

@@ -13,7 +13,9 @@ class CannonBall : public PhysicalEntity
         CannonBall();
         CannonBall(double p_initialAngle, double p_initialPower, Vector2<double> p_initialPosition);
 
-       // void collide(PhysicalEntity& p_collider);
+		~CannonBall();
+
+		void collide(PhysicalEntity& p_collider);
         void update(double p_deltaTime);
 
     private:

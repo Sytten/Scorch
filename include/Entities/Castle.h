@@ -4,6 +4,7 @@
 #include "Entities/PhysicalEntity.h"
 #include <iostream>
 
+#define INITIAL_LIFE 100
 
 class Castle : public PhysicalEntity
 {
@@ -11,8 +12,9 @@ class Castle : public PhysicalEntity
 		Castle();
         Castle(int p_initialLife);
 
-        void update(double p_deltaTime);
+		~Castle();
 
+        void update(double p_deltaTime);
         void collide(PhysicalEntity& p_collider);
 
         bool stillAlive();

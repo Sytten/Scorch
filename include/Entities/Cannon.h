@@ -6,10 +6,12 @@
 #include "Entities/CannonBall.h"
 #include "Entities/Entity.h"
 
-class Cannon //: public Entity
+class Cannon : public Entity
 {
     public:
         Cannon();
+
+		~Cannon();
 
         void powerUp();
         void powerDown();
@@ -17,7 +19,7 @@ class Cannon //: public Entity
         void angleUp();
         void angleDown();
 
-       // std::shared_ptr<CannonBall> fire();
+		std::shared_ptr<CannonBall> fire();
 
         void update(double p_deltaTime);
 

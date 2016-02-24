@@ -2,5 +2,5 @@
 
 FPGAReceiver::FPGAReceiver()
 {
-    //ctor
+
 }

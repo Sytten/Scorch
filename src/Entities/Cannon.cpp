@@ -8,6 +8,12 @@ Cannon::Cannon()
 	//ctor
 }
 
+Cannon::~Cannon()
+{
+	cout << "un canon est construit" << endl;
+	//ctor
+}
+
 void Cannon::powerUp()
 {
 	cout << "j'augmente la puissance de 10!" << endl;
@@ -44,6 +50,7 @@ void Cannon::update(double p_deltaTime)
 {
 
 }
+
 
 bool Cannon::reset()
 {

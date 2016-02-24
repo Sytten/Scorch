@@ -10,7 +10,7 @@ class PhysicalEntity : public Entity
         PhysicalEntity();
         virtual ~PhysicalEntity();
 
-      //  virtual void collide(PhysicalEntity& p_collider);
+		virtual void collide(PhysicalEntity& p_collider);
 };
 
 #endif // PHYSICALENTITY_H

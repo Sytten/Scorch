@@ -8,6 +8,8 @@ class Terrain : public PhysicalEntity
     public:
         Terrain();
 
+		~Terrain();
+
         void update(double p_deltaTime);
 
         void collide(PhysicalEntity& p_collider);

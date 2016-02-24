@@ -16,9 +16,9 @@ class Entity
 		Entity(Vector2<double> p_position, Vector2<double> p_size);
         virtual ~Entity();
 
-        Vector2<double> getSize();
-        Vector2<double> getPosition();
-        int getID();
+        Vector2<double> getSize() const;
+        Vector2<double> getPosition() const;
+		int getID() const;
 
         void scale(Vector2<double> p_scale);
         void move(Vector2<double> p_movement);

@@ -51,7 +51,7 @@ Entity::~Entity()
 #endif
 }
 
-Vector2<double> Entity::getSize()
+Vector2<double> Entity::getSize() const
 {
 #ifdef GAME_DEBUG
 	cout << "Entity::getSize()" << endl;
@@ -59,7 +59,7 @@ Vector2<double> Entity::getSize()
 	return m_size;
 }
 
-Vector2<double> Entity::getPosition()
+Vector2<double> Entity::getPosition() const
 {
 #ifdef GAME_DEBUG
 	cout << "Entity::getPosition()" << endl;
@@ -67,7 +67,7 @@ Vector2<double> Entity::getPosition()
 	return m_position;
 }
 
-int Entity::getID()
+int Entity::getID() const
 {
 #ifdef GAME_DEBUG
 	cout << "Entity::getID()" << endl;

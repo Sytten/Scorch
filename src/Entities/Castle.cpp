@@ -41,12 +41,12 @@ void Castle::collide(PhysicalEntity & p_collider)
 	
 }
 
-bool Castle::stillAlive()
+bool Castle::stillAlive() const
 {
 #ifdef GAME_DEBUG
 	cout << "Castle::stillAlive(void)" << endl;
 #endif
-	if (m_life = 0)
+	if (m_life == 0)
 		return false;
 	return true;
 }

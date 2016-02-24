@@ -7,7 +7,6 @@
 #include "Entities/Cannon.h"
 #include "Entities/Castle.h"
 
-
 class Player
 {
     public:

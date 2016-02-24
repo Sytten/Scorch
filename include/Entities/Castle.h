@@ -17,7 +17,7 @@ class Castle : public PhysicalEntity
         void update(double p_deltaTime);
         void collide(PhysicalEntity& p_collider);
 
-        bool stillAlive();
+        bool stillAlive() const;
 
     private:
         int m_life;

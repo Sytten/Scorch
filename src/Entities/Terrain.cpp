@@ -12,7 +12,7 @@ Terrain::Terrain()
 Terrain::~Terrain()
 {
 #ifdef GAME_DEBUG
-	cout << "Terrain::~Castle()" << endl;
+	cout << "Terrain::~Terrain()" << endl;
 #endif	
 }
 

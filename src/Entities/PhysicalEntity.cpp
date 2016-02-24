@@ -18,5 +18,7 @@ PhysicalEntity::~PhysicalEntity()
 
 void PhysicalEntity::collide(PhysicalEntity& p_collider)
 {
-
+#ifdef GAME_DEBUG
+	cout << "PhysicalEntity::collide(PhysicalEntity&)" << endl;
+#endif
 }

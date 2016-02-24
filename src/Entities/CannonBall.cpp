@@ -7,6 +7,16 @@ CannonBall::CannonBall()
 #ifdef GAME_DEBUG
 	cout << "CannonBall::CannonBall" << endl;
 #endif
+	m_initialPosition.x = 0;
+	m_initialPosition.y = 0;
+
+	m_initialVelocity.x = 0;
+	m_initialVelocity.y = 0;
+#ifdef GAME_DEBUG
+	cout << "CannonBall starting from ( X:" << m_initialPosition.x << ", Y:" << m_initialPosition.y << ")" << endl;
+	cout << "CannonBall At speed X: " << m_initialVelocity.x << endl;
+	cout << "CannonBall At speed Y: " << m_initialVelocity.y << endl;
+#endif
 }
 
 CannonBall::CannonBall(double p_initialAngle, double p_initialPower, Vector2<double> p_initialPosition)
@@ -25,14 +35,14 @@ CannonBall::CannonBall(double p_initialAngle, double p_initialPower, Vector2<dou
 #ifdef GAME_DEBUG
 	cout << "CannonBall starting from ( X:" << m_initialPosition.x << ", Y:" << m_initialPosition.y << ")" << endl;
 	cout << "CannonBall At speed X: " << m_initialVelocity.x << endl;
-	cout << "CannonBall At speed X: " << m_initialVelocity.y << endl;
+	cout << "CannonBall At speed Y: " << m_initialVelocity.y << endl;
 #endif
 }
 
 CannonBall::~CannonBall()
 {
 #ifdef GAME_DEBUG
-	cout << "CannonBall::~CannonBall" << endl;
+	cout << "CannonBall::~CannonBall()" << endl;
 #endif
 }
 
@@ -47,7 +57,7 @@ void CannonBall::update(double p_deltaTime)
 void CannonBall::collide(PhysicalEntity& p_collider)
 {
 #ifdef GAME_DEBUG
-	cout << "CannonBall::collide" << endl;
+	cout << "CannonBall::collide(PhysicalEntity&)" << endl;
 #endif
 
 	//TODO Add collision event

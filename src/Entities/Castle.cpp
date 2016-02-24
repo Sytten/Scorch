@@ -22,7 +22,7 @@ Castle::Castle(int p_initialLife)
 Castle::~Castle()
 {
 #ifdef GAME_DEBUG
-	cout << "Castle::~Castle(double, double, Vector2<double>)" << endl;
+	cout << "Castle::~Castle()" << endl;
 #endif	
 }
 
@@ -44,7 +44,7 @@ void Castle::collide(PhysicalEntity & p_collider)
 bool Castle::stillAlive()
 {
 #ifdef GAME_DEBUG
-	cout << "Castle::stillAlive" << endl;
+	cout << "Castle::stillAlive(void)" << endl;
 #endif
 	if (m_life = 0)
 		return false;

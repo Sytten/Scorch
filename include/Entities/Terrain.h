@@ -5,7 +5,9 @@
 
 class Terrain : public PhysicalEntity
 {
-    public:
+private:
+
+public:
         Terrain();
 
 		~Terrain();

@@ -94,26 +94,26 @@ local.properties
 
 # Visual Studio #
 #################
-*.pdb
-*.aps
-*.vspscc
+#*.pdb
+#*.aps
+#*.vspscc
 *_i.c
 *_p.c
-*.ncb
-*.suo
-*.tlb
-*.tlh
+#*.ncb
+#*.suo
+#*.tlb
+#*.tlh
 *.bak
 *.cache
-*.ilk
-*.sln
-*.suo
+#*.ilk
+#*.sln
+#*.suo
 *.tmp
-*.user
-*.userprefs
-*.pidb
-*.booproj
-*.sbr
+#*.user
+#*.userprefs
+#*.pidb
+#*.booproj
+#*.sbr
 
 # Unity #
 #########

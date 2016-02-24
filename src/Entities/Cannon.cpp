@@ -7,7 +7,7 @@ Cannon::Cannon()
 #ifdef GAME_DEBUG
 	cout << "Cannon::Cannon" << endl;
 #endif
-	
+
 	m_angle = 45;
 	m_power = 50;
 
@@ -34,7 +34,7 @@ void Cannon::powerUp()
 #endif
 		m_power = m_maxPower;
 	}
-		
+
 }
 
 void Cannon::powerDown()
@@ -50,7 +50,7 @@ void Cannon::powerDown()
 #endif
 		m_power = m_minPower;
 	}
-		
+
 }
 
 void Cannon::angleUp()
@@ -83,7 +83,7 @@ void Cannon::angleDown()
 #endif
 		m_angle = m_minAngle;
 	}
-		
+
 }
 
 void Cannon::update(double p_deltaTime)
@@ -101,4 +101,12 @@ bool Cannon::reset()
 	cout << "Cannon::reset" << endl;
 #endif
 	return false;
+}
+
+std::shared_ptr<CannonBall> Cannon::fire()
+{
+#ifdef GAME_DEBUG
+	cout << "Cannon::fire!" << endl;
+#endif
+    return make_shared<CannonBall>(m_angle, m_power, getPosition());
 }

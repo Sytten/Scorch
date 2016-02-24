@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "Entities/Cannon.h"
 
 using namespace std;
 
@@ -40,7 +39,7 @@ void Player::update(double p_deltaTime)
 
 }
 
-std::shared_ptr<CannonBall> fire()
+std::shared_ptr<CannonBall> Player::fire()
 {
-    return Cannon.fire();
+    return m_cannon.fire();
 }

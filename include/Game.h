@@ -20,10 +20,11 @@ class Game
         void pause();
 
     private:
-       std::shared_ptr<Player> m_player1;
-       std::shared_ptr<Player> m_player2;
-       std::shared_ptr<CannonBall> m_currentCannonBall;
-		State currentState;
+        std::shared_ptr<Player> m_player1;
+        std::shared_ptr<Player> m_player2;
+        std::shared_ptr<CannonBall> m_currentCannonBall;
+        State m_currentState;
+        bool m_player1Turn;
 };
 
 #endif // GAME_H

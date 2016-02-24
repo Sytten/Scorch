@@ -1,4 +1,4 @@
-#include "D:\\Qt\\include\CollisionChecker.h"
+#include "CollisionChecker.h"
 
 CollisionChecker::CollisionChecker()
 {

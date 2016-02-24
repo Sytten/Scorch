@@ -1,4 +1,4 @@
-#include "D:\\Qt\include\Entities\Entity.h"
+#include "Entities/Entity.h"
 
 using namespace std;
 

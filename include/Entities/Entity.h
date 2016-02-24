@@ -3,8 +3,8 @@
 
 #define MAX_NUM_OBJ 80;
 
-#include "D:\\Qt\include\Helper\Vector2.h"
-#include "D:\\Qt\include\Helper\IDGenerator.h"
+#include "Helper/Vector2.h"
+#include "Helper/IDGenerator.h"
 
 #include <iostream>
 

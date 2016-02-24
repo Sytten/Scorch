@@ -1,4 +1,4 @@
-#include "D:\\Qt\include\Entities\Castle.h"
+#include "Entities/Castle.h"
 
 
 using namespace std;

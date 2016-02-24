@@ -1,4 +1,4 @@
-#include "D:\\Qt\include\Inputs\InputHandler.h"
+#include "Inputs/InputHandler.h"
 
 InputHandler::InputHandler()
 {

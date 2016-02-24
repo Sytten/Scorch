@@ -5,10 +5,6 @@
 #include <iostream>
 #include "Player.h"
 
-//#include "D:\\Qt\\include\\Player.h"
-//#include "D:\\Qt\\include\\Inputs\\InputHandler.h"
-//#include "D:\\Qt\\include\\Entities\\CannonBall.h"
-
 enum State {
     Play,
     Pause,

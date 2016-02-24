@@ -23,11 +23,11 @@ Castle::~Castle()
 {
 #ifdef GAME_DEBUG
 	cout << "Castle::~Castle()" << endl;
-#endif	
+#endif
 }
 
 void Castle::update(double p_deltaTime)
-{	
+{
 #ifdef GAME_DEBUG
 	cout << "Castle::update(double)" << endl;
 #endif
@@ -38,7 +38,7 @@ void Castle::collide(PhysicalEntity & p_collider)
 #ifdef GAME_DEBUG
 	cout << "Castle::collide(PhysicalEntity&)" << endl;
 #endif
-	
+
 }
 
 bool Castle::stillAlive() const
@@ -46,7 +46,7 @@ bool Castle::stillAlive() const
 #ifdef GAME_DEBUG
 	cout << "Castle::stillAlive(void)" << endl;
 #endif
-	if (m_life == 0)
-		return false;
-	return true;
+	if (m_life > 0)
+		return true;
+	return false;
 }

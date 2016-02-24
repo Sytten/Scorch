@@ -32,7 +32,7 @@ void Player::decreaseAngle()
 
 bool Player::isAlive()
 {
-	return true;
+	return m_castle.stillAlive();
 }
 
 void Player::update(double p_deltaTime)

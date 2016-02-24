@@ -13,14 +13,15 @@ void Game::play()
 {
 #ifdef GAME_DEBUG
     cout << "Game is starting" << endl;
+
+    int iteration = 0;
 #endif
 
 	m_currentState = Play;
 
-    int iteration = 0;
-
     while(m_currentState != Exit)
     {
+#ifdef GAME_DEBUG
         switch (iteration)
         {
             case 1:
@@ -75,8 +76,7 @@ void Game::play()
             default:
                 break;
         }
-
-        m_currentState = Exit;
+#endif
 
         if(m_player1)
             m_player1->update();

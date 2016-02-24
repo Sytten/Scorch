@@ -50,27 +50,40 @@ void Game::play()
                 break;
 
             case 5:
-                //player 2 adjust angle
+                m_player2->increaseAngle();
+                m_player2->increaseAngle();
+                m_player2->decreaseAngle();
+                iteration++;
                 break;
 
             case 6:
-                //player 2 adjust power
+                m_player2->increasePower();
+                m_player2->increasePower();
+                m_player2->decreasePower();
+                iteration++;
                 break;
 
             case 7:
-                //player 2 Shoot and wait
+                m_currentCannonBall = m_player2->fire();
+                if(m_player1Turn)
+                    iteration++;
                 break;
 
             case 8:
-                //player 1 adjust angle
+                m_player1->increaseAngle();
+                iteration++;
                 break;
 
             case 9:
-                //player 1 adjust power
+                m_player1->increasePower();
+                m_player1->increasePower();
+                iteration++;
                 break;
 
             case 10:
-                //player 1 shoot and wait
+                m_currentCannonBall = m_player1->fire();
+                if(!m_player1Turn)
+                    iteration++;
                 break;
 
             default:
@@ -78,15 +91,37 @@ void Game::play()
         }
 #endif
 
-        if(m_player1)
-            m_player1->update();
-        if(m_player2)
-            m_player2->update();
         if(m_currentCannonBall)
-            m_currentCannonBall->update();
+        {
+            m_currentCannonBall->update(0.1);
 
-        //Check if players alive, if one is not = game over
-        //Check if cannonBall done and change playerTurn
+            if(m_currentCannonBall->done())
+            {
+                m_player1Turn = !m_player1Turn;
+                m_currentCannonBall.reset();
+            }
+        }
+
+        if(m_player1 && m_player2)
+        {
+            m_player1->update(0.1);
+            m_player2->update(0.1);
+
+            if(!m_player1->isAlive())
+            {
+#ifdef GAME_DEBUG
+                cout << "Player 2 wins!!!!" << endl;
+#endif
+                m_currentState = Exit;
+            }
+            else if(!m_player2->isAlive())
+            {
+#ifdef GAME_DEBUG
+                cout << "Player 2 wins!!!!" << endl;
+#endif
+                m_currentState = Exit;
+            }
+        }
     }
 }
 
@@ -111,6 +146,6 @@ void Game::pause()
     }
 
 #ifdef GAME_DEBUG
-    cout << Game is resuming << endl;
+    cout << "Game is resuming" << endl;
 #endif
 }

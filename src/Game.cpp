@@ -99,6 +99,7 @@ void Game::play()
                 break;
 
             default:
+				
                 break;
         }
 #endif
@@ -129,11 +130,16 @@ void Game::play()
             else if(!m_player2->isAlive())
             {
 #ifdef GAME_DEBUG
-                cout << "Player 2 wins!!!!" << endl;
+                cout << "Player 1 wins!!!!" << endl;
 #endif
                 m_currentState = Exit;
             }
         }
+
+#ifdef GAME_DEBUG
+		cout << "End of a game loop" << endl;
+		cin.get();
+#endif
     }
 }
 

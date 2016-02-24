@@ -5,9 +5,8 @@ using namespace std;
 Cannon::Cannon()
 {
 #ifdef GAME_DEBUG
-	cout << "Cannon::Cannon" << endl;
+	cout << "Cannon::Cannon()" << endl;
 #endif
-
 	m_angle = 45;
 	m_power = 50;
 
@@ -16,7 +15,7 @@ Cannon::Cannon()
 Cannon::~Cannon()
 {
 #ifdef GAME_DEBUG
-	cout << "Cannon::~Cannon" << endl;
+	cout << "Cannon::~Cannon()" << endl;
 #endif
 	//ctor
 }

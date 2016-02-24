@@ -18,11 +18,14 @@ class CannonBall : public PhysicalEntity
 		void collide(PhysicalEntity& p_collider);
         void update(double p_deltaTime);
 
+        bool done() { return m_done; }
+
     private:
 		Vector2<double>  m_initialPosition;
 		Vector2<double>  m_initialVelocity;
 
         double m_time;
+        bool m_done;
 };
 
 #endif // CANNONBALL_H

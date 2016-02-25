@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "CollisionChecker.h"
 
+//#define DEBUG_PHYS_ENTITY
 
 class PhysicalEntity : public Entity
 {

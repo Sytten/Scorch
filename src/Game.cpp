@@ -25,6 +25,7 @@ void Game::play()
         switch (iteration)
         {
             case 1:
+				cout << "Player one turn, angle modification" << endl;
                 m_player1->increaseAngle();
                 m_player1->increaseAngle();
                 m_player1->decreaseAngle();
@@ -32,6 +33,7 @@ void Game::play()
                 break;
 
             case 2:
+				cout << "Player one turn, power modification" << endl;
                 m_player1->increasePower();
                 m_player1->increasePower();
                 m_player1->decreasePower();
@@ -39,21 +41,25 @@ void Game::play()
                 break;
 
             case 3:
+				cout << "Player one turn, fired cannonball" << endl;
                 m_currentCannonBall = m_player1->fire();
                 iteration++;
                 break;
 
             case 4:
+				cout << "Player one turn ending" << endl;
                 if(!m_player1Turn)
                     iteration++;
                 break;
 
             case 5:
+				cout << "Pause between turns" << endl;
                 pause();
                 iteration++;
                 break;
 
             case 6:
+				cout << "Player two turn, angle modification" << endl;
                 m_player2->increaseAngle();
                 m_player2->increaseAngle();
                 m_player2->decreaseAngle();
@@ -61,6 +67,7 @@ void Game::play()
                 break;
 
             case 7:
+				cout << "Player two turn, power modification" << endl;
                 m_player2->increasePower();
                 m_player2->increasePower();
                 m_player2->decreasePower();
@@ -68,32 +75,38 @@ void Game::play()
                 break;
 
             case 8:
+				cout << "Player two turn, fired cannonball" << endl;
                 m_currentCannonBall = m_player2->fire();
                 iteration++;
                 break;
 
             case 9:
+				cout << "Player two turn ending" << endl;
                 if(m_player1Turn)
                     iteration++;
                 break;
 
             case 10:
+				cout << "Player one turn 2, angle modification" << endl;
                 m_player1->increaseAngle();
                 iteration++;
                 break;
 
             case 11:
+				cout << "Player one turn 2, power modification" << endl;
                 m_player1->increasePower();
                 m_player1->increasePower();
                 iteration++;
                 break;
 
             case 12:
+				cout << "Player one turn 2, fired cannonball" << endl;
                 m_currentCannonBall = m_player1->fire();
                 iteration++;
                 break;
 
             case 13:
+				cout << "Player one turn 2 ending" << endl;
                 if(!m_player1Turn)
                     iteration++;
                 break;
@@ -117,7 +130,16 @@ void Game::play()
 
         if(m_player1 && m_player2)
         {
+
+#ifdef GAME_DEBUG
+			cout << "Player 1 update logic" << endl;
+#endif
             m_player1->update(0.1);
+
+
+#ifdef GAME_DEBUG
+			cout << "Player 2 update logic" << endl;
+#endif
             m_player2->update(0.1);
 
             if(!m_player1->isAlive())
@@ -141,6 +163,9 @@ void Game::play()
 		cin.get();
 #endif
     }
+#ifdef GAME_DEBUG
+	cin.get();
+#endif
 }
 
 void Game::pause()

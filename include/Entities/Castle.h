@@ -6,6 +6,8 @@
 
 #define INITIAL_LIFE 100
 
+//#define DEBUG_CASTLE
+
 class Castle : public PhysicalEntity
 {
     public:

@@ -8,7 +8,7 @@ int Entity::timesCalled = 0;
 Entity::Entity()
 {
 #if defined GAME_DEBUG && defined ENTITY_DEBUG
-	cout << "Entity::Entity" << endl;
+	cout << "Entity::Entity()" << endl;
 #endif
 	
 	m_size.x = 1;
@@ -48,7 +48,7 @@ Entity::Entity(Vector2<double> p_position, Vector2<double> p_size)
 Entity::~Entity()
 {
 #if defined GAME_DEBUG && defined ENTITY_DEBUG
-	cout << "Entity::~Entity" << endl;
+	cout << "Entity::~Entity()" << endl;
 #endif
 }
 

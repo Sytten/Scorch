@@ -3,22 +3,41 @@
 
 GameWindow::GameWindow(QWidget *parent) : QWidget(parent)
 {
-	QVBoxLayout *layout = new QVBoxLayout;
-	//QHBoxLayout *bottomLayout = new QHBoxLayout;
-	m_mainGameWidget = new QLabel("This is the core of the game");
-	//m_mainGameWidget->setText();
-	layout->addWidget(m_mainGameWidget);
-
-	//bottomLayout->addWidget(m_newGameButton);
-
-
-
-
-
-	//layout->addLayout(bottomLayout);
-	setLayout(layout);
+	setupUI();
 }
 
+void GameWindow::setupUI()
+{
+	QVBoxLayout *layout = new QVBoxLayout;
+	QHBoxLayout *bottomLayout = new QHBoxLayout;
+
+	m_mainGameWidget = new QLabel("This is the core of the game");
+	m_mainGameWidget->setStyleSheet("QLabel { background-color : red; color : blue; }");
+	m_mainGameWidget->setMinimumSize(QSize(800, 600));
+	
+	layout->addWidget(m_mainGameWidget);
+
+
+	m_newGameButton = new QPushButton("Nouvelle partie");
+	bottomLayout->addWidget(m_newGameButton);
+
+	QVBoxLayout *modeLayout = new QVBoxLayout;
+	m_currentMode = new QLabel("Current mode goes here");
+	m_currentPlayerTurn = new QLabel("Current player turn goes here");
+	modeLayout->addWidget(m_currentMode);
+	modeLayout->addWidget(m_currentPlayerTurn);
+	bottomLayout->addLayout(modeLayout);
+
+	m_currentAngle = new QLabel("Current angle of fire goes here");
+	m_currentPower = new QLabel("Current power of fire goes here");
+
+	bottomLayout->addWidget(m_currentAngle);
+	bottomLayout->addWidget(m_currentPower);
+
+	layout->addLayout(bottomLayout);
+	setLayout(layout);
+
+}
 
 GameWindow::~GameWindow()
 {

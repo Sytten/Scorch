@@ -21,6 +21,9 @@ protected:
 
 
 private:
+
+	void setupUI();
+
 	QLabel * m_mainGameWidget;
 	QPushButton * m_newGameButton;
 	QLabel * m_currentMode;

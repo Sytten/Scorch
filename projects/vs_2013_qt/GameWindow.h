@@ -5,12 +5,12 @@
 #include<QKeyEvent>
 #include<QtWidgets>
 
-class GameWindow : public QWidget
+class GameWindow : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	GameWindow(QWidget *parent = 0);
+	GameWindow(QMainWindow *parent = 0);
 	~GameWindow();
 
 protected:

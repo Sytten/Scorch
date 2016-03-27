@@ -1,13 +1,15 @@
 #include "GameWindow.h"
 
 
-GameWindow::GameWindow(QWidget *parent) : QWidget(parent)
+GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent)
 {
 	setupUI();
 }
 
 void GameWindow::setupUI()
 {
+	QWidget * centralWidget = new QWidget;
+
 	QVBoxLayout *layout = new QVBoxLayout;
 	QHBoxLayout *bottomLayout = new QHBoxLayout;
 
@@ -17,26 +19,33 @@ void GameWindow::setupUI()
 	
 	layout->addWidget(m_mainGameWidget);
 
-
 	m_newGameButton = new QPushButton("Nouvelle partie");
 	bottomLayout->addWidget(m_newGameButton);
 
+
+	//This should be an object
 	QVBoxLayout *modeLayout = new QVBoxLayout;
 	m_currentMode = new QLabel("Current mode goes here");
+	
 	m_currentPlayerTurn = new QLabel("Current player turn goes here");
+
 	modeLayout->addWidget(m_currentMode);
 	modeLayout->addWidget(m_currentPlayerTurn);
 	bottomLayout->addLayout(modeLayout);
 
+	//This should be an object with custom paint method to make it interesting
 	m_currentAngle = new QLabel("Current angle of fire goes here");
+
+	//This will be an object with custom paint method to make it interesting
 	m_currentPower = new QLabel("Current power of fire goes here");
 
 	bottomLayout->addWidget(m_currentAngle);
 	bottomLayout->addWidget(m_currentPower);
 
 	layout->addLayout(bottomLayout);
-	setLayout(layout);
-
+	centralWidget->setLayout(layout);
+	
+	this->setCentralWidget(centralWidget);
 }
 
 GameWindow::~GameWindow()

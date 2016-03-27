@@ -17,7 +17,7 @@ bool CollisionChecker::checkCollisions(PhysicalEntity& p_entity)
 
     if(numberOfCalls > 1)
     {
-		cout << "CannonBall hit" << endl;
+		cout << "////// CannonBall hit ///////" << endl;
         for(size_t i = 0; i < m_entities.size(); i++)
         {
             auto entity = m_entities[i].lock();
@@ -34,7 +34,7 @@ bool CollisionChecker::checkCollisions(PhysicalEntity& p_entity)
         }
     }
     else
-        cout << "CannonBall missed" << endl;
+        cout << "////// CannonBall missed //////" << endl;
 
     numberOfCalls++;
 #endif

@@ -39,7 +39,6 @@ void Castle::collide(PhysicalEntity & p_collider)
 #if defined GAME_DEBUG && defined DEBUG_CASTLE
 	cout << "Castle::collide(PhysicalEntity&)" << endl;
 #endif
-
     m_life -= 10;
 
     if(m_life < 0)

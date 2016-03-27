@@ -5,7 +5,7 @@ using namespace std;
 CannonBall::CannonBall()
 {
 #if defined GAME_DEBUG && defined DEBUG_CANNON_BALL
-	cout << "CannonBall::CannonBall" << endl;
+	cout << "CannonBall::CannonBall()" << endl;
 #endif
 	m_initialPosition.x = 0;
 	m_initialPosition.y = 0;

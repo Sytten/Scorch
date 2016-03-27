@@ -7,6 +7,8 @@
 #include "Entities/Cannon.h"
 #include "Entities/Castle.h"
 
+#define DEBUG_PLAYER
+
 class Player
 {
     public:

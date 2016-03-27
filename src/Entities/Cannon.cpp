@@ -23,7 +23,7 @@ Cannon::~Cannon()
 void Cannon::powerUp()
 {
 #if defined GAME_DEBUG && defined DEBUG_CANNON
-	cout << "Cannon::powerUp" << endl;
+	cout << "Cannon::powerUp()" << endl;
 #endif
 	m_power = m_power + 10;
 	if (m_power >= m_maxPower)
@@ -39,7 +39,7 @@ void Cannon::powerUp()
 void Cannon::powerDown()
 {
 #if defined GAME_DEBUG && defined DEBUG_CANNON
-	cout << "Cannon::powerDown" << endl;
+	cout << "Cannon::powerDown()" << endl;
 #endif
 	m_power = m_power - 10;
 	if (m_power <= m_minPower)
@@ -55,7 +55,7 @@ void Cannon::powerDown()
 void Cannon::angleUp()
 {
 #if defined GAME_DEBUG && defined DEBUG_CANNON
-	cout << "Cannon::angleUp" << endl;
+	cout << "Cannon::angleUp()" << endl;
 #endif
 	m_angle = m_angle + 10;
 	if (m_angle >= m_maxAngle)
@@ -72,7 +72,7 @@ void Cannon::angleUp()
 void Cannon::angleDown()
 {
 #if defined GAME_DEBUG && defined DEBUG_CANNON
-	cout << "Cannon::angleDown" << endl;
+	cout << "Cannon::angleDown()" << endl;
 #endif
 	m_angle = m_angle - 10;
 	if (m_angle <= m_minAngle)
@@ -88,7 +88,7 @@ void Cannon::angleDown()
 void Cannon::update(double p_deltaTime)
 {
 #if defined GAME_DEBUG && defined DEBUG_CANNON
-	cout << "Cannon::update" << endl;
+	cout << "Cannon::update()" << endl;
 #endif
 
 }
@@ -97,7 +97,7 @@ void Cannon::update(double p_deltaTime)
 bool Cannon::reset()
 {
 #if defined GAME_DEBUG && defined DEBUG_CANNON
-	cout << "Cannon::reset" << endl;
+	cout << "Cannon::reset()" << endl;
 #endif
 	return false;
 }
@@ -105,7 +105,7 @@ bool Cannon::reset()
 std::shared_ptr<CannonBall> Cannon::fire()
 {
 #if defined GAME_DEBUG && defined DEBUG_CANNON
-	cout << "Cannon::fire!" << endl;
+	cout << "Cannon::fire()" << endl;
 #endif
     return make_shared<CannonBall>(m_angle, m_power, getPosition());
 }

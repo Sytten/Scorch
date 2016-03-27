@@ -5,6 +5,8 @@
 #include<QKeyEvent>
 #include<QtWidgets>
 
+#include<QCloseEvent>
+
 class GameWindow : public QMainWindow
 {
 	Q_OBJECT
@@ -17,8 +19,9 @@ protected:
 	void keyPressEvent(QKeyEvent *event);
 	void keyReleaseEvent(QKeyEvent *event);
 
-	private slots:
+	void closeEvent(QCloseEvent * event);
 
+private slots :
 
 private:
 
@@ -30,6 +33,11 @@ private:
 	QLabel * m_currentPlayerTurn;
 	QLabel * m_currentAngle;
 	QLabel * m_currentPower;
+
+	QMenuBar * m_menuBar;
+	QMenu * m_menuFile;
+
+	QAction * m_actionQuit;
 };
 
 

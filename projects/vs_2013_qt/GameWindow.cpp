@@ -32,6 +32,7 @@ void GameWindow::setupUI()
 	modeLayout->addWidget(m_currentMode);
 	modeLayout->addWidget(m_currentPlayerTurn);
 	bottomLayout->addLayout(modeLayout);
+	//END OF This should be an object
 
 	//This should be an object with custom paint method to make it interesting
 	m_currentAngle = new QLabel("Current angle of fire goes here");
@@ -46,6 +47,23 @@ void GameWindow::setupUI()
 	centralWidget->setLayout(layout);
 	
 	this->setCentralWidget(centralWidget);
+
+	m_menuBar = new QMenuBar;
+	m_menuFile = new QMenu("Fichier");
+	m_actionQuit = new QAction("Quitter", this);
+
+
+	connect(m_actionQuit, &QAction::triggered, QApplication::instance(), &QApplication::quit);
+
+	m_menuFile->addAction(m_actionQuit);
+
+	m_menuBar->addMenu(m_menuFile);
+
+
+
+	this->setMenuBar(m_menuBar);
+
+	this->setWindowTitle("Scorch");
 }
 
 GameWindow::~GameWindow()
@@ -84,4 +102,10 @@ void GameWindow::keyReleaseEvent(QKeyEvent *event)
 	default:
 		break;
 	}
+}
+
+
+void GameWindow::closeEvent(QCloseEvent * event)
+{
+	
 }

@@ -7,6 +7,8 @@
 
 #include<QCloseEvent>
 
+#include"FirePowerWidget.h"
+
 class GameWindow : public QMainWindow
 {
 	Q_OBJECT
@@ -32,7 +34,7 @@ private:
 	QLabel * m_currentMode;
 	QLabel * m_currentPlayerTurn;
 	QLabel * m_currentAngle;
-	QLabel * m_currentPower;
+	FirePowerWidget * m_currentPower;
 
 	QMenuBar * m_menuBar;
 	QMenu * m_menuFile;

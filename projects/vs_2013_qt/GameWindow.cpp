@@ -38,7 +38,7 @@ void GameWindow::setupUI()
 	m_currentAngle = new QLabel("Current angle of fire goes here");
 
 	//This will be an object with custom paint method to make it interesting
-	m_currentPower = new QLabel("Current power of fire goes here");
+	m_currentPower = new FirePowerWidget;
 
 	bottomLayout->addWidget(m_currentAngle);
 	bottomLayout->addWidget(m_currentPower);

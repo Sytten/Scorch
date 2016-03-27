@@ -39,8 +39,9 @@ private:
 
 	QMenuBar * m_menuBar;
 	QMenu * m_menuFile;
-
 	QAction * m_actionQuit;
+
+	QStatusBar * m_statusBar;
 
 	float temp_power;
 	float temp_angle;

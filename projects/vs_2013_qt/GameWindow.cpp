@@ -66,6 +66,11 @@ void GameWindow::setupUI()
 	this->setMenuBar(m_menuBar);
 	this->setWindowTitle("Scorch");
 
+	m_statusBar = new QStatusBar;
+	this->setStatusBar(m_statusBar);
+
+	statusBar()->showMessage("FPGA non-connecté");
+
 	setFocusPolicy(Qt::TabFocus);
 }
 

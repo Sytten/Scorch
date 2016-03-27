@@ -2,13 +2,10 @@
 
 #include<iostream>
 
-#include<QMainWindow>
-
 #include<QKeyEvent>
-
 #include<QtWidgets>
 
-class GameWindow : public QMainWindow
+class GameWindow : public QWidget
 {
 	Q_OBJECT
 

@@ -1,11 +1,12 @@
 #include "GameWindow.h"
 
 
-GameWindow::GameWindow(QWidget *parent):QMainWindow(parent)
+GameWindow::GameWindow(QWidget *parent) : QWidget(parent)
 {
 	QVBoxLayout *layout = new QVBoxLayout;
-	QHBoxLayout *bottomLayout = new QHBoxLayout;
-
+	//QHBoxLayout *bottomLayout = new QHBoxLayout;
+	m_mainGameWidget = new QLabel("This is the core of the game");
+	//m_mainGameWidget->setText();
 	layout->addWidget(m_mainGameWidget);
 
 	//bottomLayout->addWidget(m_newGameButton);

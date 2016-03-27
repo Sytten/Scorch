@@ -10,6 +10,7 @@ void GameWindow::setupUI()
 {
 
 	temp_power = 35;
+	temp_angle = 45;
 
 	QWidget * centralWidget = new QWidget;
 
@@ -38,7 +39,8 @@ void GameWindow::setupUI()
 	//END OF This should be an object
 
 	//This should be an object with custom paint method to make it interesting
-	m_currentAngle = new QLabel("Current angle of fire goes here");
+	m_currentAngle = new AngleStatusWidget;
+	m_currentAngle->setAngle(temp_angle);
 
 	//This will be an object with custom paint method to make it interesting
 	m_currentPower = new FirePowerWidget;
@@ -87,7 +89,12 @@ void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)
 		m_currentPower->setPower(temp_power);
 		break;
 	case Qt::Key_Up:
+		temp_angle += 5;
+		m_currentAngle->setAngle(temp_angle);
+		break;
 	case Qt::Key_Down:
+		temp_angle -= 5;
+		m_currentAngle->setAngle(temp_angle);
 		break;
 	default:
 		break;

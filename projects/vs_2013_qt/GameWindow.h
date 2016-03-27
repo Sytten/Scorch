@@ -8,6 +8,7 @@
 #include<QCloseEvent>
 
 #include"FirePowerWidget.h"
+#include"AngleStatusWidget.h"
 
 class GameWindow : public QMainWindow
 {
@@ -33,7 +34,7 @@ private:
 	QPushButton * m_newGameButton;
 	QLabel * m_currentMode;
 	QLabel * m_currentPlayerTurn;
-	QLabel * m_currentAngle;
+	AngleStatusWidget * m_currentAngle;
 	FirePowerWidget * m_currentPower;
 
 	QMenuBar * m_menuBar;
@@ -42,6 +43,7 @@ private:
 	QAction * m_actionQuit;
 
 	float temp_power;
+	float temp_angle;
 };
 
 

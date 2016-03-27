@@ -6,8 +6,8 @@ FirePowerWidget::FirePowerWidget(QWidget *parent) :QWidget(parent)
 	m_maxPower = 100;
 
 	QVBoxLayout * layout = new QVBoxLayout;
-
-	layout->addWidget(new QLabel("Puissance:"));
+	m_firePower = new QLabel("Puissance:");
+	layout->addWidget(m_firePower);
 
 	m_powerBar = new GradientBarWidget;
 
@@ -19,4 +19,23 @@ FirePowerWidget::FirePowerWidget(QWidget *parent) :QWidget(parent)
 FirePowerWidget::~FirePowerWidget()
 {
 
+}
+
+void FirePowerWidget::setPower(float p_power)
+{
+	m_power = qBound(m_minPower, p_power, m_maxPower);
+	m_powerBar->setPercent(((m_power - m_minPower) / (m_maxPower - m_minPower)) * 100);
+	QString labelText = "Puissance : ";
+	labelText.append(QString::number(m_power));
+	m_firePower->setText(labelText);
+}
+
+void FirePowerWidget::setMinPower(float p_minPower)
+{
+	m_minPower = p_minPower;
+}
+
+void FirePowerWidget::setMaxPower(float p_maxPower)
+{
+	m_maxPower = p_maxPower;
 }

@@ -18,10 +18,10 @@ public:
 	~GameWindow();
 
 protected:
-	void keyPressEvent(QKeyEvent *event);
-	void keyReleaseEvent(QKeyEvent *event);
+	void keyPressEvent(QKeyEvent * KeyEvent);
+	void keyReleaseEvent(QKeyEvent * KeyEvent);
 
-	void closeEvent(QCloseEvent * event);
+	void closeEvent(QCloseEvent * CloseEvent);
 
 private slots :
 
@@ -40,6 +40,8 @@ private:
 	QMenu * m_menuFile;
 
 	QAction * m_actionQuit;
+
+	float temp_power;
 };
 
 

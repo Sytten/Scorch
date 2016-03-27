@@ -8,6 +8,9 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent)
 
 void GameWindow::setupUI()
 {
+
+	temp_power = 35;
+
 	QWidget * centralWidget = new QWidget;
 
 	QVBoxLayout *layout = new QVBoxLayout;
@@ -39,6 +42,7 @@ void GameWindow::setupUI()
 
 	//This will be an object with custom paint method to make it interesting
 	m_currentPower = new FirePowerWidget;
+	m_currentPower->setPower(temp_power);
 
 	bottomLayout->addWidget(m_currentAngle);
 	bottomLayout->addWidget(m_currentPower);
@@ -52,18 +56,15 @@ void GameWindow::setupUI()
 	m_menuFile = new QMenu("Fichier");
 	m_actionQuit = new QAction("Quitter", this);
 
-
 	connect(m_actionQuit, &QAction::triggered, QApplication::instance(), &QApplication::quit);
 
 	m_menuFile->addAction(m_actionQuit);
-
 	m_menuBar->addMenu(m_menuFile);
 
-
-
 	this->setMenuBar(m_menuBar);
-
 	this->setWindowTitle("Scorch");
+
+	setFocusPolicy(Qt::TabFocus);
 }
 
 GameWindow::~GameWindow()
@@ -71,11 +72,34 @@ GameWindow::~GameWindow()
 }
 
 
-void GameWindow::keyPressEvent(QKeyEvent *event)
+void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)
 {
-	if (event->isAutoRepeat())
+	if (KeyEvent->isAutoRepeat())
 		return;
-	switch (event->key()){
+	switch (KeyEvent->key()){
+	case Qt::Key_Right:
+		temp_power += 10;
+		m_currentPower->setPower(temp_power);
+		break;
+	case Qt::Key_Left:
+		temp_power -= 10;
+		
+		m_currentPower->setPower(temp_power);
+		break;
+	case Qt::Key_Up:
+	case Qt::Key_Down:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameWindow::keyReleaseEvent(QKeyEvent * KeyEvent)
+{
+	if (KeyEvent->isAutoRepeat())
+		return;
+
+	switch (KeyEvent->key()) {
 	case Qt::Key_Right:
 	case Qt::Key_Left:
 		break;
@@ -87,25 +111,8 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
 	}
 }
 
-void GameWindow::keyReleaseEvent(QKeyEvent *event)
-{
-	if (event->isAutoRepeat())
-		return;
 
-	switch (event->key()) {
-	case Qt::Key_Right:
-	case Qt::Key_Left:
-		break;
-	case Qt::Key_Up:
-	case Qt::Key_Down:
-		break;
-	default:
-		break;
-	}
-}
-
-
-void GameWindow::closeEvent(QCloseEvent * event)
+void GameWindow::closeEvent(QCloseEvent * CloseEvent)
 {
 	
 }

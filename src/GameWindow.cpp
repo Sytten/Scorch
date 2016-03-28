@@ -11,6 +11,7 @@ void GameWindow::setupUI()
 
 	temp_power = 35;
 	temp_angle = 45;
+	temp_player1Turn = true;
 
 	QWidget * centralWidget = new QWidget;
 
@@ -28,16 +29,8 @@ void GameWindow::setupUI()
 	bottomLayout->addWidget(m_newGameButton);*/
 
 
-	//This should be an object
-	QVBoxLayout *modeLayout = new QVBoxLayout;
-	m_currentMode = new QLabel("Current mode goes here");
-	
-	m_currentPlayerTurn = new QLabel("Current player turn goes here");
-
-	modeLayout->addWidget(m_currentMode);
-	modeLayout->addWidget(m_currentPlayerTurn);
-	bottomLayout->addLayout(modeLayout);
-	//END OF This should be an object
+	m_gameModeWidget = new GameModeWidget;
+	bottomLayout->addWidget(m_gameModeWidget);
 
 	//This should be an object with custom paint method to make it interesting
 	m_currentAngle = new AngleStatusWidget;
@@ -106,6 +99,9 @@ void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)
 	case Qt::Key_Down:
 		temp_angle -= 5;
 		m_currentAngle->setAngle(temp_angle);
+		break;
+	case Qt::Key_Space:
+		m_gameModeWidget->togglePlayer();
 		break;
 	default:
 		break;

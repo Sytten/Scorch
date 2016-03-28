@@ -27,6 +27,7 @@ void EllipseAngleWidget::setValue(float p_angle)
 void EllipseAngleWidget::paintEvent(QPaintEvent * paintEvent)
 {
 	QPainter painter(this);
+	painter.setRenderHint(QPainter::Antialiasing);
 	painter.setPen(Qt::white);
 	painter.setBrush(QBrush(Qt::black));
 	painter.drawEllipse(rect());

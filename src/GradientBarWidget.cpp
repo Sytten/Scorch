@@ -13,6 +13,7 @@ GradientBarWidget::~GradientBarWidget()
 void GradientBarWidget::paintEvent(QPaintEvent * paintEvent)
 {
 	QPainter painter(this);
+	painter.setRenderHint(QPainter::Antialiasing);
 	int middleY = (rect().top() + rect().bottom()) / 2;
 	QRect fillRect = getFillRectangle();
 

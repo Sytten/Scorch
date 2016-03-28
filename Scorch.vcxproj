@@ -139,8 +139,11 @@
     <ClCompile Include="src\EllipseAngleWidget.cpp" />
     <ClCompile Include="src\FirePowerWidget.cpp" />
     <ClCompile Include="src\GameBottomLayout.cpp" />
+    <ClCompile Include="src\GameModeWidget.cpp" />
     <ClCompile Include="src\GameWindow.cpp" />
     <ClCompile Include="src\GradientBarWidget.cpp" />
+    <ClCompile Include="src\PlayerActivatedWidget.cpp" />
+    <ClCompile Include="src\PlayerControlModeWidget.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +178,7 @@
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_FirePowerWidget.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <ClInclude Include="include\GameBottomLayout.h" />
+    <ClInclude Include="include\GameModeWidget.h" />
     <CustomBuild Include="include\GameWindow.h">
       <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">include\GameWindow.h;%(AdditionalInputs)</AdditionalInputs>
       <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IC:/Users/Cheroukee/GitKraken/scorch -IC:/Users/Cheroukee/GitKraken/scorch/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\GameWindow.h -o release\moc_GameWindow.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
@@ -195,6 +199,8 @@
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC include/GradientBarWidget.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_GradientBarWidget.cpp;%(Outputs)</Outputs>
     </CustomBuild>
+    <ClInclude Include="include\PlayerActivatedWidget.h" />
+    <ClInclude Include="include\PlayerControlModeWidget.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_AngleStatusWidget.cpp">

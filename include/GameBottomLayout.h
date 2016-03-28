@@ -3,10 +3,7 @@
 class GameBottomLayout : public QHBoxLayout
 {
 public:
-	GameBottomLayout(QWidget *parent = 0) :QHBoxLayout(parent)
-	{
-
-	}
+	GameBottomLayout(QWidget *parent = 0) :QHBoxLayout(parent){}
 
 	~GameBottomLayout(){}
 

@@ -9,6 +9,7 @@
 
 #include"FirePowerWidget.h"
 #include"AngleStatusWidget.h"
+#include"GameBottomLayout.h"
 
 class GameWindow : public QMainWindow
 {
@@ -31,7 +32,7 @@ private:
 	void setupUI();
 
 	QLabel * m_mainGameWidget;
-	QPushButton * m_newGameButton;
+	//QPushButton * m_newGameButton;
 	QLabel * m_currentMode;
 	QLabel * m_currentPlayerTurn;
 	AngleStatusWidget * m_currentAngle;
@@ -40,6 +41,7 @@ private:
 	QMenuBar * m_menuBar;
 	QMenu * m_menuFile;
 	QAction * m_actionQuit;
+	QAction * m_actionNewGame;
 
 	QStatusBar * m_statusBar;
 

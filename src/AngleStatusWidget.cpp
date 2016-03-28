@@ -14,6 +14,13 @@ AngleStatusWidget::AngleStatusWidget(QWidget *parent) : QWidget(parent)
 	setLayout(layout);
 
 	m_angle = 0.0f;
+
+	m_currentAngle->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
+	m_currentAngle->setAlignment(Qt::AlignCenter);
+	m_ellipseAngle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);	
+	layout->setAlignment(m_ellipseAngle, Qt::AlignCenter);
+
+	setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
 }
 
 AngleStatusWidget::~AngleStatusWidget()

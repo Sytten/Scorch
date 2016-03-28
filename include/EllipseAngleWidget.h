@@ -15,9 +15,6 @@ public:
 
 protected:
 	void paintEvent(QPaintEvent * paintEvent);
-	int heightForWidth(int w) {
-		return w;
-	}
 
 private:
 	float m_angle;

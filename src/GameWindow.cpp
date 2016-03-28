@@ -15,7 +15,7 @@ void GameWindow::setupUI()
 	QWidget * centralWidget = new QWidget;
 
 	QVBoxLayout *layout = new QVBoxLayout;
-	QHBoxLayout *bottomLayout = new QHBoxLayout;
+	GameBottomLayout *bottomLayout = new GameBottomLayout;
 
 	m_mainGameWidget = new QLabel("This is the core of the game");
 	m_mainGameWidget->setStyleSheet("QLabel { background-color : red; color : blue; }");
@@ -23,8 +23,9 @@ void GameWindow::setupUI()
 	
 	layout->addWidget(m_mainGameWidget);
 
-	m_newGameButton = new QPushButton("Nouvelle partie");
-	bottomLayout->addWidget(m_newGameButton);
+	/*m_newGameButton = new QPushButton("Nouvelle partie");
+	m_newGameButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
+	bottomLayout->addWidget(m_newGameButton);*/
 
 
 	//This should be an object
@@ -46,7 +47,9 @@ void GameWindow::setupUI()
 	m_currentPower = new FirePowerWidget;
 	m_currentPower->setPower(temp_power);
 
+	bottomLayout->addStretch();
 	bottomLayout->addWidget(m_currentAngle);
+	bottomLayout->setAlignment(m_currentAngle, Qt::AlignRight);
 	bottomLayout->addWidget(m_currentPower);
 
 	layout->addLayout(bottomLayout);
@@ -57,9 +60,12 @@ void GameWindow::setupUI()
 	m_menuBar = new QMenuBar;
 	m_menuFile = new QMenu("Fichier");
 	m_actionQuit = new QAction("Quitter", this);
+	m_actionNewGame = new QAction("New game", this);
 
 	connect(m_actionQuit, &QAction::triggered, QApplication::instance(), &QApplication::quit);
 
+	m_menuFile->addAction(m_actionNewGame);
+	m_menuFile->addSeparator();
 	m_menuFile->addAction(m_actionQuit);
 	m_menuBar->addMenu(m_menuFile);
 

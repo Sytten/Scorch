@@ -1,5 +1,6 @@
 #include<QtWidgets>
 #include<QLayout>
+#include<QSizePolicy>
 #include "EllipseAngleWidget.h"
 
 class AngleStatusWidget : public QWidget

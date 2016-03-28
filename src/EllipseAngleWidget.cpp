@@ -3,7 +3,10 @@
 
 EllipseAngleWidget::EllipseAngleWidget(QWidget * parent) : QWidget(parent)
 {
+
 	m_angle = 0.0f;
+	setMinimumSize(QSize(100, 100));
+
 }
 
 EllipseAngleWidget::~EllipseAngleWidget()
@@ -31,7 +34,6 @@ void EllipseAngleWidget::paintEvent(QPaintEvent * paintEvent)
 	painter.setPen(Qt::red);
 	painter.drawLine(rect().center(), getLineEnding());	
 }
-
 
 
 QPoint EllipseAngleWidget::getLineEnding() const

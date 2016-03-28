@@ -6,14 +6,18 @@ FirePowerWidget::FirePowerWidget(QWidget *parent) :QWidget(parent)
 	m_maxPower = 100;
 
 	QVBoxLayout * layout = new QVBoxLayout;
-	m_firePower = new QLabel("Puissance:");
-	layout->addWidget(m_firePower);
 
+	m_firePower = new QLabel("Puissance:");
 	m_powerBar = new GradientBarWidget;
 
+	m_firePower->setAlignment(Qt::AlignCenter);
+	layout->addWidget(m_firePower);
+
+	m_powerBar->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::MinimumExpanding);
 	layout->addWidget(m_powerBar);
 
 	setLayout(layout);
+
 }
 
 FirePowerWidget::~FirePowerWidget()

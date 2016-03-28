@@ -7,6 +7,8 @@
 #include "Entities/PhysicalEntity.h"
 #include "Helper/Vector2.h"
 
+//#define DEBUG_CANNON_BALL
+
 class CannonBall : public PhysicalEntity
 {
     public:

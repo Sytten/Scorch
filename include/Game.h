@@ -4,6 +4,7 @@
 #include <memory>
 #include <iostream>
 #include "Player.h"
+#include "Entities\Terrain.h"
 
 enum State {
     Play,

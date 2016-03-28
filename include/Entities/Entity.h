@@ -8,6 +8,7 @@
 
 #include <iostream>
 
+//#define ENTITY_DEBUG
 
 class Entity
 {

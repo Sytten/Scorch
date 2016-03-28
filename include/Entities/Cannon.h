@@ -6,6 +6,8 @@
 #include "Entities/CannonBall.h"
 #include "Entities/Entity.h"
 
+//#define DEBUG_CANNON
+
 class Cannon : public Entity
 {
     public:

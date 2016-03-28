@@ -4,14 +4,20 @@
 #include "stdafx.h"
 #include <string>
 #include "Game.h"
+#include "Entities\Terrain.h"
+
+#define PLAY_GAME
+//#define PLAY_TEST
 
 void testCannon(Cannon cannon);
 void testCannonBall(CannonBall cannonBall);
 void testCollision(CannonBall cannonBall, PhysicalEntity & physE);
+void testTerrain();
 
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+#ifdef PLAY_TEST
 	CannonBall cannonBall;
 	Castle castle;
 	testCannonBall(cannonBall);
@@ -19,6 +25,13 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	Cannon cannon;
 	testCannon(cannon);
+	testTerrain();
+#endif
+
+#ifdef PLAY_GAME
+	Game game;
+	game.play();
+#endif
 
 	return 0;
 }
@@ -75,4 +88,11 @@ void testCollision(CannonBall cannonBall, PhysicalEntity & physE)
 	cannonBall.collide(physE);
 
 	std::cin.get();
+}
+
+void testTerrain()
+{
+	Terrain terrain;
+
+	//Tests supplémentaires à développer lors de l'avancement du terrain
 }

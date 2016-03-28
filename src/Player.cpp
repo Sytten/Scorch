@@ -5,7 +5,7 @@ using namespace std;
 
 Player::Player() : m_castle(new Castle())
 {
-#ifdef GAME_DEBUG
+#if defined GAME_DEBUG && defined DEBUG_PLAYER
 	cout << "Player::Player()" << endl;
 #endif
     CollisionChecker::registerEntity(m_castle);
@@ -14,7 +14,7 @@ Player::Player() : m_castle(new Castle())
 ////TEMP pour tests
 Player::Player(int p_id) : m_castle(new Castle(5, p_id))
 {
-#ifdef GAME_DEBUG
+#if defined GAME_DEBUG && defined DEBUG_PLAYER
 	cout << "Player::Player(int)" << endl;
 #endif
     CollisionChecker::registerEntity(m_castle);
@@ -22,7 +22,7 @@ Player::Player(int p_id) : m_castle(new Castle(5, p_id))
 
 void Player::increasePower()
 {
-#ifdef GAME_DEBUG
+#if defined GAME_DEBUG && defined DEBUG_PLAYER
 	cout << "Player::increasePower()" << endl;
 #endif
 	m_cannon.powerUp();
@@ -30,7 +30,7 @@ void Player::increasePower()
 
 void Player::decreasePower()
 {
-#ifdef GAME_DEBUG
+#if defined GAME_DEBUG && defined DEBUG_PLAYER
 	cout << "Player::decreasePower()" << endl;
 #endif
 	m_cannon.powerDown();
@@ -38,7 +38,7 @@ void Player::decreasePower()
 
 void Player::increaseAngle()
 {
-#ifdef GAME_DEBUG
+#if defined GAME_DEBUG && defined DEBUG_PLAYER
 	cout << "Player::increaseAngle()" << endl;
 #endif
 	m_cannon.angleUp();
@@ -46,7 +46,7 @@ void Player::increaseAngle()
 
 void Player::decreaseAngle()
 {
-#ifdef GAME_DEBUG
+#if defined GAME_DEBUG && defined DEBUG_PLAYER
 	cout << "Player::decreaseAngle()" << endl;
 #endif
 	m_cannon.angleDown();
@@ -55,18 +55,26 @@ void Player::decreaseAngle()
 
 bool Player::isAlive()
 {
-#ifdef GAME_DEBUG
+#if defined GAME_DEBUG && defined DEBUG_PLAYER
 	cout << "Player::isAlive()" << endl;
 #endif
-    if(m_castle)
-        return m_castle->stillAlive();
-    else
-        return false;
+	if (m_castle){	
+        bool returnValue = m_castle->stillAlive();
+#if defined GAME_DEBUG && defined DEBUG_PLAYER
+		if (returnValue)
+			cout << "Player is still alive" << endl;
+		else
+			cout << "Player is eliminated" << endl;
+#endif
+		return returnValue;
+	}
+	cout << "Player is eliminated" << endl;
+    return false;
 }
 
 void Player::update(double p_deltaTime)
 {
-#ifdef GAME_DEBUG
+#if defined GAME_DEBUG && defined DEBUG_PLAYER
 	cout << "Player::update(double)" << endl;
 #endif
 
@@ -74,7 +82,7 @@ void Player::update(double p_deltaTime)
 
 std::shared_ptr<CannonBall> Player::fire()
 {
-#ifdef GAME_DEBUG
+#if defined GAME_DEBUG && defined DEBUG_PLAYER
 	cout << "Player::fire()" << endl;
 #endif
     return m_cannon.fire();

@@ -4,10 +4,11 @@ using namespace std;
 
 int Entity::timesCalled = 0;
 
+
 Entity::Entity()
 {
-#ifdef GAME_DEBUG
-	cout << "Entity::Entity" << endl;
+#if defined GAME_DEBUG && defined ENTITY_DEBUG
+	cout << "Entity::Entity()" << endl;
 #endif
 	
 	m_size.x = 1;
@@ -20,15 +21,15 @@ Entity::Entity()
 
 	timesCalled++;
 
-#ifdef GAME_DEBUG
-	cout << "Entity number " << m_id << " was created at position x:" << m_position.x << ", y:" << m_position.y 
-		 << " of size " << m_size.x << " by" << m_size.y << endl;
+#if defined GAME_DEBUG && defined ENTITY_DEBUG
+	cout << "Entity number " << m_id << " was created at position x: " << m_position.x << ", y: " << m_position.y 
+		 << " of size " << m_size.x << " by " << m_size.y << endl;
 #endif
 }
 
 Entity::Entity(Vector2<double> p_position, Vector2<double> p_size)
 {
-#ifdef GAME_DEBUG
+#if defined GAME_DEBUG && defined ENTITY_DEBUG
 	cout << "Entity::Entity(Vector2<double>, Vector2<double>)" << endl;
 #endif
 	m_position = p_position;
@@ -37,23 +38,23 @@ Entity::Entity(Vector2<double> p_position, Vector2<double> p_size)
 	m_id = timesCalled;
 	timesCalled++;
 
-#ifdef GAME_DEBUG
-	cout << "Entity number " << m_id << " was created at position x:" << m_position.x << ", y:" << m_position.y 
-		 << " of size " << m_size.x << " by" << m_size.y << endl;
+#if defined GAME_DEBUG && defined ENTITY_DEBUG
+	cout << "Entity number " << m_id << " was created at position x: " << m_position.x << ", y: " << m_position.y 
+		 << " of size " << m_size.x << " by " << m_size.y << endl;
 #endif
 
 }
 
 Entity::~Entity()
 {
-#ifdef GAME_DEBUG
-	cout << "Entity::~Entity" << endl;
+#if defined GAME_DEBUG && defined ENTITY_DEBUG
+	cout << "Entity::~Entity()" << endl;
 #endif
 }
 
 Vector2<double> Entity::getSize() const
 {
-#ifdef GAME_DEBUG
+#if defined GAME_DEBUG && defined ENTITY_DEBUG
 	cout << "Entity::getSize()" << endl;
 #endif
 	return m_size;
@@ -61,7 +62,7 @@ Vector2<double> Entity::getSize() const
 
 Vector2<double> Entity::getPosition() const
 {
-#ifdef GAME_DEBUG
+#if defined GAME_DEBUG && defined ENTITY_DEBUG
 	cout << "Entity::getPosition()" << endl;
 #endif
 	return m_position;
@@ -69,7 +70,7 @@ Vector2<double> Entity::getPosition() const
 
 int Entity::getID() const
 {
-#ifdef GAME_DEBUG
+#if defined GAME_DEBUG && defined ENTITY_DEBUG
 	cout << "Entity::getID()" << endl;
 #endif
 	return m_id;
@@ -77,14 +78,14 @@ int Entity::getID() const
 
 void Entity::scale(Vector2<double> p_scale)
 {
-#ifdef GAME_DEBUG
+#if defined GAME_DEBUG && defined ENTITY_DEBUG
 		cout << "Entity::scale(Vector2<double>)" << endl;
 #endif
 }
 
 void Entity::move(Vector2<double> p_movement)
 {
-#ifdef GAME_DEBUG
+#if defined GAME_DEBUG && defined ENTITY_DEBUG
 	cout << "Entity::move(Vector2<double>)" << endl;
 	cout << "Entity::move(Vector2<double>)" << "To be moved X:" << p_movement.x << " and Y:" << p_movement.y << endl;
 #endif

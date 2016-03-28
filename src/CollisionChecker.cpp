@@ -17,7 +17,8 @@ bool CollisionChecker::checkCollisions(PhysicalEntity& p_entity)
 
     if(numberOfCalls > 1)
     {
-        for(int i = 0; i < m_entities.size(); i++)
+		cout << "////// CannonBall hit ///////" << endl;
+        for(size_t i = 0; i < m_entities.size(); i++)
         {
             auto entity = m_entities[i].lock();
             if(entity)
@@ -33,11 +34,11 @@ bool CollisionChecker::checkCollisions(PhysicalEntity& p_entity)
         }
     }
     else
-        cout << "CannonBall missed" << endl;
+        cout << "////// CannonBall missed //////" << endl;
 
     numberOfCalls++;
 #endif
-
+	return false;
 }
 
 bool CollisionChecker::registerEntity(std::weak_ptr<PhysicalEntity> p_newEntity)

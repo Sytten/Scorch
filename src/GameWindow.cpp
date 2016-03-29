@@ -20,7 +20,7 @@ void GameWindow::setupUI()
 
 	m_mainGameWidget = new QLabel("This is the core of the game");
 	m_mainGameWidget->setStyleSheet("QLabel { background-color : red; color : blue; }");
-	m_mainGameWidget->setMinimumSize(QSize(800, 600));
+	m_mainGameWidget->setMinimumSize(QSize(800, 400));
 	
 	layout->addWidget(m_mainGameWidget);
 

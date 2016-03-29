@@ -9,7 +9,8 @@ HEADERS     += include/GameWindow.h \
 			   include/GameBottomLayout.h \
 			   include/GameModeWidget.h \
 			   include/PlayerActivatedWidget.h \
-			   include/PlayerControlModeWidget.h
+			   include/PlayerControlModeWidget.h \
+			   include/QtFPGAReceiver.h
 SOURCES     += main.cpp \
 			   src/GameWindow.cpp \
 			   src/FirePowerWidget.cpp \
@@ -19,7 +20,8 @@ SOURCES     += main.cpp \
 			   src/GameBottomLayout.cpp \
 			   src/GameModeWidget.cpp \
 			   src/PlayerActivatedWidget.cpp \
-			   src/PlayerControlModeWidget.cpp
+			   src/PlayerControlModeWidget.cpp \
+			   src/QtFPGAReceiver.cpp
 INCLUDEPATH += include
 LIBS	    += 
 RESOURCES += 

@@ -1,0 +1,8 @@
+Registre: Description
+ 8: (lecture)  Interrupteurs (SW0 à SW7), valeur sur 8 bits (b0 à b7) de 0 à FF
+ 9: (lecture)  Boutons (BTN0 à BTN3), valeur sur 4 bits (b0 à b3) de 0 à F
+10: (écriture) LED (LD0 à LD7), valeur sur 8 bits (b0 à b7) de 0 à FF
+11: (écriture) Afficheurs à 7 segments (AN0), valeur sur 4 bits (b0 à b3) de 0 à F
+12: (écriture) Afficheurs à 7 segments (AN1), valeur sur 4 bits (b0 à b3) de 0 à F
+13: (écriture) Afficheurs à 7 segments (AN2), valeur sur 4 bits (b0 à b3) de 0 à F
+14: (écriture) Afficheurs à 7 segments (AN3), valeur sur 4 bits (b0 à b3) de 0 à F

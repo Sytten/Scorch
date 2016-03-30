@@ -7,10 +7,10 @@
 
 #include<QCloseEvent>
 
-#include"FirePowerWidget.h"
-#include"AngleStatusWidget.h"
-#include"GameModeWidget.h"
-#include"GameBottomLayout.h"
+#include "Information/FirePowerWidget.h"
+#include "Information/AngleStatusWidget.h"
+#include "Information/GameModeWidget.h"
+#include "GameBottomLayout.h"
 
 class GameWindow : public QMainWindow
 {

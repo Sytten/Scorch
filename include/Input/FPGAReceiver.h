@@ -3,6 +3,9 @@
 
 #include <QtCore>
 #include <QTimer>
+#include <QKeyEvent>
+
+#include "Input/FPGAEvent.h"
 
 class FPGAReceiver : public QObject
 {
@@ -12,10 +15,13 @@ public:
     FPGAReceiver(QObject * parent = 0);
     ~FPGAReceiver();
 
+    void handlePressEvent(QKeyEvent * KeyEvent);
+
 private slots:
 	void updateFPGA();
 
-protected:
+signals:
+    void newCommand(Command p_command);
 
 private:
 	QTimer m_updateTimer;

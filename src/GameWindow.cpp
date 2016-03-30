@@ -1,7 +1,7 @@
 #include "GameWindow.h"
 
 
-GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent)
+GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this), temp_isPowerControlled(true)
 {
 	setupUI();
 }
@@ -85,33 +85,16 @@ GameWindow::~GameWindow()
 {
 }
 
-
 void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)
 {
 	if (KeyEvent->isAutoRepeat())
 		return;
 	switch (KeyEvent->key()){
-	case Qt::Key_Right:
-		temp_power += 10;
-		m_currentPower->setPower(temp_power);
-		break;
-	case Qt::Key_Left:
-		temp_power -= 10;
-		
-		m_currentPower->setPower(temp_power);
-		break;
-	case Qt::Key_Up:
-		temp_angle += 5;
-		m_currentAngle->setAngle(temp_angle);
-		break;
-	case Qt::Key_Down:
-		temp_angle -= 5;
-		m_currentAngle->setAngle(temp_angle);
-		break;
 	case Qt::Key_Space:
 		m_gameModeWidget->togglePlayer();
 		break;
 	default:
+        m_fpga.handlePressEvent(KeyEvent);
 		break;
 	}
 }
@@ -136,5 +119,38 @@ void GameWindow::keyReleaseEvent(QKeyEvent * KeyEvent)
 
 void GameWindow::closeEvent(QCloseEvent * CloseEvent)
 {
-	
+
+}
+
+void GameWindow::customEvent(QEvent *event)
+{
+    if(event->type() == FPGAEvent::customFPGAEvent) {
+        FPGAEvent* fpgaEvent = static_cast<FPGAEvent *>(event);
+        switch (fpgaEvent->command()) {
+        case Change:
+                temp_isPowerControlled = !temp_isPowerControlled;
+            break;
+        case Increase:
+            if(temp_isPowerControlled) {
+                temp_power += 10;
+                m_currentPower->setPower(temp_power);
+            } else {
+                temp_angle += 5;
+                m_currentAngle->setAngle(temp_angle);
+            }
+            break;
+        case Decrease:
+            if(temp_isPowerControlled) {
+                temp_power -= 10;
+                m_currentPower->setPower(temp_power);
+            } else {
+                temp_angle -= 5;
+                m_currentAngle->setAngle(temp_angle);
+            }
+            break;
+        default:
+            break;
+        }
+    }
+
 }

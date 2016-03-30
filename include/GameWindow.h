@@ -7,6 +7,7 @@
 
 #include<QCloseEvent>
 
+#include "Input/FPGAReceiver.h"
 #include "Information/FirePowerWidget.h"
 #include "Information/AngleStatusWidget.h"
 #include "Information/GameModeWidget.h"
@@ -21,10 +22,12 @@ public:
 	~GameWindow();
 
 protected:
-	void keyPressEvent(QKeyEvent * KeyEvent);
+    void keyPressEvent(QKeyEvent * KeyEvent);
 	void keyReleaseEvent(QKeyEvent * KeyEvent);
 
 	void closeEvent(QCloseEvent * CloseEvent);
+
+    void customEvent(QEvent* event);
 
 private slots :
 
@@ -45,10 +48,13 @@ private:
 
 	QStatusBar * m_statusBar;
 
+    FPGAReceiver m_fpga;
+
 	float temp_power;
 	float temp_angle;
 
 	bool temp_player1Turn;
+    bool temp_isPowerControlled;
 };
 
 

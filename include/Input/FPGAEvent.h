@@ -12,6 +12,8 @@ public:
 
     Command command() {return m_command;}
 
+    QEvent::Type type() const { return customFPGAEvent; }
+
     static const QEvent::Type customFPGAEvent = static_cast<QEvent::Type>(2000);
 
 private:

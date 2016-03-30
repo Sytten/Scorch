@@ -1,6 +1,10 @@
+#ifndef ANGLESTATUSWIDGET_H
+#define ANGLESTATUSWIDGET_H
+
 #include<QtWidgets>
 #include<QLayout>
 #include<QSizePolicy>
+
 #include "EllipseAngleWidget.h"
 
 class AngleStatusWidget : public QWidget
@@ -18,3 +22,5 @@ private:
 	QLabel * m_currentAngle;
 	EllipseAngleWidget * m_ellipseAngle;
 };
+
+#endif

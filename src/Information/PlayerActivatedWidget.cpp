@@ -1,4 +1,4 @@
-#include"PlayerActivatedWidget.h"
+#include "Information/PlayerActivatedWidget.h"
 
 PlayerActivatedWidget::PlayerActivatedWidget(int p_playerNumber, bool p_isActivated, QWidget * parent) : QWidget(parent)
 {

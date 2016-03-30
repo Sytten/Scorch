@@ -1,4 +1,4 @@
-#include "EllipseAngleWidget.h"
+#include "Information/EllipseAngleWidget.h"
 
 
 EllipseAngleWidget::EllipseAngleWidget(QWidget * parent) : QWidget(parent)

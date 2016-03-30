@@ -1,6 +1,9 @@
-#include<QtWidgets>
+#ifndef GAMEMODEWIDGET_H
+#define GAMEMODEWIDGET_H
 
-#include"PlayerActivatedWidget.h"
+#include <QtWidgets>
+
+#include "PlayerActivatedWidget.h"
 
 class GameModeWidget : public QWidget
 {
@@ -19,3 +22,5 @@ private:
 		*m_player2Indicator;
 
 };
+
+#endif

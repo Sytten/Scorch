@@ -1,4 +1,4 @@
-#include"FirePowerWidget.h"
+#include "Information/FirePowerWidget.h"
 
 FirePowerWidget::FirePowerWidget(QWidget *parent) :QWidget(parent)
 {

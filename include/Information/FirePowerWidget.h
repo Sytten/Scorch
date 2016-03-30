@@ -1,3 +1,6 @@
+#ifndef FIREPOWERWIDGET_H
+#define FIREPOWERWIDGET_H
+
 #include<QtWidgets>
 #include<QLayout>
 
@@ -23,3 +26,5 @@ private:
 	QLabel * m_firePower;
 	GradientBarWidget * m_powerBar;
 };
+
+#endif

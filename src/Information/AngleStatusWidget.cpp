@@ -1,4 +1,4 @@
-#include "AngleStatusWidget.h"
+#include "Information/AngleStatusWidget.h"
 
 
 AngleStatusWidget::AngleStatusWidget(QWidget *parent) : QWidget(parent)

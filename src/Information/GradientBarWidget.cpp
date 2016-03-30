@@ -1,4 +1,4 @@
-#include"GradientBarWidget.h"
+#include "Information/GradientBarWidget.h"
 
 GradientBarWidget::GradientBarWidget(QWidget *parent) :QWidget(parent)
 {

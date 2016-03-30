@@ -1,4 +1,4 @@
-#include"GameModeWidget.h"
+#include "Information/GameModeWidget.h"
 
 GameModeWidget::GameModeWidget(QWidget * parent) :QWidget(parent)
 {

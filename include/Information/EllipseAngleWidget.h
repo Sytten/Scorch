@@ -1,3 +1,6 @@
+#ifndef ELLIPSEANGLEWIDGET_H
+#define ELLIPSEANGLEWIDGET_H
+
 #include<QtWidgets>
 #include<QLayout>
 #include<QPainter>
@@ -21,3 +24,5 @@ private:
 
 	QPoint getLineEnding() const;
 };
+
+#endif

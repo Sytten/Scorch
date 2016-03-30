@@ -8,26 +8,31 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent)
 
 void GameWindow::setupUI()
 {
-
 	temp_power = 35;
 	temp_angle = 45;
 	temp_player1Turn = true;
 
-	QWidget * centralWidget = new QWidget;
 
-	QVBoxLayout *layout = new QVBoxLayout;
-	GameBottomLayout *bottomLayout = new GameBottomLayout;
+    /****Central widget, will be replaced by actual game****/
 
 	m_mainGameWidget = new QLabel("This is the core of the game");
 	m_mainGameWidget->setStyleSheet("QLabel { background-color : red; color : blue; }");
 	m_mainGameWidget->setMinimumSize(QSize(800, 400));
 	
-	layout->addWidget(m_mainGameWidget);
+    this->setCentralWidget(m_mainGameWidget);
 
 	/*m_newGameButton = new QPushButton("Nouvelle partie");
 	m_newGameButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
 	bottomLayout->addWidget(m_newGameButton);*/
 
+
+    /****Bottom Widget (Information about player)****/
+
+    QWidget* bottomWidget = new QWidget;
+    QDockWidget* informationPanel = new QDockWidget;
+        informationPanel->setAllowedAreas(Qt::BottomDockWidgetArea);
+        informationPanel->setFeatures(QDockWidget::NoDockWidgetFeatures);
+    GameBottomLayout *bottomLayout = new GameBottomLayout;
 
 	m_gameModeWidget = new GameModeWidget;
 	bottomLayout->addWidget(m_gameModeWidget);
@@ -45,10 +50,13 @@ void GameWindow::setupUI()
 	bottomLayout->setAlignment(m_currentAngle, Qt::AlignRight);
 	bottomLayout->addWidget(m_currentPower);
 
-	layout->addLayout(bottomLayout);
-	centralWidget->setLayout(layout);
-	
-	this->setCentralWidget(centralWidget);
+    bottomWidget->setLayout(bottomLayout);
+    informationPanel->setWidget(bottomWidget);
+
+    this->addDockWidget(Qt::BottomDockWidgetArea, informationPanel);
+
+
+    /****Menus****/
 
 	m_menuBar = new QMenuBar;
 	m_menuFile = new QMenu("Fichier");
@@ -68,7 +76,7 @@ void GameWindow::setupUI()
 	m_statusBar = new QStatusBar;
 	this->setStatusBar(m_statusBar);
 
-	statusBar()->showMessage("FPGA non-connecté");
+    statusBar()->showMessage("FPGA non-connecte");
 
 	setFocusPolicy(Qt::TabFocus);
 }

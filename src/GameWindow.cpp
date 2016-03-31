@@ -76,21 +76,26 @@ void GameWindow::setupUI()
 	m_statusBar = new QStatusBar;
 	this->setStatusBar(m_statusBar);
 
-    statusBar()->showMessage("FPGA non-connecte");
-
 	setFocusPolicy(Qt::TabFocus);
+
+	connect(&m_fpga, &FPGAReceiver::fpgaError, this, &GameWindow::displayStatusMessage);
 }
 
 GameWindow::~GameWindow()
 {
 }
 
+void GameWindow::displayStatusMessage(QString message)
+{
+	statusBar()->showMessage(message);
+}
+
 void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)
 {
-	if (KeyEvent->isAutoRepeat())
-		return;
 	switch (KeyEvent->key()){
 	case Qt::Key_Space:
+		if (KeyEvent->isAutoRepeat())
+			return;
 		m_gameModeWidget->togglePlayer();
 		break;
 	default:
@@ -132,19 +137,19 @@ void GameWindow::customEvent(QEvent *event)
             break;
         case Increase:
             if(temp_isPowerControlled) {
-                temp_power += 10;
+                temp_power += 1;
                 m_currentPower->setPower(temp_power);
             } else {
-                temp_angle += 5;
+                temp_angle += 1;
                 m_currentAngle->setAngle(temp_angle);
             }
             break;
         case Decrease:
             if(temp_isPowerControlled) {
-                temp_power -= 10;
+                temp_power -= 1;
                 m_currentPower->setPower(temp_power);
             } else {
-                temp_angle -= 5;
+                temp_angle -= 1;
                 m_currentAngle->setAngle(temp_angle);
             }
             break;

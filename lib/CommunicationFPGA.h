@@ -15,7 +15,7 @@
 #ifndef COMMUNICATIONFPGA_H
 #define COMMUNICATIONFPGA_H
 
-//#include <windows.h>
+#include <windows.h>
 
 using namespace std;
 

@@ -4,7 +4,9 @@
 #include <QtCore>
 #include <QTimer>
 #include <QKeyEvent>
+#include <QString>
 
+#include "CommunicationFPGA.h"
 #include "Input/FPGAEvent.h"
 
 class FPGAReceiver : public QObject
@@ -21,10 +23,14 @@ private slots:
 	void updateFPGA();
 
 signals:
-    void newCommand(Command p_command);
+    void newCommand(Command command);
+	void fpgaError(QString message);
 
 private:
 	QTimer m_updateTimer;
+	CommunicationFPGA m_fpga;
+	int m_indexRead;
+	Command m_lastCommandSent;
 };
 
 #endif

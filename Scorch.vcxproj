@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{DF17D24B-4E02-394D-B12A-DBDD375141A4}</ProjectGuid>
+    <ProjectGuid>{83DFA364-4CD4-3794-B592-D89AB73B042E}</ProjectGuid>
     <RootNamespace>Scorch</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
@@ -56,7 +56,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;include;..\..\..\..\Qt\Qt5.5.1\5.5\msvc2013\include;..\..\..\..\Qt\Qt5.5.1\5.5\msvc2013\include\QtWidgets;..\..\..\..\Qt\Qt5.5.1\5.5\msvc2013\include\QtGui;..\..\..\..\Qt\Qt5.5.1\5.5\msvc2013\include\QtANGLE;..\..\..\..\Qt\Qt5.5.1\5.5\msvc2013\include\QtCore;release;..\..\..\..\Qt\Qt5.5.1\5.5\msvc2013\mkspecs\win32-msvc2013;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;include;lib;C:\Qt\Qt5.5.1\5.5\msvc2013\include;C:\Qt\Qt5.5.1\5.5\msvc2013\include\QtWidgets;C:\Qt\Qt5.5.1\5.5\msvc2013\include\QtGui;C:\Qt\Qt5.5.1\5.5\msvc2013\include\QtANGLE;C:\Qt\Qt5.5.1\5.5\msvc2013\include\QtCore;release;C:\Qt\Qt5.5.1\5.5\msvc2013\mkspecs\win32-msvc2013;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:strictStrings -w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -74,7 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>C:\Qt\Qt5.5.1\5.5\msvc2013\lib\Qt5Widgets.lib;C:\Qt\Qt5.5.1\5.5\msvc2013\lib\Qt5Gui.lib;C:\Qt\Qt5.5.1\5.5\msvc2013\lib\Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lib/CommunicationFPGA.lib;C:\Qt\Qt5.5.1\5.5\msvc2013\lib\Qt5Widgets.lib;C:\Qt\Qt5.5.1\5.5\msvc2013\lib\Qt5Gui.lib;C:\Qt\Qt5.5.1\5.5\msvc2013\lib\Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Qt\Qt5.5.1\5.5\msvc2013\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>&quot;/MANIFESTDEPENDENCY:type=&apos;win32&apos; name=&apos;Microsoft.Windows.Common-Controls&apos; version=&apos;6.0.0.0&apos; publicKeyToken=&apos;6595b64144ccf1df&apos; language=&apos;*&apos; processorArchitecture=&apos;*&apos;&quot; %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
@@ -97,7 +97,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;include;..\..\..\..\Qt\Qt5.5.1\5.5\msvc2013\include;..\..\..\..\Qt\Qt5.5.1\5.5\msvc2013\include\QtWidgets;..\..\..\..\Qt\Qt5.5.1\5.5\msvc2013\include\QtGui;..\..\..\..\Qt\Qt5.5.1\5.5\msvc2013\include\QtANGLE;..\..\..\..\Qt\Qt5.5.1\5.5\msvc2013\include\QtCore;debug;..\..\..\..\Qt\Qt5.5.1\5.5\msvc2013\mkspecs\win32-msvc2013;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;include;lib;C:\Qt\Qt5.5.1\5.5\msvc2013\include;C:\Qt\Qt5.5.1\5.5\msvc2013\include\QtWidgets;C:\Qt\Qt5.5.1\5.5\msvc2013\include\QtGui;C:\Qt\Qt5.5.1\5.5\msvc2013\include\QtANGLE;C:\Qt\Qt5.5.1\5.5\msvc2013\include\QtCore;debug;C:\Qt\Qt5.5.1\5.5\msvc2013\mkspecs\win32-msvc2013;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -114,7 +114,7 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>C:\Qt\Qt5.5.1\5.5\msvc2013\lib\Qt5Widgetsd.lib;C:\Qt\Qt5.5.1\5.5\msvc2013\lib\Qt5Guid.lib;C:\Qt\Qt5.5.1\5.5\msvc2013\lib\Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lib/CommunicationFPGA.lib;C:\Qt\Qt5.5.1\5.5\msvc2013\lib\Qt5Widgetsd.lib;C:\Qt\Qt5.5.1\5.5\msvc2013\lib\Qt5Guid.lib;C:\Qt\Qt5.5.1\5.5\msvc2013\lib\Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Qt\Qt5.5.1\5.5\msvc2013\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>&quot;/MANIFESTDEPENDENCY:type=&apos;win32&apos; name=&apos;Microsoft.Windows.Common-Controls&apos; version=&apos;6.0.0.0&apos; publicKeyToken=&apos;6595b64144ccf1df&apos; language=&apos;*&apos; processorArchitecture=&apos;*&apos;&quot; %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
@@ -135,72 +135,91 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\AngleStatusWidget.cpp" />
-    <ClCompile Include="src\EllipseAngleWidget.cpp" />
-    <ClCompile Include="src\FirePowerWidget.cpp" />
+    <ClCompile Include="src\Information\AngleStatusWidget.cpp" />
+    <ClCompile Include="src\Game\Cannon.cpp" />
+    <ClCompile Include="src\Game\CannonBall.cpp" />
+    <ClCompile Include="src\Game\Castle.cpp" />
+    <ClCompile Include="src\Information\EllipseAngleWidget.cpp" />
+    <ClCompile Include="src\Input\FPGAReceiver.cpp" />
+    <ClCompile Include="src\Information\FirePowerWidget.cpp" />
     <ClCompile Include="src\GameBottomLayout.cpp" />
-    <ClCompile Include="src\GameModeWidget.cpp" />
+    <ClCompile Include="src\Information\GameModeWidget.cpp" />
     <ClCompile Include="src\GameWindow.cpp" />
-    <ClCompile Include="src\GradientBarWidget.cpp" />
-    <ClCompile Include="src\PlayerActivatedWidget.cpp" />
-    <ClCompile Include="src\PlayerControlModeWidget.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\Information\GradientBarWidget.cpp" />
+    <ClCompile Include="src\Information\PlayerActivatedWidget.cpp" />
+    <ClCompile Include="src\Information\PlayerControlModeWidget.cpp" />
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="include\AngleStatusWidget.h">
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">include\AngleStatusWidget.h;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IC:/Users/Cheroukee/GitKraken/scorch -IC:/Users/Cheroukee/GitKraken/scorch/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\AngleStatusWidget.h -o release\moc_AngleStatusWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC include/AngleStatusWidget.h</Message>
+    <CustomBuild Include="include\Information\AngleStatusWidget.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">include\Information\AngleStatusWidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IG:/Programming/Repositories/scorch -IG:/Programming/Repositories/scorch/include -IG:/Programming/Repositories/scorch/lib -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\Information\AngleStatusWidget.h -o release\moc_AngleStatusWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC include/Information/AngleStatusWidget.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_AngleStatusWidget.cpp;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">include\AngleStatusWidget.h;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IC:/Users/Cheroukee/GitKraken/scorch -IC:/Users/Cheroukee/GitKraken/scorch/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\AngleStatusWidget.h -o debug\moc_AngleStatusWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC include/AngleStatusWidget.h</Message>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">include\Information\AngleStatusWidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IG:/Programming/Repositories/scorch -IG:/Programming/Repositories/scorch/include -IG:/Programming/Repositories/scorch/lib -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\Information\AngleStatusWidget.h -o debug\moc_AngleStatusWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC include/Information/AngleStatusWidget.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_AngleStatusWidget.cpp;%(Outputs)</Outputs>
     </CustomBuild>
-    <CustomBuild Include="include\EllipseAngleWidget.h">
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">include\EllipseAngleWidget.h;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IC:/Users/Cheroukee/GitKraken/scorch -IC:/Users/Cheroukee/GitKraken/scorch/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\EllipseAngleWidget.h -o release\moc_EllipseAngleWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC include/EllipseAngleWidget.h</Message>
+    <ClInclude Include="include\Game\Cannon.h" />
+    <ClInclude Include="include\Game\CannonBall.h" />
+    <ClInclude Include="include\Game\Castle.h" />
+    <ClInclude Include="lib\CommunicationFPGA.h" />
+    <CustomBuild Include="include\Information\EllipseAngleWidget.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">include\Information\EllipseAngleWidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IG:/Programming/Repositories/scorch -IG:/Programming/Repositories/scorch/include -IG:/Programming/Repositories/scorch/lib -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\Information\EllipseAngleWidget.h -o release\moc_EllipseAngleWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC include/Information/EllipseAngleWidget.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_EllipseAngleWidget.cpp;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">include\EllipseAngleWidget.h;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IC:/Users/Cheroukee/GitKraken/scorch -IC:/Users/Cheroukee/GitKraken/scorch/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\EllipseAngleWidget.h -o debug\moc_EllipseAngleWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC include/EllipseAngleWidget.h</Message>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">include\Information\EllipseAngleWidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IG:/Programming/Repositories/scorch -IG:/Programming/Repositories/scorch/include -IG:/Programming/Repositories/scorch/lib -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\Information\EllipseAngleWidget.h -o debug\moc_EllipseAngleWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC include/Information/EllipseAngleWidget.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_EllipseAngleWidget.cpp;%(Outputs)</Outputs>
     </CustomBuild>
-    <CustomBuild Include="include\FirePowerWidget.h">
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">include\FirePowerWidget.h;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IC:/Users/Cheroukee/GitKraken/scorch -IC:/Users/Cheroukee/GitKraken/scorch/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\FirePowerWidget.h -o release\moc_FirePowerWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC include/FirePowerWidget.h</Message>
+    <ClInclude Include="include\Input\FPGAEvent.h" />
+    <CustomBuild Include="include\Input\FPGAReceiver.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">include\Input\FPGAReceiver.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IG:/Programming/Repositories/scorch -IG:/Programming/Repositories/scorch/include -IG:/Programming/Repositories/scorch/lib -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\Input\FPGAReceiver.h -o release\moc_FPGAReceiver.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC include/Input/FPGAReceiver.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_FPGAReceiver.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">include\Input\FPGAReceiver.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IG:/Programming/Repositories/scorch -IG:/Programming/Repositories/scorch/include -IG:/Programming/Repositories/scorch/lib -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\Input\FPGAReceiver.h -o debug\moc_FPGAReceiver.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC include/Input/FPGAReceiver.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_FPGAReceiver.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="include\Information\FirePowerWidget.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">include\Information\FirePowerWidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IG:/Programming/Repositories/scorch -IG:/Programming/Repositories/scorch/include -IG:/Programming/Repositories/scorch/lib -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\Information\FirePowerWidget.h -o release\moc_FirePowerWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC include/Information/FirePowerWidget.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_FirePowerWidget.cpp;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">include\FirePowerWidget.h;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IC:/Users/Cheroukee/GitKraken/scorch -IC:/Users/Cheroukee/GitKraken/scorch/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\FirePowerWidget.h -o debug\moc_FirePowerWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC include/FirePowerWidget.h</Message>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">include\Information\FirePowerWidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IG:/Programming/Repositories/scorch -IG:/Programming/Repositories/scorch/include -IG:/Programming/Repositories/scorch/lib -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\Information\FirePowerWidget.h -o debug\moc_FirePowerWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC include/Information/FirePowerWidget.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_FirePowerWidget.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <ClInclude Include="include\GameBottomLayout.h" />
-    <ClInclude Include="include\GameModeWidget.h" />
+    <ClInclude Include="include\Information\GameModeWidget.h" />
     <CustomBuild Include="include\GameWindow.h">
       <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">include\GameWindow.h;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IC:/Users/Cheroukee/GitKraken/scorch -IC:/Users/Cheroukee/GitKraken/scorch/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\GameWindow.h -o release\moc_GameWindow.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IG:/Programming/Repositories/scorch -IG:/Programming/Repositories/scorch/include -IG:/Programming/Repositories/scorch/lib -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\GameWindow.h -o release\moc_GameWindow.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC include/GameWindow.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_GameWindow.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">include\GameWindow.h;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IC:/Users/Cheroukee/GitKraken/scorch -IC:/Users/Cheroukee/GitKraken/scorch/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\GameWindow.h -o debug\moc_GameWindow.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IG:/Programming/Repositories/scorch -IG:/Programming/Repositories/scorch/include -IG:/Programming/Repositories/scorch/lib -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\GameWindow.h -o debug\moc_GameWindow.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC include/GameWindow.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_GameWindow.cpp;%(Outputs)</Outputs>
     </CustomBuild>
-    <CustomBuild Include="include\GradientBarWidget.h">
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">include\GradientBarWidget.h;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IC:/Users/Cheroukee/GitKraken/scorch -IC:/Users/Cheroukee/GitKraken/scorch/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\GradientBarWidget.h -o release\moc_GradientBarWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC include/GradientBarWidget.h</Message>
+    <CustomBuild Include="include\Information\GradientBarWidget.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">include\Information\GradientBarWidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IG:/Programming/Repositories/scorch -IG:/Programming/Repositories/scorch/include -IG:/Programming/Repositories/scorch/lib -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\Information\GradientBarWidget.h -o release\moc_GradientBarWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC include/Information/GradientBarWidget.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_GradientBarWidget.cpp;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">include\GradientBarWidget.h;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IC:/Users/Cheroukee/GitKraken/scorch -IC:/Users/Cheroukee/GitKraken/scorch/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\GradientBarWidget.h -o debug\moc_GradientBarWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
-      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC include/GradientBarWidget.h</Message>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">include\Information\GradientBarWidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\Qt5.5.1\5.5\msvc2013\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/Qt5.5.1/5.5/msvc2013/mkspecs/win32-msvc2013 -IG:/Programming/Repositories/scorch -IG:/Programming/Repositories/scorch/include -IG:/Programming/Repositories/scorch/lib -IC:/Qt/Qt5.5.1/5.5/msvc2013/include -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtWidgets -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtGui -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtANGLE -IC:/Qt/Qt5.5.1/5.5/msvc2013/include/QtCore include\Information\GradientBarWidget.h -o debug\moc_GradientBarWidget.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC include/Information/GradientBarWidget.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_GradientBarWidget.cpp;%(Outputs)</Outputs>
     </CustomBuild>
-    <ClInclude Include="include\PlayerActivatedWidget.h" />
-    <ClInclude Include="include\PlayerControlModeWidget.h" />
+    <ClInclude Include="include\Information\PlayerActivatedWidget.h" />
+    <ClInclude Include="include\Information\PlayerControlModeWidget.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_AngleStatusWidget.cpp">
@@ -213,6 +232,12 @@
       <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\moc_EllipseAngleWidget.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_FPGAReceiver.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_FPGAReceiver.cpp">
       <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="debug\moc_FirePowerWidget.cpp">

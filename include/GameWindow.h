@@ -2,10 +2,10 @@
 
 #include<iostream>
 
-#include<QKeyEvent>
-#include<QtWidgets>
-
-#include<QCloseEvent>
+#include <QKeyEvent>
+#include <QtWidgets>
+#include <QString>
+#include <QCloseEvent>
 
 #include "Input/FPGAReceiver.h"
 #include "Information/FirePowerWidget.h"
@@ -20,6 +20,9 @@ class GameWindow : public QMainWindow
 public:
 	GameWindow(QMainWindow *parent = 0);
 	~GameWindow();
+
+public slots:
+	void displayStatusMessage(QString message);
 
 protected:
     void keyPressEvent(QKeyEvent * KeyEvent);

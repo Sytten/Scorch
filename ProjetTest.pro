@@ -12,11 +12,11 @@ HEADERS     += \
     include/Information/GradientBarWidget.h \
     include/Information/PlayerActivatedWidget.h \
     include/Information/PlayerControlModeWidget.h \
-    include/Input/CommunicationFPGA.h \
     include/Input/FPGAEvent.h \
     include/Input/FPGAReceiver.h \
     include/GameBottomLayout.h \
-    include/GameWindow.h
+    include/GameWindow.h \
+	lib/CommunicationFPGA.h
 
 SOURCES     += \
     src/Game/Cannon.cpp \
@@ -33,8 +33,8 @@ SOURCES     += \
     src/GameWindow.cpp \
     src/main.cpp \
     src/Input/FPGAReceiver.cpp
-INCLUDEPATH += include
-LIBS	    += 
+INCLUDEPATH += include lib
+LIBS	    += lib/CommunicationFPGA.lib
 RESOURCES += 
 QT += widgets core gui
 

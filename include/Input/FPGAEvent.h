@@ -3,7 +3,7 @@
 
 #include <QEvent>
 
-enum Command {Change, Increase, Decrease};
+enum Command {Change, Increase, Decrease, None};
 
 class FPGAEvent : public QEvent
 {

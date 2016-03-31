@@ -9,6 +9,7 @@ class FPGAEvent : public QEvent
 {
 public:
     FPGAEvent(Command p_command) : QEvent(FPGAEvent::type()), m_command(p_command) {}
+    FPGAEvent(FPGAEvent& other) : QEvent(FPGAEvent::type()), m_command(other.m_command) {}
 
     Command command() {return m_command;}
 

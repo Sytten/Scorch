@@ -11,20 +11,13 @@ void GameWindow::setupUI()
 	temp_power = 35;
 	temp_angle = 45;
 	temp_player1Turn = true;
+    /****Central widget****/
 
-
-    /****Central widget, will be replaced by actual game****/
-
-	m_mainGameWidget = new QLabel("This is the core of the game");
-	m_mainGameWidget->setStyleSheet("QLabel { background-color : red; color : blue; }");
-	m_mainGameWidget->setMinimumSize(QSize(800, 400));
-	
-    this->setCentralWidget(m_mainGameWidget);
+    this->setCentralWidget(m_game.getView());
 
 	/*m_newGameButton = new QPushButton("Nouvelle partie");
 	m_newGameButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
 	bottomLayout->addWidget(m_newGameButton);*/
-
 
     /****Bottom Widget (Information about player)****/
 
@@ -73,8 +66,7 @@ void GameWindow::setupUI()
 	this->setMenuBar(m_menuBar);
 	this->setWindowTitle("Scorch");
 
-	m_statusBar = new QStatusBar;
-	this->setStatusBar(m_statusBar);
+    this->setStatusBar(new QStatusBar);
 
 	setFocusPolicy(Qt::TabFocus);
 
@@ -92,39 +84,8 @@ void GameWindow::displayStatusMessage(QString message)
 
 void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)
 {
-	switch (KeyEvent->key()){
-	case Qt::Key_Space:
-		if (KeyEvent->isAutoRepeat())
-			return;
-		m_gameModeWidget->togglePlayer();
-		break;
-	default:
-        m_fpga.handlePressEvent(KeyEvent);
-		break;
-	}
-}
-
-void GameWindow::keyReleaseEvent(QKeyEvent * KeyEvent)
-{
-	if (KeyEvent->isAutoRepeat())
-		return;
-
-	switch (KeyEvent->key()) {
-	case Qt::Key_Right:
-	case Qt::Key_Left:
-		break;
-	case Qt::Key_Up:
-	case Qt::Key_Down:
-		break;
-	default:
-		break;
-	}
-}
-
-
-void GameWindow::closeEvent(QCloseEvent * CloseEvent)
-{
-
+    //Hack to simulate correctly the FPGA input
+    m_fpga.handlePressEvent(KeyEvent);
 }
 
 void GameWindow::customEvent(QEvent *event)

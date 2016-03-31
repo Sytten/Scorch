@@ -12,6 +12,7 @@
 #include "Information/AngleStatusWidget.h"
 #include "Information/GameModeWidget.h"
 #include "GameBottomLayout.h"
+#include "Game/Game.h"
 
 class GameWindow : public QMainWindow
 {
@@ -26,19 +27,12 @@ public slots:
 
 protected:
     void keyPressEvent(QKeyEvent * KeyEvent);
-	void keyReleaseEvent(QKeyEvent * KeyEvent);
-
-	void closeEvent(QCloseEvent * CloseEvent);
-
     void customEvent(QEvent* event);
 
-private slots :
-
 private:
-
 	void setupUI();
 
-	QLabel * m_mainGameWidget;
+    QLabel * m_mainGameWidget;
 
 	GameModeWidget * m_gameModeWidget;
 	AngleStatusWidget * m_currentAngle;
@@ -49,9 +43,8 @@ private:
 	QAction * m_actionQuit;
 	QAction * m_actionNewGame;
 
-	QStatusBar * m_statusBar;
-
     FPGAReceiver m_fpga;
+    Game m_game;
 
 	float temp_power;
 	float temp_angle;

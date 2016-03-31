@@ -84,7 +84,7 @@ void GameWindow::displayStatusMessage(QString message)
 
 void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)
 {
-    //Hack to simulate correctly the FPGA input
+    //NOTE: Hack to simulate correctly the FPGA input
     m_fpga.handlePressEvent(KeyEvent);
 }
 
@@ -92,6 +92,10 @@ void GameWindow::customEvent(QEvent *event)
 {
     if(event->type() == FPGAEvent::customFPGAEvent) {
         FPGAEvent* fpgaEvent = static_cast<FPGAEvent *>(event);
+
+        QCoreApplication::postEvent(&m_game, new FPGAEvent(*fpgaEvent));
+
+        //TODO: Following part needs to foward the events on the good widget based on the game state
         switch (fpgaEvent->command()) {
         case Change:
                 temp_isPowerControlled = !temp_isPowerControlled;

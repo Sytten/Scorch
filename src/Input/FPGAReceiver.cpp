@@ -27,10 +27,19 @@ void FPGAReceiver::updateFPGA()
 		switch (m_indexRead)
 		{
 		case 1:
+			m_lastCommandSent = Increase;
+			QCoreApplication::postEvent(parent(), new FPGAEvent(Increase));
 			break;
 		case 2:
+			if(m_lastCommandSent != Change)
+			{
+				m_lastCommandSent = Change;
+				QCoreApplication::postEvent(parent(), new FPGAEvent(Change));
+			}
 			break;
 		case 3:
+			m_lastCommandSent = Decrease;
+			QCoreApplication::postEvent(parent(), new FPGAEvent(Decrease));
 			break;
 		default:
 			break;

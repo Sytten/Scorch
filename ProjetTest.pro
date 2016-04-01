@@ -46,6 +46,6 @@ win32{
     HEADERS += lib/CommunicationFPGA.h
     INCLUDEPATH += lib
 }
-RESOURCES += Ressources.qrc
+RESOURCES += Resources.qrc
 QT += widgets core gui
 

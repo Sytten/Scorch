@@ -8,9 +8,8 @@
 #include <QPointer>
 
 #include "Input/FPGAEvent.h"
-
-enum Player {Player1 = 0, Player2, NoPlayer};
-enum State {Power = 0, Angle, Fire, NoState};
+#include "Game/State.h"
+#include "Game/Player.h"
 
 class Game : public QObject
 {
@@ -37,6 +36,10 @@ private:
     QTime m_timeLastUpdate;
     Player m_currentPlayer;
     State m_currentState;
+
+signals:
+    void playerChanged(Player player);
+    void stateChanged(State state);
 };
 
 #endif // GAME_H

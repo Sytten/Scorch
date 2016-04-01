@@ -1,13 +1,14 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include <QGraphicsItem>
+#include <QGraphicsPixmapItem>
+#include <QObject>
 
 #include "Input/FPGAEvent.h"
 #include "Game/State.h"
 #include "Game/Player.h"
 
-class Entity : public QGraphicsItem
+class Entity : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
@@ -17,7 +18,7 @@ class Entity : public QGraphicsItem
 public:
     Entity(Player owner, QGraphicsItem *parent = 0);
 
-    virtual void update(double deltaTime) = 0;
+    virtual void updateEntity(double deltaTime) = 0;
     Player owner() const;
 
 public slots:

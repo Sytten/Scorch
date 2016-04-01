@@ -1,9 +1,9 @@
 #ifndef CASTLE_H
 #define CASTLE_H
 
-#include <QGraphicsPixmapItem>
+#include "Game/Entity.h"
 
-class Castle : public QGraphicsPixmapItem
+class Castle : public Entity
 {
 public:
     Castle(int p_initialLife, QGraphicsItem *parent = 0);

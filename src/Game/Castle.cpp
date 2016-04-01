@@ -1,6 +1,6 @@
 #include "Game/Castle.h"
 
-Castle::Castle(int p_initialLife, QGraphicsItem *parent) : QGraphicsPixmapItem(parent), m_life(p_initialLife)
+Castle::Castle(int p_initialLife, QGraphicsItem *parent) : Entity(parent), m_life(p_initialLife)
 {
 
 }

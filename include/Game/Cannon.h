@@ -1,9 +1,9 @@
 #ifndef CANNON_H
 #define CANNON_H
 
-#include <QGraphicsPixmapItem>
+#include "Game/Entity.h"
 
-class Cannon : public QGraphicsPixmapItem
+class Cannon : public Entity
 {
 public:
     Cannon(QGraphicsItem *parent = 0);

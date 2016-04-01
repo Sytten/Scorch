@@ -1,6 +1,6 @@
 #include "Game/CannonBall.h"
 
-CannonBall::CannonBall(Player owner, QGraphicsItem *parent) : Entity(owner, parent)
+CannonBall::CannonBall(const QPixmap &pixmap, Player owner, QGraphicsItem *parent) : Entity(pixmap, owner, parent)
 {
 
 }

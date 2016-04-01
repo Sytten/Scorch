@@ -1,6 +1,6 @@
 #include "Game/Entity.h"
 
-Entity::Entity(Player owner, QGraphicsItem *parent) : QGraphicsPixmapItem(parent), m_owner(owner)
+Entity::Entity(const QPixmap &pixmap, Player owner, QGraphicsItem *parent) : QGraphicsPixmapItem(pixmap, parent), m_owner(owner)
 {
 }
 

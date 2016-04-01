@@ -6,7 +6,7 @@
 class Cannon : public Entity
 {
 public:
-    Cannon(Player owner, QGraphicsItem *parent = 0);
+    Cannon(const QPixmap &pixmap, Player owner, QGraphicsItem *parent = 0);
 
     void updateEntity(double deltaTime) { Q_UNUSED(deltaTime) }
 

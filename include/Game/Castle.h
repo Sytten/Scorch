@@ -6,7 +6,7 @@
 class Castle : public Entity
 {
 public:
-    Castle(Player owner, int p_initialLife, QGraphicsItem *parent = 0);
+    Castle(const QPixmap &pixmap, Player owner, int p_initialLife, QGraphicsItem *parent = 0);
 
     bool isAlive();
     void takeDamage(int p_damage);

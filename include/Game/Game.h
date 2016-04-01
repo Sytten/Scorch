@@ -10,6 +10,7 @@
 #include "Input/FPGAEvent.h"
 #include "Game/State.h"
 #include "Game/Player.h"
+#include "Game/Castle.h"
 
 class Game : public QObject
 {
@@ -21,6 +22,9 @@ public:
 
     State getState() { return m_currentState; }
     QGraphicsView* getView() { return m_view; }
+
+public slots:
+    void newGame();
 
 protected:
     void customEvent(QEvent* event);

@@ -4,8 +4,8 @@ PlayerControlModeWidget::PlayerControlModeWidget(int p_gameState, bool p_isActiv
 {
 	m_gameState = p_gameState;
 	m_isActivated = p_isActivated;
-	setMinimumSize(QSize(50, 50));
-	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+	setMinimumSize(QSize(100, 50));
+	setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
 }
 
 PlayerControlModeWidget::~PlayerControlModeWidget()
@@ -15,6 +15,7 @@ PlayerControlModeWidget::~PlayerControlModeWidget()
 void PlayerControlModeWidget::setActivated(bool p_activated)
 {
 	m_isActivated = p_activated;
+	update();
 }
 
 bool PlayerControlModeWidget::activated()const

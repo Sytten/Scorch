@@ -8,6 +8,8 @@ class Cannon : public Entity
 public:
     Cannon(QGraphicsItem *parent = 0);
 
+    void update(double deltaTime) { Q_UNUSED(deltaTime) }
+
 private:
     double m_angle;
     double m_power;

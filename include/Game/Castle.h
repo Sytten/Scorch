@@ -11,6 +11,8 @@ public:
     bool isAlive();
     void takeDamage(int p_damage);
 
+    void update(double deltaTime) {Q_UNUSED(deltaTime)}
+
 private:
     int m_life;
 };

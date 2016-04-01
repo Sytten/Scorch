@@ -10,10 +10,10 @@ class CannonBall : public Entity
 public:
     CannonBall(QGraphicsItem *parent = 0);
 
-    //void advance(int phase);
+    void update(double deltaTime);
 
 protected:
-    //void customEvent(QEvent * event);
+    void customEvent(QEvent * event);
 
 private:
     QVector2D m_position;

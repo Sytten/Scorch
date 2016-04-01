@@ -34,20 +34,70 @@ GameModeWidget::~GameModeWidget()
 }
 
 
-void setCurrentPlayer(int player)
+void GameModeWidget::setCurrentPlayer(Player player)
 {
-	m_player1Indicator->setActivated(!m_player1Indicator->activated());
-	m_player2Indicator->setActivated(!m_player2Indicator->activated());
+	if (player == Player::Player1)
+	{
+		m_player1Indicator->setActivated(true);
+		m_player2Indicator->setActivated(false);
+	}
+	else if(player == Player::Player2)
+	{
+		m_player1Indicator->setActivated(true);
+		m_player2Indicator->setActivated(false);
+	}
+	else
+	{
+		m_player1Indicator->setActivated(false);
+		m_player2Indicator->setActivated(false);
+	}
 }
 
-int GameModeWidget::currentPlayer()const
+Player GameModeWidget::currentPlayer()const
 {
 	if (m_player1Indicator->activated())
-		return 1;
-	return 2;
+		return Player::Player1;
+	else if (m_player2Indicator->activated())
+		return Player::Player2;
+	return Player::NoPlayer;
 }
 
-void GameModeWidget::setCurrentMode(int gameMode)
+State GameModeWidget::currentMode()const
 {
+	if (m_playerControlAngle->activated())
+		return State::Angle;
+	else if (m_playerControlFire->activated())
+		return State::Fire;
+	else if (m_playerControlPower->activated())
+		return State::Power;
+	return State::NoState;
+}
+
+void GameModeWidget::setCurrentMode(State gameMode)
+{
+	if (gameMode == State::Angle)
+	{
+		m_playerControlAngle->setActivated(true);
+		m_playerControlFire->setActivated(false);
+		m_playerControlPower->setActivated(false);
+	}
+	else if (gameMode == State::Fire)
+	{
+		m_playerControlAngle->setActivated(false);
+		m_playerControlFire->setActivated(true);
+		m_playerControlPower->setActivated(false);
+	}
+	else if (gameMode == State::Power)
+	{
+		m_playerControlAngle->setActivated(false);
+		m_playerControlFire->setActivated(false);
+		m_playerControlPower->setActivated(true);
+	}
+	else
+	{
+		m_playerControlAngle->setActivated(false);
+		m_playerControlFire->setActivated(false);
+		m_playerControlPower->setActivated(false);
+	}
 
 }

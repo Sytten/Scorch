@@ -25,18 +25,23 @@ public:
 public slots:
 	void displayStatusMessage(QString message);
 
+	void playerChanged(Player p_player);
+	void stateChanged(State p_state);
+	void angleChanged(float p_angle);
+	void powerChanged(float p_power);
+
+signals:
+	void changePlayer(Player p_player);
+	void changeState(State p_state);
+	void changeAngle(float p_angle);
+	void changePower(float p_power);
+
 protected:
     void keyPressEvent(QKeyEvent * KeyEvent);
     void customEvent(QEvent* event);
 
 private:
-	void setupUI();
-
     QLabel * m_mainGameWidget;
-
-	GameModeWidget * m_gameModeWidget;
-	AngleStatusWidget * m_currentAngle;
-	FirePowerWidget * m_currentPower;
 
 	QMenuBar * m_menuBar;
 	QMenu * m_menuFile;

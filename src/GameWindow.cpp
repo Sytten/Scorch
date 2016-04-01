@@ -3,30 +3,24 @@
 
 GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this)
 {
-	setupUI();
-}
-
-void GameWindow::setupUI()
-{
 	temp_power = 35;
 	temp_angle = 45;
 	temp_player1Turn = true;
 	temp_isPowerControlled = State::Angle;
-    /****Central widget****/
+	/****Central widget****/
+	GameModeWidget * m_gameModeWidget;
+	AngleStatusWidget * m_currentAngle;
+	FirePowerWidget * m_currentPower;
 
-    this->setCentralWidget(m_game.getView());
+	this->setCentralWidget(m_game.getView());
 
-	/*m_newGameButton = new QPushButton("Nouvelle partie");
-	m_newGameButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
-	bottomLayout->addWidget(m_newGameButton);*/
+	/****Bottom Widget (Information about player)****/
 
-    /****Bottom Widget (Information about player)****/
-
-    QWidget* bottomWidget = new QWidget;
-    QDockWidget* informationPanel = new QDockWidget;
-        informationPanel->setAllowedAreas(Qt::BottomDockWidgetArea);
-        informationPanel->setFeatures(QDockWidget::NoDockWidgetFeatures);
-    GameBottomLayout *bottomLayout = new GameBottomLayout;
+	QWidget* bottomWidget = new QWidget;
+	QDockWidget* informationPanel = new QDockWidget;
+	informationPanel->setAllowedAreas(Qt::BottomDockWidgetArea);
+	informationPanel->setFeatures(QDockWidget::NoDockWidgetFeatures);
+	GameBottomLayout *bottomLayout = new GameBottomLayout;
 
 	m_gameModeWidget = new GameModeWidget;
 	bottomLayout->addWidget(m_gameModeWidget);
@@ -44,13 +38,17 @@ void GameWindow::setupUI()
 	bottomLayout->setAlignment(m_currentAngle, Qt::AlignRight);
 	bottomLayout->addWidget(m_currentPower);
 
-    bottomWidget->setLayout(bottomLayout);
-    informationPanel->setWidget(bottomWidget);
+	bottomWidget->setLayout(bottomLayout);
+	informationPanel->setWidget(bottomWidget);
 
-    this->addDockWidget(Qt::BottomDockWidgetArea, informationPanel);
+	this->addDockWidget(Qt::BottomDockWidgetArea, informationPanel);
 
+	connect(this, &GameWindow::changeAngle, m_currentAngle, &AngleStatusWidget::setAngle);
+	connect(this, &GameWindow::changePlayer, m_gameModeWidget, &GameModeWidget::setCurrentPlayer);
+	connect(this, &GameWindow::changePower, m_currentPower, &FirePowerWidget::setPower);
+	connect(this, &GameWindow::changeState, m_gameModeWidget, &GameModeWidget::setCurrentMode);
 
-    /****Menus****/
+	/****Menus****/
 
 	m_menuBar = new QMenuBar;
 	m_menuFile = new QMenu("Fichier");
@@ -67,7 +65,7 @@ void GameWindow::setupUI()
 	this->setMenuBar(m_menuBar);
 	this->setWindowTitle("Scorch");
 
-    this->setStatusBar(new QStatusBar);
+	this->setStatusBar(new QStatusBar);
 
 	setFocusPolicy(Qt::TabFocus);
 
@@ -81,6 +79,26 @@ GameWindow::~GameWindow()
 void GameWindow::displayStatusMessage(QString message)
 {
 	statusBar()->showMessage(message);
+}
+
+void GameWindow::playerChanged(Player p_player)
+{
+	emit changePlayer(p_player);
+}
+
+void GameWindow::stateChanged(State p_state)
+{
+	emit changeState(p_state);
+}
+
+void GameWindow::angleChanged(float p_angle)
+{
+	emit changeAngle(p_angle);
+}
+
+void GameWindow::powerChanged(float p_power)
+{
+	emit changePower(p_power);
 }
 
 void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)
@@ -105,26 +123,26 @@ void GameWindow::customEvent(QEvent *event)
 				temp_isPowerControlled = State::Power;
 			else
 				temp_isPowerControlled = State::Angle;
-			m_gameModeWidget->setCurrentMode(temp_isPowerControlled);
+			emit changeState(temp_isPowerControlled);
             break;
         case Increase:
             if(temp_isPowerControlled == State::Power) {
-                temp_power += 1;
-                m_currentPower->setPower(temp_power);
+				temp_power += 1;
+				emit changePower(temp_power);
 			}
 			else if (temp_isPowerControlled == State::Angle){
-                temp_angle += 1;
-                m_currentAngle->setAngle(temp_angle);
+				temp_angle += 1;
+				emit changeAngle(temp_angle);
             }
             break;
         case Decrease:
 			if (temp_isPowerControlled == State::Power) {
                 temp_power -= 1;
-                m_currentPower->setPower(temp_power);
+				emit changePower(temp_power);
 			}
 			else if (temp_isPowerControlled == State::Angle) {
-                temp_angle -= 1;
-                m_currentAngle->setAngle(temp_angle);
+				temp_angle -= 1;
+				emit changeAngle(temp_angle);
             }
             break;
         default:

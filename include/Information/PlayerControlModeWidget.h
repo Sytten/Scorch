@@ -1,13 +1,13 @@
-#ifndef PLAYERACTIVATEDWIDGET_H
-#define PLAYERACTIVATEDWIDGET_H
+#ifndef PLAYERCONTROLMODEWIDGET_H
+#define PLAYERCONTROLMODEWIDGET_H
 
 #include <QtWidgets>
 
-class PlayerActivatedWidget : public QWidget
+class PlayerControlModeWidget : public QWidget
 {
 public:
-	PlayerActivatedWidget(int p_playerNumber = 1, bool p_isActivated = true, QWidget * parent = 0);
-	~PlayerActivatedWidget();
+	PlayerControlModeWidget(int p_gameState = 1, bool p_isActivated = false, QWidget * parent = 0);
+	~PlayerControlModeWidget();
 
 	void setActivated(bool p_activated);
 	bool activated()const;
@@ -16,7 +16,7 @@ protected:
 	void paintEvent(QPaintEvent * paintEvent);
 
 private:
-	int m_playerNumber;
+	int m_gameState;
 	bool m_isActivated;
 };
 

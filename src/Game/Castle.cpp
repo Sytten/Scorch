@@ -1,6 +1,6 @@
 #include "Game/Castle.h"
 
-Castle::Castle(int p_initialLife, QGraphicsItem *parent) : Entity(parent), m_life(p_initialLife)
+Castle::Castle(Player owner, int p_initialLife, QGraphicsItem *parent) : Entity(owner, parent), m_life(p_initialLife)
 {
 
 }

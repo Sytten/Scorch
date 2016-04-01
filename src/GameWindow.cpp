@@ -1,7 +1,7 @@
 #include "GameWindow.h"
 
 
-GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this), temp_isPowerControlled(true)
+GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this)
 {
 	setupUI();
 }
@@ -11,6 +11,7 @@ void GameWindow::setupUI()
 	temp_power = 35;
 	temp_angle = 45;
 	temp_player1Turn = true;
+	temp_isPowerControlled = 1;
     /****Central widget****/
 
     this->setCentralWidget(m_game.getView());
@@ -98,7 +99,9 @@ void GameWindow::customEvent(QEvent *event)
         //TODO: Following part needs to foward the events on the good widget based on the game state
         switch (fpgaEvent->command()) {
         case Change:
-                temp_isPowerControlled = !temp_isPowerControlled;
+			temp_isPowerControlled++;
+			if (temp_isPowerControlled > 3)
+				temp_isPowerControlled = 0;
             break;
         case Increase:
             if(temp_isPowerControlled) {

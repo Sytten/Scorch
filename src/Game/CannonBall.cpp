@@ -5,7 +5,12 @@ CannonBall::CannonBall(Player owner, QGraphicsItem *parent) : Entity(owner, pare
 
 }
 
-void CannonBall::update(double deltaTime)
+void CannonBall::updateEntity(double deltaTime)
+{
+
+}
+
+void CannonBall::customEvent(QEvent *event)
 {
 
 }

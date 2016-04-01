@@ -10,7 +10,7 @@ class CannonBall : public Entity
 public:
     CannonBall(Player owner, QGraphicsItem *parent = 0);
 
-    void update(double deltaTime);
+    void updateEntity(double deltaTime);
 
     int type() const { return UserType + 2; }
 

@@ -12,7 +12,7 @@ public:
 
     void update(double deltaTime);
 
-    void type() const { return UserType + 2; }
+    int type() const { return UserType + 2; }
 
 protected:
     void customEvent(QEvent * event);

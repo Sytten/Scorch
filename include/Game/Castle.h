@@ -13,7 +13,7 @@ public:
 
     void update(double deltaTime) {Q_UNUSED(deltaTime)}
 
-    void type() const { return UserType + 3; }
+    int type() const { return UserType + 3; }
 
 private:
     int m_life;

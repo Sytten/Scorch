@@ -10,7 +10,7 @@ public:
 
     void update(double deltaTime) { Q_UNUSED(deltaTime) }
 
-    void type() const { return UserType + 1; }
+    int type() const { return UserType + 1; }
 };
 
 #endif // CANNON_H

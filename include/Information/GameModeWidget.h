@@ -6,8 +6,8 @@
 #include "PlayerActivatedWidget.h"
 #include "PlayerControlModeWidget.h"
 
-#include "Game\Player.h"
-#include "Game\State.h"
+#include "Game/Player.h"
+#include "Game/State.h"
 
 class GameModeWidget : public QWidget
 {

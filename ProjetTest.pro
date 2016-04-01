@@ -27,6 +27,7 @@ SOURCES     += \
     src/Game/CannonBall.cpp \
     src/Game/Castle.cpp \
     src/Game/Game.cpp \
+    src/Game/Entity.cpp \
     src/Information/AngleStatusWidget.cpp \
     src/Information/EllipseAngleWidget.cpp \
     src/Information/FirePowerWidget.cpp \

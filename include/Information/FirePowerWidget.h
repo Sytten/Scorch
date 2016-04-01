@@ -13,11 +13,9 @@ public:
 	FirePowerWidget(QWidget *parent = 0);
 	~FirePowerWidget();
 
-	void setPower(float p_power);
 	void setMinPower(float p_minPower);
 	void setMaxPower(float p_maxPower);
 
-	
 private:
 	float m_power;
 
@@ -25,6 +23,9 @@ private:
 
 	QLabel * m_firePower;
 	GradientBarWidget * m_powerBar;
+
+public slots:
+	void setPower(float p_power);
 };
 
 #endif

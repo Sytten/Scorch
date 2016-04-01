@@ -6,14 +6,17 @@
 #include "PlayerActivatedWidget.h"
 #include "PlayerControlModeWidget.h"
 
+#include "Game\Player.h"
+#include "Game\State.h"
+
 class GameModeWidget : public QWidget
 {
 public:
 	GameModeWidget(QWidget * parent = 0);
 	~GameModeWidget();
 
-	int currentPlayer()const;
-	int currentMode()const;
+	Player currentPlayer()const;
+	State currentMode()const;
 
 protected:
 
@@ -24,9 +27,8 @@ private:
 							* m_playerControlPower, 
 							* m_playerControlFire;
 public slots:
-	void setCurrentMode(int gameMode);
-	void setCurrentPlayer(int player);
-
+	void setCurrentMode(State gameMode);
+	void setCurrentPlayer(Player player);
 };
 
 #endif

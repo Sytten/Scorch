@@ -12,15 +12,14 @@ class AngleStatusWidget : public QWidget
 	Q_OBJECT
 public:
 	AngleStatusWidget(QWidget *parent = 0);
-	~AngleStatusWidget();
-
-	void setAngle(float p_angle);
-
-
+	~AngleStatusWidget();	
 private:
 	float m_angle;
 	QLabel * m_currentAngle;
 	EllipseAngleWidget * m_ellipseAngle;
+
+public slots:
+	void setAngle(float p_angle);
 };
 
 #endif

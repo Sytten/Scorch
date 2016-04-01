@@ -5,6 +5,10 @@ HEADERS     += \
     include/Game/Cannon.h \
     include/Game/CannonBall.h \
     include/Game/Castle.h \
+    include/Game/Entity.h \
+    include/Game/Game.h \
+    include/Game/Player.h \
+    include/Game/State.h \
     include/Information/AngleStatusWidget.h \
     include/Information/EllipseAngleWidget.h \
     include/Information/FirePowerWidget.h \
@@ -22,6 +26,8 @@ SOURCES     += \
     src/Game/Cannon.cpp \
     src/Game/CannonBall.cpp \
     src/Game/Castle.cpp \
+    src/Game/Game.cpp \
+    src/Game/Entity.cpp \
     src/Information/AngleStatusWidget.cpp \
     src/Information/EllipseAngleWidget.cpp \
     src/Information/FirePowerWidget.cpp \

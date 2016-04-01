@@ -43,7 +43,7 @@ SOURCES     += \
 INCLUDEPATH += include
 win32{
     LIBS += lib/CommunicationFPGA.lib
-    SOURCES += lib/CommunicationFPGA.h
+    HEADERS += lib/CommunicationFPGA.h
     INCLUDEPATH += lib
 }
 RESOURCES += 

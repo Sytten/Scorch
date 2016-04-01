@@ -11,7 +11,7 @@ void GameWindow::setupUI()
 	temp_power = 35;
 	temp_angle = 45;
 	temp_player1Turn = true;
-	temp_isPowerControlled = 1;
+	temp_isPowerControlled = State::Angle;
     /****Central widget****/
 
     this->setCentralWidget(m_game.getView());
@@ -98,25 +98,31 @@ void GameWindow::customEvent(QEvent *event)
 
         //TODO: Following part needs to foward the events on the good widget based on the game state
         switch (fpgaEvent->command()) {
-        case Change:
-			temp_isPowerControlled++;
-			if (temp_isPowerControlled > 3)
-				temp_isPowerControlled = 0;
+        case Change:			
+			if (temp_isPowerControlled == State::Angle)
+				temp_isPowerControlled = State::Fire;
+			else if (temp_isPowerControlled == State::Fire)
+				temp_isPowerControlled = State::Power;
+			else
+				temp_isPowerControlled = State::Angle;
+			m_gameModeWidget->setCurrentMode(temp_isPowerControlled);
             break;
         case Increase:
-            if(temp_isPowerControlled) {
+            if(temp_isPowerControlled == State::Power) {
                 temp_power += 1;
                 m_currentPower->setPower(temp_power);
-            } else {
+			}
+			else if (temp_isPowerControlled == State::Angle){
                 temp_angle += 1;
                 m_currentAngle->setAngle(temp_angle);
             }
             break;
         case Decrease:
-            if(temp_isPowerControlled) {
+			if (temp_isPowerControlled == State::Power) {
                 temp_power -= 1;
                 m_currentPower->setPower(temp_power);
-            } else {
+			}
+			else if (temp_isPowerControlled == State::Angle) {
                 temp_angle -= 1;
                 m_currentAngle->setAngle(temp_angle);
             }

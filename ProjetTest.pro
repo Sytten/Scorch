@@ -1,6 +1,6 @@
 TEMPLATE     = vcapp
 TARGET       = Scorch
-CONFIG      += warn_on qt debug_and_release windows console
+CONFIG      += warn_on qt debug_and_release windows console c++11
 HEADERS     += \
     include/Game/Cannon.h \
     include/Game/CannonBall.h \
@@ -20,7 +20,8 @@ HEADERS     += \
     include/Input/FPGAReceiver.h \
     include/GameBottomLayout.h \
     include/GameWindow.h \
-	lib/CommunicationFPGA.h
+    include/Game/State.h \
+    include/Game/Player.h
 
 SOURCES     += \
     src/Game/Cannon.cpp \
@@ -39,8 +40,12 @@ SOURCES     += \
     src/GameWindow.cpp \
     src/main.cpp \
     src/Input/FPGAReceiver.cpp
-INCLUDEPATH += include lib
-LIBS	    += lib/CommunicationFPGA.lib
+INCLUDEPATH += include
+win32{
+    LIBS += lib/CommunicationFPGA.lib
+    SOURCES += lib/CommunicationFPGA.h
+    INCLUDEPATH += lib
+}
 RESOURCES += 
 QT += widgets core gui
 

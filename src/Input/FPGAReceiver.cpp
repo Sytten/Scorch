@@ -14,6 +14,7 @@ FPGAReceiver::~FPGAReceiver()
 
 void FPGAReceiver::updateFPGA()
 {
+#ifdef Q_OS_WIN
 	if (!m_fpga.estOk()) {
 		emit fpgaError(QString::fromUtf8(m_fpga.messageErreur()));
 		return;
@@ -45,6 +46,7 @@ void FPGAReceiver::updateFPGA()
 			break;
 		}
 	}
+#endif
 }
 
 void FPGAReceiver::handlePressEvent(QKeyEvent *KeyEvent)

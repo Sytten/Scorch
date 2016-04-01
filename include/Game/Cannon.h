@@ -8,7 +8,7 @@ class Cannon : public Entity
 public:
     Cannon(Player owner, QGraphicsItem *parent = 0);
 
-    void update(double deltaTime) { Q_UNUSED(deltaTime) }
+    void updateEntity(double deltaTime) { Q_UNUSED(deltaTime) }
 
     int type() const { return UserType + 1; }
 };

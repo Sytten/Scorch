@@ -6,7 +6,9 @@
 #include <QKeyEvent>
 #include <QString>
 
+#ifdef Q_OS_WIN
 #include "CommunicationFPGA.h"
+#endif
 #include "Input/FPGAEvent.h"
 
 class FPGAReceiver : public QObject
@@ -28,7 +30,9 @@ signals:
 
 private:
 	QTimer m_updateTimer;
+#ifdef Q_OS_WIN
 	CommunicationFPGA m_fpga;
+#endif
 	int m_indexRead;
 	Command m_lastCommandSent;
 };

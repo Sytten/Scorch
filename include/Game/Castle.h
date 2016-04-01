@@ -11,7 +11,7 @@ public:
     bool isAlive();
     void takeDamage(int p_damage);
 
-    void update(double deltaTime) {Q_UNUSED(deltaTime)}
+    void updateEntity(double deltaTime) {Q_UNUSED(deltaTime)}
 
     int type() const { return UserType + 3; }
 

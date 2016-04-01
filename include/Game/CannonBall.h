@@ -8,9 +8,11 @@
 class CannonBall : public Entity
 {
 public:
-    CannonBall(QGraphicsItem *parent = 0);
+    CannonBall(Player owner, QGraphicsItem *parent = 0);
 
     void update(double deltaTime);
+
+    void type() const { return UserType + 2; }
 
 protected:
     void customEvent(QEvent * event);

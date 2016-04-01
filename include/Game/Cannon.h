@@ -6,13 +6,11 @@
 class Cannon : public Entity
 {
 public:
-    Cannon(QGraphicsItem *parent = 0);
+    Cannon(Player owner, QGraphicsItem *parent = 0);
 
     void update(double deltaTime) { Q_UNUSED(deltaTime) }
 
-private:
-    double m_angle;
-    double m_power;
+    void type() const { return UserType + 1; }
 };
 
 #endif // CANNON_H

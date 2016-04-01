@@ -6,12 +6,14 @@
 class Castle : public Entity
 {
 public:
-    Castle(int p_initialLife, QGraphicsItem *parent = 0);
+    Castle(Player owner, int p_initialLife, QGraphicsItem *parent = 0);
 
     bool isAlive();
     void takeDamage(int p_damage);
 
     void update(double deltaTime) {Q_UNUSED(deltaTime)}
+
+    void type() const { return UserType + 3; }
 
 private:
     int m_life;

@@ -3,6 +3,7 @@
 Game::Game(QObject *parent) : QObject(parent), m_timeLastUpdate(QTime::currentTime()), m_currentPlayer(Player1), m_currentState(Power)
 {
     m_view = new QGraphicsView(&m_scene);
+    newGame();
 
     m_timer.setInterval(1000/60);
     connect(&m_timer, &QTimer::timeout, this, &Game::update);
@@ -16,8 +17,13 @@ Game::~Game()
 }
 
 void Game::customEvent(QEvent *event)
-{
-    //TODO: use event to update values
+{ 
+   for(auto item : m_scene.items())
+   {
+       /* if(Cannon* cannon = qgraphicsitem_cast<Cannon*>(item)) {
+
+        }*/
+   }
 }
 
 void Game::checkCollisions()
@@ -31,4 +37,13 @@ void Game::update()
     //TODO: move view to display current player or follow cannonball if fired
     checkCollisions();
     m_timeLastUpdate = QTime::currentTime();
+}
+
+void Game::newGame()
+{
+    m_scene.clear();
+    Castle * castle1 = new Castle(QPixmap(":/resources/long_castle_p1.png"),Player::Player1, 100);
+    castle1->setScale(5);
+    castle1->setTransformationMode(Qt::SmoothTransformation);
+    m_scene.addItem(castle1);
 }

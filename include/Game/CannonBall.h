@@ -8,7 +8,7 @@
 class CannonBall : public Entity
 {
 public:
-    CannonBall(Player owner, QGraphicsItem *parent = 0);
+    CannonBall(const QPixmap &pixmap, Player owner, QGraphicsItem *parent = 0);
 
     void updateEntity(double deltaTime);
 

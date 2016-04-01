@@ -16,7 +16,7 @@ class Entity : public QObject, public QGraphicsPixmapItem
     Q_PROPERTY(Player owner READ owner WRITE setOwner NOTIFY ownerChanged)
 
 public:
-    Entity(Player owner, QGraphicsItem *parent = 0);
+    Entity(const QPixmap &pixmap, Player owner, QGraphicsItem *parent = 0);
 
     virtual void updateEntity(double deltaTime) = 0;
     Player owner() const;
@@ -28,7 +28,7 @@ private:
     Player m_owner;
 
 signals:
-    void valueChanged(State state, double value);
+    void stateValueChanged(State state, double value);
     void ownerChanged(Player owner);
 };
 

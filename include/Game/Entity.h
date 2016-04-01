@@ -17,7 +17,7 @@ class Entity : public QGraphicsItem
 public:
     Entity(Player owner, QGraphicsItem *parent = 0);
 
-    void update(double deltaTime) = 0;
+    virtual void update(double deltaTime) = 0;
     Player owner() const;
 
 public slots:

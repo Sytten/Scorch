@@ -50,7 +50,7 @@ private:
 	float temp_angle;
 
 	bool temp_player1Turn;
-    int temp_isPowerControlled;
+    State temp_isPowerControlled;
 };
 
 

@@ -12,6 +12,8 @@ GradientBarWidget::~GradientBarWidget()
 
 void GradientBarWidget::paintEvent(QPaintEvent * paintEvent)
 {
+	Q_UNUSED(paintEvent);
+
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing);
 	int middleY = (rect().top() + rect().bottom()) / 2;

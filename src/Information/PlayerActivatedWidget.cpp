@@ -15,6 +15,7 @@ PlayerActivatedWidget::~PlayerActivatedWidget()
 
 void PlayerActivatedWidget::paintEvent(QPaintEvent * paintEvent)
 {
+	Q_UNUSED(paintEvent);
 	QPainter painter(this);
 
 	QPen pen;

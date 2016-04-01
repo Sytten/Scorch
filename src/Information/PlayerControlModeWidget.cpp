@@ -24,6 +24,7 @@ bool PlayerControlModeWidget::activated()const
 
 void PlayerControlModeWidget::paintEvent(QPaintEvent * paintEvent)
 {
+	Q_UNUSED(paintEvent);
 	QPainter painter(this);
 
 	QPen pen;

@@ -21,7 +21,9 @@ HEADERS     += \
     include/GameBottomLayout.h \
     include/GameWindow.h \
     include/Game/State.h \
-    include/Game/Player.h
+    include/Game/Player.h \
+	include/Terrain/Bezier.h \
+	include/Terrain/Terrain.h
 
 SOURCES     += \
     src/Game/Cannon.cpp \
@@ -39,7 +41,9 @@ SOURCES     += \
     src/GameBottomLayout.cpp \
     src/GameWindow.cpp \
     src/main.cpp \
-    src/Input/FPGAReceiver.cpp
+    src/Input/FPGAReceiver.cpp \
+	src/Terrain/Bezier.cpp \
+	src/Terrain/Terrain.cpp	
 INCLUDEPATH += include
 win32{
     LIBS += lib/CommunicationFPGA.lib

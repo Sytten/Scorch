@@ -25,20 +25,15 @@ public:
 public slots:
 	void displayStatusMessage(QString message);
 
+protected:
+    void keyPressEvent(QKeyEvent * KeyEvent);
+    void customEvent(QEvent* event);
+
+protected slots:
 	void playerChanged(Player p_player);
 	void stateChanged(State p_state);
 	void angleChanged(float p_angle);
 	void powerChanged(float p_power);
-
-signals:
-	void changePlayer(Player p_player);
-	void changeState(State p_state);
-	void changeAngle(float p_angle);
-	void changePower(float p_power);
-
-protected:
-    void keyPressEvent(QKeyEvent * KeyEvent);
-    void customEvent(QEvent* event);
 
 private:
     QLabel * m_mainGameWidget;
@@ -51,11 +46,11 @@ private:
     FPGAReceiver m_fpga;
     Game m_game;
 
-	float temp_power;
-	float temp_angle;
-
-	bool temp_player1Turn;
-    State temp_isPowerControlled;
+signals:
+	void changePlayer(Player p_player);
+	void changeState(State p_state);
+	void changeAngle(float p_angle);
+	void changePower(float p_power);
 };
 
 

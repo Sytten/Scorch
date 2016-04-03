@@ -1,12 +1,8 @@
 #include "GameWindow.h"
 
 
-GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this)
+GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this), m_game()
 {
-	temp_power = 35;
-	temp_angle = 45;
-	temp_player1Turn = true;
-	temp_isPowerControlled = State::Angle;
 	/****Central widget****/
 	GameModeWidget * m_gameModeWidget;
 	AngleStatusWidget * m_currentAngle;
@@ -27,11 +23,11 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this)
 
 	//This should be an object with custom paint method to make it interesting
 	m_currentAngle = new AngleStatusWidget;
-	m_currentAngle->setAngle(temp_angle);
+	m_currentAngle->setAngle(0);
 
 	//This will be an object with custom paint method to make it interesting
 	m_currentPower = new FirePowerWidget;
-	m_currentPower->setPower(temp_power);
+	m_currentPower->setPower(50);
 
 	bottomLayout->addStretch();
 	bottomLayout->addWidget(m_currentAngle);
@@ -67,9 +63,16 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this)
 
 	this->setStatusBar(new QStatusBar);
 
-	setFocusPolicy(Qt::TabFocus);
+	setFocus();
+	m_game.getView()->setFocusPolicy(Qt::NoFocus);
 
 	connect(&m_fpga, &FPGAReceiver::fpgaError, this, &GameWindow::displayStatusMessage);
+
+	/****Connect Game****/
+	connect(&m_game, &Game::playerChanged, this, &GameWindow::playerChanged);
+	connect(&m_game, &Game::angleChanged, this, &GameWindow::angleChanged);
+	connect(&m_game, &Game::powerChanged, this, &GameWindow::powerChanged);
+	connect(&m_game, &Game::stateChanged, this, &GameWindow::stateChanged);
 }
 
 GameWindow::~GameWindow()
@@ -113,41 +116,5 @@ void GameWindow::customEvent(QEvent *event)
         FPGAEvent* fpgaEvent = static_cast<FPGAEvent *>(event);
 
         QCoreApplication::postEvent(&m_game, new FPGAEvent(*fpgaEvent));
-
-        //TODO: Following part needs to foward the events on the good widget based on the game state
-        switch (fpgaEvent->command()) {
-        case Change:			
-			if (temp_isPowerControlled == State::Angle)
-				temp_isPowerControlled = State::Fire;
-			else if (temp_isPowerControlled == State::Fire)
-				temp_isPowerControlled = State::Power;
-			else
-				temp_isPowerControlled = State::Angle;
-			emit changeState(temp_isPowerControlled);
-            break;
-        case Increase:
-            if(temp_isPowerControlled == State::Power) {
-				temp_power += 1;
-				emit changePower(temp_power);
-			}
-			else if (temp_isPowerControlled == State::Angle){
-				temp_angle += 1;
-				emit changeAngle(temp_angle);
-            }
-            break;
-        case Decrease:
-			if (temp_isPowerControlled == State::Power) {
-                temp_power -= 1;
-				emit changePower(temp_power);
-			}
-			else if (temp_isPowerControlled == State::Angle) {
-				temp_angle -= 1;
-				emit changeAngle(temp_angle);
-            }
-            break;
-        default:
-            break;
-        }
     }
-
 }

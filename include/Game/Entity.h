@@ -4,7 +4,6 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 
-#include "Input/FPGAEvent.h"
 #include "Game/State.h"
 #include "Game/Player.h"
 
@@ -28,7 +27,6 @@ private:
     Player m_owner;
 
 signals:
-    void stateValueChanged(State state, double value);
     void ownerChanged(Player owner);
 };
 

@@ -16,17 +16,10 @@ class FPGAReceiver : public QObject
     Q_OBJECT
 
 public:
-    FPGAReceiver(QObject * parent = 0);
+    FPGAReceiver(QObject * receiver, QObject * parent = 0);
     ~FPGAReceiver();
 
     void handlePressEvent(QKeyEvent * KeyEvent);
-
-private slots:
-	void updateFPGA();
-
-signals:
-    void newCommand(Command command);
-	void fpgaError(QString message);
 
 private:
 	QTimer m_updateTimer;
@@ -35,6 +28,13 @@ private:
 #endif
 	int m_indexRead;
 	Command m_lastCommandSent;
+	QObject* m_receiver;
+
+private slots:
+	void updateFPGA();
+
+signals:
+	void fpgaError(QString message);
 };
 
 #endif

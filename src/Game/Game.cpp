@@ -41,9 +41,22 @@ void Game::update()
 
 void Game::newGame()
 {
+	/**Setup basic scene and view**/
     m_scene.clear();
+	m_scene.setSceneRect(0, 0, 1280, 450);
+
+	m_view->setFrameStyle(QFrame::NoFrame);
+	m_view->scale(1.5, 1.5);
+
+	/**Add items**/
     Castle * castle1 = new Castle(QPixmap(":/resources/long_castle_p1.png"),Player::Player1, 100);
-    castle1->setScale(5);
-    castle1->setTransformationMode(Qt::SmoothTransformation);
-    m_scene.addItem(castle1);
+	castle1->setPos(50, 350);
+		m_scene.addItem(castle1);
+
+	Castle * castle2 = new Castle(QPixmap(":/resources/long_castle_p2.png"), Player::Player2, 100);
+	castle2->setPos(1173, 350);
+		m_scene.addItem(castle2);
+
+	/**Setup Terrain**/
+	m_scene.addRect(0, 450, 1280, 50, QPen(Qt::NoPen), QBrush(QColor(Qt::darkGreen)));
 }

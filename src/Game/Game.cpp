@@ -43,20 +43,33 @@ void Game::newGame()
 {
 	/**Setup basic scene and view**/
     m_scene.clear();
-	m_scene.setSceneRect(0, 0, 1280, 450);
+	m_scene.setSceneRect(0, 0, 1920, 750);
 
 	m_view->setFrameStyle(QFrame::NoFrame);
-	m_view->scale(1.5, 1.5);
+	m_view->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
 
 	/**Add items**/
     Castle * castle1 = new Castle(QPixmap(":/resources/long_castle_p1.png"),Player::Player1, 100);
-	castle1->setPos(50, 350);
+		castle1->setPos(50, 600);
+		castle1->setScale(1.5);
 		m_scene.addItem(castle1);
 
 	Castle * castle2 = new Castle(QPixmap(":/resources/long_castle_p2.png"), Player::Player2, 100);
-	castle2->setPos(1173, 350);
+		castle2->setPos(1784, 600);
+		castle2->setScale(1.5);
 		m_scene.addItem(castle2);
 
+	Cannon * cannon1 = new Cannon(QPixmap(":/resources/cannon_gun.png/"), QPixmap(":/resources/cannon_support.png/"), QPointF(300, 0), Player::Player1);
+		cannon1->setPos(186, 720);
+		cannon1->setScale(0.1);
+		m_scene.addItem(cannon1);
+
+	Cannon * cannon2 = new Cannon(QPixmap(":/resources/cannon_gun.png/"), QPixmap(":/resources/cannon_support.png/"), QPointF(300, 0), Player::Player1);
+		cannon2->setPos(1734, 720);
+		cannon2->setScale(0.1);
+		cannon2->setTransform(QTransform::fromScale(-1, 1));
+		m_scene.addItem(cannon2);
+
 	/**Setup Terrain**/
-	m_scene.addRect(0, 450, 1280, 50, QPen(Qt::NoPen), QBrush(QColor(Qt::darkGreen)));
+	m_scene.addRect(0, 750, 1920, 50, QPen(Qt::NoPen), QBrush(QColor(Qt::darkGreen)));
 }

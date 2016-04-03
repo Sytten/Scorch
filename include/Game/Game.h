@@ -11,6 +11,7 @@
 #include "Game/State.h"
 #include "Game/Player.h"
 #include "Game/Castle.h"
+#include "Game/Cannon.h"
 
 class Game : public QObject
 {

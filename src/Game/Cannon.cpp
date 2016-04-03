@@ -6,6 +6,8 @@ Cannon::Cannon(const QPixmap & cannon, const QPixmap & base, QPointF cannonRelat
 	m_base = new QGraphicsPixmapItem(base, this);
 
 	m_cannon->setPos(cannonRelativePosition);
+	m_cannon->setRotation(-m_angle);
+	m_cannon->setTransformOriginPoint(280, 110);
 
 	emit angleChanged(m_angle);
 	emit powerChanged(m_power);
@@ -21,6 +23,8 @@ void Cannon::increaseAngle(double value)
 	if (m_angle > 90)
 		m_angle = 90;
 
+	m_cannon->setRotation(-m_angle);
+
 	emit angleChanged(m_angle);
 }
 
@@ -33,6 +37,8 @@ void Cannon::decreaseAngle(double value)
 
 	if (m_angle < 0)
 		m_angle = 0;
+
+	m_cannon->setRotation(-m_angle);
 
 	emit angleChanged(m_angle);
 }

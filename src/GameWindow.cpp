@@ -63,7 +63,8 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 
 	this->setStatusBar(new QStatusBar);
 
-	setFocusPolicy(Qt::TabFocus);
+	setFocus();
+	m_game.getView()->setFocusPolicy(Qt::NoFocus);
 
 	connect(&m_fpga, &FPGAReceiver::fpgaError, this, &GameWindow::displayStatusMessage);
 

@@ -1,5 +1,5 @@
-#include "Terrain\Terrain.h"
-#include "Terrain\Bezier.h"
+#include "Terrain/Terrain.h"
+/*
 
 Terrain::Terrain()
 {}
@@ -9,7 +9,7 @@ Terrain::~Terrain()
 
 void Terrain::generateTerrain()
 {
-	Curves terrainCurve;
+//	Curves terrainCurve;
 	terrainCurve.getXVal(xVal);
 	terrainCurve.getYVal(yVal);
 
@@ -21,3 +21,4 @@ void Terrain::generateTerrain()
 		liner.lineTo(xVal[i], yVal[i]);
 	}
 }
+*/

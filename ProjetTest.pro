@@ -1,4 +1,4 @@
-TEMPLATE     = vcapp
+TEMPLATE     = app
 TARGET       = Scorch
 CONFIG      += warn_on qt debug_and_release windows console c++11
 HEADERS     += \
@@ -22,7 +22,6 @@ HEADERS     += \
     include/GameWindow.h \
     include/Game/State.h \
     include/Game/Player.h \
-	include/Terrain/Bezier.h \
 	include/Terrain/Terrain.h \
 	include/SecondaryWindows.h
 
@@ -43,7 +42,6 @@ SOURCES     += \
     src/GameWindow.cpp \
     src/main.cpp \
     src/Input/FPGAReceiver.cpp \
-	src/Terrain/Bezier.cpp \
 	src/Terrain/Terrain.cpp	\
 	src/SecondaryWindows.cpp
 INCLUDEPATH += include

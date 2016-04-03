@@ -1,6 +1,6 @@
 #include "Game/Game.h"
 
-Game::Game(QObject *parent) : QObject(parent), m_timeLastUpdate(QTime::currentTime()), m_currentPlayer(Player1), m_currentState(Power)
+Game::Game(QObject *parent) : QObject(parent), m_timeLastUpdate(QTime::currentTime()), m_currentPlayer(Player1), m_currentState(Angle)
 {
     m_view = new QGraphicsView(&m_scene);
     newGame();
@@ -16,14 +16,52 @@ Game::~Game()
 
 }
 
+void Game::newAngle(double angle)
+{
+	emit angleChanged(angle);
+}
+
+void Game::newPower(double power)
+{
+	emit powerChanged(power);
+}
+
 void Game::customEvent(QEvent *event)
 { 
-   for(auto item : m_scene.items())
-   {
-       /* if(Cannon* cannon = qgraphicsitem_cast<Cannon*>(item)) {
+	if (event->type() == FPGAEvent::customFPGAEvent) {
+		FPGAEvent* fpgaEvent = static_cast<FPGAEvent *>(event);
 
-        }*/
-   }
+		if (fpgaEvent->command() == Change) {
+			m_currentState = (State)(m_currentState + 1);
+			if (m_currentState == NoState)
+				m_currentState = Angle;
+			emit stateChanged(m_currentState);
+		}
+		else {
+			for (auto item : m_scene.items()) {
+				if (Cannon* cannon = dynamic_cast<Cannon*>(item)) {
+					if (cannon->owner() == m_currentPlayer) {
+						if (fpgaEvent->command() == Increase && m_currentState == Angle)
+							cannon->increaseAngle(1);
+						else if (fpgaEvent->command() == Decrease && m_currentState == Angle)
+							cannon->decreaseAngle(1);
+						else if (fpgaEvent->command() == Increase && m_currentState == Power)
+							cannon->increasePower(1);
+						else if (fpgaEvent->command() == Decrease && m_currentState == Power)
+							cannon->decreasePower(1);
+						else if ((fpgaEvent->command() == Decrease || fpgaEvent->command() == Increase) && m_currentState == Fire) {
+							cannon->reset();
+							m_currentPlayer = (Player)(m_currentPlayer + 1);
+							if (m_currentPlayer == NoPlayer)
+								m_currentPlayer = Player1;
+							emit playerChanged(m_currentPlayer);
+						}
+						return;
+					}
+				}
+			}
+		}
+	}
 }
 
 void Game::checkCollisions()
@@ -62,12 +100,16 @@ void Game::newGame()
 	Cannon * cannon1 = new Cannon(QPixmap(":/resources/cannon_gun.png/"), QPixmap(":/resources/cannon_support.png/"), QPointF(300, 0), Player::Player1);
 		cannon1->setPos(186, 720);
 		cannon1->setScale(0.1);
+		connect(cannon1, &Cannon::angleChanged, this, &Game::newAngle);
+		connect(cannon1, &Cannon::powerChanged, this, &Game::newPower);
 		m_scene.addItem(cannon1);
 
-	Cannon * cannon2 = new Cannon(QPixmap(":/resources/cannon_gun.png/"), QPixmap(":/resources/cannon_support.png/"), QPointF(300, 0), Player::Player1);
+	Cannon * cannon2 = new Cannon(QPixmap(":/resources/cannon_gun.png/"), QPixmap(":/resources/cannon_support.png/"), QPointF(300, 0), Player::Player2);
 		cannon2->setPos(1734, 720);
 		cannon2->setScale(0.1);
 		cannon2->setTransform(QTransform::fromScale(-1, 1));
+		connect(cannon2, &Cannon::angleChanged, this, &Game::newAngle);
+		connect(cannon2, &Cannon::powerChanged, this, &Game::newPower);
 		m_scene.addItem(cannon2);
 
 	/**Setup Terrain**/

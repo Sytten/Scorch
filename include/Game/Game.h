@@ -26,6 +26,8 @@ public:
 
 public slots:
     void newGame();
+	void newAngle(double angle);
+	void newPower(double power);
 
 protected:
     void customEvent(QEvent* event);
@@ -45,6 +47,8 @@ private:
 signals:
     void playerChanged(Player player);
     void stateChanged(State state);
+	void angleChanged(double angle);
+	void powerChanged(double power);
 };
 
 #endif // GAME_H

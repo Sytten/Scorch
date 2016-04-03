@@ -43,8 +43,8 @@ void GameModeWidget::setCurrentPlayer(Player player)
 	}
 	else if(player == Player::Player2)
 	{
-		m_player1Indicator->setActivated(true);
-		m_player2Indicator->setActivated(false);
+		m_player1Indicator->setActivated(false);
+		m_player2Indicator->setActivated(true);
 	}
 	else
 	{

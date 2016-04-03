@@ -18,13 +18,25 @@ GameModeWidget::GameModeWidget(QWidget * parent) :QWidget(parent)
 	topLayout->addWidget(m_playerControlPower);
 	topLayout->addWidget(m_playerControlFire);
 
+	QLabel * mode = new QLabel("Mode :");
+	QLabel * joueur = new QLabel("Tour du joueur :");
+	
+	QFont font = mode->font();
+	font.setPointSize(20);
+	font.setBold(true);
+	mode->setFont(font);
+	
+	QFont font1 = joueur->font();
+	font1.setPointSize(20);
+	font1.setBold(true);
+	joueur->setFont(font1);
+	
 	bottomLayout->addWidget(m_player1Indicator);
 	bottomLayout->addWidget(m_player2Indicator);
-
+	modeLayout->addWidget(mode);
 	modeLayout->addLayout(topLayout);
-	modeLayout->addWidget(new QLabel("Tour du joueur :"));
+	modeLayout->addWidget(joueur);
 	modeLayout->addLayout(bottomLayout);
-
 	setLayout(modeLayout);
 }
 

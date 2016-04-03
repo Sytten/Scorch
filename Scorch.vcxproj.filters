@@ -17,6 +17,16 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -28,6 +38,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Information\AngleStatusWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Terrain\Bezier.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Game\Cannon.cpp">
@@ -42,10 +55,16 @@
     <ClCompile Include="src\Information\EllipseAngleWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Game\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\Input\FPGAReceiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Information\FirePowerWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\GameBottomLayout.cpp">
@@ -66,6 +85,12 @@
     <ClCompile Include="src\Information\PlayerControlModeWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\SecondaryWindows.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Terrain\Terrain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -74,9 +99,12 @@
     <CustomBuild Include="include\Information\AngleStatusWidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <ClInclude Include="include\Game\Cannon.h">
+    <ClInclude Include="include\Terrain\Bezier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <CustomBuild Include="include\Game\Cannon.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <ClInclude Include="include\Game\CannonBall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -89,6 +117,9 @@
     <CustomBuild Include="include\Information\EllipseAngleWidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="include\Game\Entity.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <ClInclude Include="include\Input\FPGAEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -96,6 +127,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="include\Information\FirePowerWidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="include\Game\Game.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <ClInclude Include="include\GameBottomLayout.h">
@@ -110,10 +144,22 @@
     <CustomBuild Include="include\Information\GradientBarWidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <ClInclude Include="include\Game\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="include\Information\PlayerActivatedWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Information\PlayerControlModeWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="include\SecondaryWindows.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="include\Game\State.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Terrain\Terrain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -124,10 +170,22 @@
     <ClCompile Include="release\moc_AngleStatusWidget.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="debug\moc_Cannon.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_Cannon.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="debug\moc_EllipseAngleWidget.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_EllipseAngleWidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_Entity.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_Entity.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_FPGAReceiver.cpp">
@@ -142,6 +200,12 @@
     <ClCompile Include="release\moc_FirePowerWidget.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="debug\moc_Game.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_Game.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="debug\moc_GameWindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -154,5 +218,37 @@
     <ClCompile Include="release\moc_GradientBarWidget.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="debug\moc_SecondaryWindows.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_SecondaryWindows.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\qrc_Resources.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\qrc_Resources.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Resources.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <None Include="resources\cannon_base.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resources\cannon_gun.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resources\cannon_support.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resources\long_castle_p1.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resources\long_castle_p2.png">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

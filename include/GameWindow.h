@@ -6,13 +6,17 @@
 #include <QtWidgets>
 #include <QString>
 #include <QCloseEvent>
+#include <QApplication>
+#include <QMainWindow>
 
+#include "SECONDARYWINDOWS.h"
 #include "Input/FPGAReceiver.h"
 #include "Information/FirePowerWidget.h"
 #include "Information/AngleStatusWidget.h"
 #include "Information/GameModeWidget.h"
 #include "GameBottomLayout.h"
 #include "Game/Game.h"
+
 
 class GameWindow : public QMainWindow
 {
@@ -22,35 +26,56 @@ public:
 	GameWindow(QMainWindow *parent = 0);
 	~GameWindow();
 
-public slots:
+	public slots:
 	void displayStatusMessage(QString message);
 
 protected:
-    void keyPressEvent(QKeyEvent * KeyEvent);
-    void customEvent(QEvent* event);
+	void keyPressEvent(QKeyEvent * KeyEvent);
+	void customEvent(QEvent* event);
 
-protected slots:
+	protected slots:
 	void playerChanged(Player p_player);
 	void stateChanged(State p_state);
 	void angleChanged(float p_angle);
 	void powerChanged(float p_power);
 
 private:
-    QLabel * m_mainGameWidget;
+	QLabel * m_mainGameWidget;
 
 	QMenuBar * m_menuBar;
-	QMenu * m_menuFile;
+	QMenu * m_menuFichier;
+	QMenu * m_menuJeux;
+	QMenu * m_menuAide;
 	QAction * m_actionQuit;
 	QAction * m_actionNewGame;
+	QAction * m_actionPlay;
+	QAction * m_actionPause;
+	QAction * m_actionMuet;
+	QAction * m_actionTutoriel;
+	QAction * m_actionVersion;
 
-    FPGAReceiver m_fpga;
-    Game m_game;
+	FPGAReceiver m_fpga;
+	Game m_game;
+	FenetreNewGame * fenNewGame;
+	FenetreTutoriel * fenTutoriel;
+	FenetreVersion * fenVersion;
+	
+	
+	
 
 signals:
 	void changePlayer(Player p_player);
 	void changeState(State p_state);
 	void changeAngle(float p_angle);
 	void changePower(float p_power);
+
+	private slots:
+	void openNewGame();
+	void openTutoriel();
+	void openVersion();
+
 };
+
+
 
 

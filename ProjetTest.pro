@@ -23,7 +23,8 @@ HEADERS     += \
     include/Game/State.h \
     include/Game/Player.h \
 	include/Terrain/Bezier.h \
-	include/Terrain/Terrain.h
+	include/Terrain/Terrain.h \
+	include/SecondaryWindows.h
 
 SOURCES     += \
     src/Game/Cannon.cpp \
@@ -43,7 +44,8 @@ SOURCES     += \
     src/main.cpp \
     src/Input/FPGAReceiver.cpp \
 	src/Terrain/Bezier.cpp \
-	src/Terrain/Terrain.cpp	
+	src/Terrain/Terrain.cpp	\
+	src/SecondaryWindows.cpp
 INCLUDEPATH += include
 win32{
     LIBS += lib/CommunicationFPGA.lib

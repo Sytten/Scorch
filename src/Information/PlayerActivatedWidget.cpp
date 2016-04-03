@@ -42,7 +42,7 @@ void PlayerActivatedWidget::paintEvent(QPaintEvent * paintEvent)
 
 	painter.setFont(font);
 
-	if (m_isActivated)painter.setPen(Qt::white);
+	if (m_isActivated)painter.setPen(Qt::red);
 	else painter.setPen(Qt::black);
 
 	painter.drawText(rect(), Qt::AlignCenter, QString::number(m_playerNumber));

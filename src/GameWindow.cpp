@@ -165,8 +165,8 @@ void GameWindow::openNewGame()
 void GameWindow::openTutoriel()
 {
 	fenTutoriel = new FenetreTutoriel();
-
 	fenTutoriel->show();
+	
 }
 
 void GameWindow::openVersion()

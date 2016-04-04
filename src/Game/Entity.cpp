@@ -23,6 +23,13 @@ Player Entity::owner() const
     return m_owner;
 }
 
+void Entity::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    if(scene())
+        painter->setClipRect(mapFromScene(scene()->sceneRect().intersected(mapToScene(boundingRect()).boundingRect())).boundingRect());
+    QGraphicsPixmapItem::paint(painter, option, widget);
+}
+
 void Entity::setOwner(Player owner)
 {
     if (m_owner == owner)

@@ -157,21 +157,24 @@ void GameWindow::customEvent(QEvent *event)
 
 void GameWindow::openNewGame()
 {
-	fenNewGame = new FenetreNewGame();
-
-	fenNewGame->show();
+    FenetreNewGame fenNewGame;
+    fenNewGame.exec();
 }
 
 void GameWindow::openTutoriel()
 {
-	fenTutoriel = new FenetreTutoriel();
-
-	fenTutoriel->show();
+    FenetreTutoriel fenTutoriel;
+    fenTutoriel.exec();
 }
 
 void GameWindow::openVersion()
 {
-	fenVersion = new FenetreVersion();
+    FenetreVersion fenVersion;
+    fenVersion.exec();
+}
 
-	fenVersion->show();
+void GameWindow::resizeEvent(QResizeEvent *event)
+{
+    QMainWindow::resizeEvent(event);
+    m_game.getView()->fitInView(m_game.getView()->sceneRect(), Qt::KeepAspectRatio);
 }

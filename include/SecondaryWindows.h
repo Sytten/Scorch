@@ -1,14 +1,17 @@
 #ifndef SECONDARYWINDOWS_H
 #define SECONDARYWINDOWS_H
 
-#include <qwidget.h>
-#include <qpushbutton.h>
-#include <qcheckbox.h>
+#include <QWidget>
+#include <QDialog>
+#include <QPushButton>
+#include <QCheckBox>
 #include <QVBoxLayout>
-#include <QHBoxlayout>
-#include <qlabel.h>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QRadioButton>
+#include <QStatusBar>
 
-class FenetreNewGame : public QWidget
+class FenetreNewGame : public QDialog
 {
 	Q_OBJECT
 public:
@@ -19,20 +22,25 @@ private:
 	QPushButton * m_moyen;
 	QPushButton * m_difficile;
 	QPushButton * m_aleatoire;
-	QCheckBox * m_un;
-	QCheckBox * m_deux;
+	QRadioButton * m_un;
+	QRadioButton * m_deux;
 	QLabel * m_joueur1;
 	QLabel * m_joueur2;
 };
 
-class FenetreTutoriel : public QWidget
+class FenetreTutoriel : public QDialog
 {
 	Q_OBJECT
 public:
 	FenetreTutoriel();
+private:
+	QWidget *Layout;
+	QVBoxLayout *window;
+	QLabel *title;
+	QLabel *content;
 };
 
-class FenetreVersion : public QWidget
+class FenetreVersion : public QDialog
 {
 	Q_OBJECT
 public:

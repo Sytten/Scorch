@@ -8,7 +8,7 @@ CannonBall::CannonBall(const QPixmap & pixmap, QVector2D velocity, QVector2D pos
 
 void CannonBall::updateEntity(double deltaTime)
 {
-	m_timeSinceShot += deltaTime/1000.0;
+    m_timeSinceShot += deltaTime/1000.0 * 2.0;
 
 	double x = m_initialPosition.x() + m_initialVelocity.x() * m_timeSinceShot;
 	double y = m_initialPosition.y() - m_initialVelocity.y() * m_timeSinceShot + 0.5 * m_gravity * m_timeSinceShot * m_timeSinceShot;

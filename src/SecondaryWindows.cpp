@@ -12,13 +12,15 @@ FenetreNewGame::FenetreNewGame()
 	m_aleatoire = new QPushButton("Aleatoire");
 
 	// choix du nombre de joueurs
-	m_un = new QCheckBox;
-	m_deux = new QCheckBox;
+	m_un = new QRadioButton;
+     m_un->click();
+	m_deux = new QRadioButton;
 	m_joueur1 = new QLabel("Un joueur");
 	m_joueur2 = new QLabel("Deux joueurs");
 	QLabel * joueur = new QLabel("Selectionner le nombre de joueurs");
 	QLabel * difficultes = new QLabel("Selectionner la difficulte");
 	QLabel * endl = new QLabel("");
+
 	// integration de bouton
 	QVBoxLayout * vertical = new QVBoxLayout();
 	QHBoxLayout * difficulte = new QHBoxLayout();
@@ -44,7 +46,17 @@ FenetreNewGame::FenetreNewGame()
 
 FenetreTutoriel::FenetreTutoriel()
 {
-	
+	QLabel *empty = new QLabel("");
+
+	Layout = new QWidget();
+	window = new QVBoxLayout();
+	title = new QLabel("Ce pr" + QString(233)+ "sent tu tutoriel, l'explication du jeu sera fait enti"+QString(232)+"rement.");
+	content = new QLabel("Pour ajuster l'angle du canon, dite 'A' et le tenire jusqu'" + QString(230) + " ce que vous vouliez arr" + QString(234) + "ter! \nPour Ajuster la force de tire, dite 'I' pour changer le mode et ensuite redite 'A' pour ajuster la valeur! \n");
+
+	window->addWidget(title);
+	window->addWidget(content);
+	setLayout(window);
+
 }
 
 FenetreVersion::FenetreVersion()

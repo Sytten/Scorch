@@ -93,7 +93,7 @@ void Game::update()
 			else {
 				for (auto collider : cannonball->collidingItems()) {
 					if (Castle* castle = dynamic_cast<Castle*>(collider)) {
-						if (castle->owner() != m_currentPlayer) {
+                        if (castle->owner() != cannonball->owner()) {
 							m_scene.removeItem(item);
 							delete item;
 							//remove life from castle
@@ -101,9 +101,9 @@ void Game::update()
 						}
 					}
 					else if (QGraphicsRectItem* terrain = dynamic_cast<QGraphicsRectItem*>(collider)) { //Temp for terrain
-						m_scene.removeItem(item);
+                        /*m_scene.removeItem(item);
 						delete item;
-						break;
+                        break;*/
 					}
 					else if (Cannon* cannon = dynamic_cast<Cannon*>(collider)) {
 						if (cannon->owner() != m_currentPlayer) {

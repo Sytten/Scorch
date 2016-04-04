@@ -12,8 +12,7 @@ class Terrain : public QGraphicsItem
 public:
 	Terrain(float terrainSize = 1920, float margin = 75, QGraphicsItem *parent = 0);
 	~Terrain();
-
-
+	
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
 	QRectF boundingRect() const;
 
@@ -22,6 +21,9 @@ public:
 
 	bool intersects(const QRectF &p_rectangle)const;
 	QPointF PointAtX(const float p_x)const;
+
+	QPointF getHighestPointBetween(float p_x1, float p_x2);
+	QPointF getLowestPointBetween(float p_x1, float p_x2);
 protected:
 	void calculateNewPath();
 private:

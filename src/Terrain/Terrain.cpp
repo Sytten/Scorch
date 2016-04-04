@@ -7,7 +7,7 @@ Terrain::Terrain(float terrainSize, float margin, QGraphicsItem * parent) : QGra
 
 	float minimumX = 0.0, minimumY = 0.0, maximumX = 0.0, maximumY = 0.0;
 
-	for each (QPointF var in m_terrainPoints)
+	for (QPointF var : m_terrainPoints)
 	{
 		if (minimumX > var.rx())
 			minimumX = var.rx();
@@ -35,7 +35,7 @@ void Terrain::paint(QPainter * painter, const QStyleOptionGraphicsItem * option,
 {	
 	painter->setPen(Qt::black);
 	if (scene())
-	painter->setClipRect(mapFromScene(scene()->sceneRect().intersected(mapToScene(boundingRect()).boundingRect())).boundingRect());
+		painter->setClipRect(mapFromScene(scene()->sceneRect().intersected(mapToScene(boundingRect()).boundingRect())).boundingRect());
 	painter->fillPath(m_paintPath, m_brush);
 
 
@@ -111,20 +111,54 @@ QPointF Terrain::PointAtX(const float p_x)const
 {	
 	for (int i = 1; i < scene()->sceneRect().bottom(); i++)
 	{
-		if (m_paintPath.intersects(QRectF(p_x, 0, 0, i))){
-			
-			std::cout << "Is contained : " << i << std::endl;
+		if (m_paintPath.intersects(QRectF(p_x, 0, 0, i))){			
 			return QPointF(p_x, i);
 		}
-		else
-			std::cout << "Is not contained " << std::endl;
 	}
-	
-
-	/*if (m_paintPath.contains(QPointF(p_x, 740)))
-		std::cout << "Is contained" << std::endl;
-	else
-		std::cout << "Is not contained " << std::endl;*/
-
 	return QPointF(-1, -1);
+}
+
+
+QPointF Terrain::getHighestPointBetween(float p_x1, float p_x2)
+{
+	QPointF currentHighest = QPointF(0,0);
+	for (QPointF var : m_terrainPoints){
+		//Inversed because of coordinate system
+		if (var.rx() < p_x2 && var.rx() > p_x1)
+		{
+			if (currentHighest.ry() > var.ry())
+				currentHighest = var;
+		}
+	}
+	for (QPointF var : m_controlPoints){
+		//Inversed because of coordinate system
+		if (var.rx() < p_x2 && var.rx() > p_x1)
+		{
+			if (currentHighest.ry() > var.ry())
+				currentHighest = var;
+		}
+	}
+	return currentHighest;
+}
+
+QPointF Terrain::getLowestPointBetween(float p_x1, float p_x2)
+{
+	QPointF currentLowest = QPointF(0, 0);
+	for (QPointF var : m_terrainPoints){
+		//Inversed because of coordinate system
+		if (var.rx() < p_x2 && var.rx() > p_x1)
+		{
+			if (currentLowest.ry() < var.ry())
+				currentLowest = var;
+		}
+	}
+	for (QPointF var : m_controlPoints){
+		//Inversed because of coordinate system
+		if (var.rx() < p_x2 && var.rx() > p_x1)
+		{
+			if (currentLowest.ry() < var.ry())
+				currentLowest = var;
+		}
+	}
+	return currentLowest;
 }

@@ -139,25 +139,21 @@ void Game::newGame()
     /**Setup Background**/
     m_scene.addRect(m_scene.sceneRect(), QPen(Qt::NoPen), QBrush(QColor(107, 219, 242)));
 
-
-	m_terrain.setPos(0, 500);
-
-	m_scene.addItem(&m_terrain);
-
+	m_terrain = new Terrain();
+	m_terrain->setPos(0, 500);
 
 	/**Add items**/
     Castle * castle1 = new Castle(QPixmap(":/resources/long_castle_p1.png"),Player::Player1, 100);
-		castle1->setPos(50, 600);
 		castle1->setScale(1.5);
 		m_scene.addItem(castle1);
 
 	Castle * castle2 = new Castle(QPixmap(":/resources/long_castle_p2.png"), Player::Player2, 100);
-		castle2->setPos(1784, 600);
 		castle2->setScale(1.5);
 		m_scene.addItem(castle2);
+		
 
+	m_scene.addItem(m_terrain);
 	Cannon * cannon1 = new Cannon(QPixmap(":/resources/cannon_gun.png/"), QPixmap(":/resources/cannon_support.png/"), QPointF(300, 0), false, Player::Player1);
-		cannon1->setPos(186, 720);
 		cannon1->setScale(0.1);
 		connect(cannon1, &Cannon::angleChanged, this, &Game::newAngle);
 		connect(cannon1, &Cannon::powerChanged, this, &Game::newPower);
@@ -165,7 +161,6 @@ void Game::newGame()
 		m_scene.addItem(cannon1);
 
 	Cannon * cannon2 = new Cannon(QPixmap(":/resources/cannon_gun.png/"), QPixmap(":/resources/cannon_support.png/"), QPointF(300, 0), true, Player::Player2);
-		cannon2->setPos(1734, 720);
 		cannon2->setScale(0.1);
 		cannon2->setTransform(QTransform::fromScale(-1, 1));
 		connect(cannon2, &Cannon::angleChanged, this, &Game::newAngle);
@@ -173,8 +168,15 @@ void Game::newGame()
 		connect(cannon2, &Cannon::fired, this, &Game::newCannonball);
 		m_scene.addItem(cannon2);
 
+		QPointF bestPoint1;
+		QPointF bestPoint2;
 
-	m_terrain.PointAtX(3);
+		castle1->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(0, m_terrain->boundingRect().width() / 8)) - QPointF(0, 150));
+		castle2->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(m_terrain->boundingRect().width() * (7.0f / 8.0f), m_terrain->boundingRect().width() - castle2->boundingRect().width())) - QPointF(0, 150));
+
+		cannon2->setPos(m_terrain->mapToScene(m_terrain->PointAtX(1734)) - QPointF(0,(cannon2->boundingRect().height() / 2)));
+		cannon1->setPos(m_terrain->mapToScene(m_terrain->PointAtX(186)) - QPointF(0,(cannon2->boundingRect().height() / 2)));
+
 	/**Setup Terrain**/
 	//m_scene.addRect(0, 750, 1920, 50, QPen(Qt::NoPen), QBrush(QColor(Qt::darkGreen)));
 }

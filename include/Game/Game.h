@@ -47,6 +47,8 @@ private:
     Player m_currentPlayer;
     State m_currentState;
 
+	Terrain m_terrain;
+
 	bool m_cannonballFired;
 
 signals:

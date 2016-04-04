@@ -34,6 +34,7 @@ QRectF Terrain::boundingRect() const
 void Terrain::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
 {	
 	painter->setPen(Qt::black);
+	//if (scene)
 	painter->setClipRect(scene()->sceneRect());
 	painter->fillPath(m_paintPath, m_brush);
 
@@ -107,10 +108,23 @@ bool Terrain::intersects(const QRectF &p_rectangle)const
 }
 
 QPointF Terrain::PointAtX(const float p_x)const
-{
-	QPainterPath t_path;
-	t_path.addRect(QRect(p_x, 0, 0, 600));
-	//m_paintPath.intersected()
+{	
+	for (int i = 1; i < scene()->sceneRect().bottom(); i++)
+	{
+		if (m_paintPath.intersects(QRectF(p_x, 0, 0, i))){
+			
+			std::cout << "Is contained : " << i << std::endl;
+			return QPointF(p_x, i);
+		}
+		else
+			std::cout << "Is not contained " << std::endl;
+	}
+	
 
-	return QPointF();
+	/*if (m_paintPath.contains(QPointF(p_x, 740)))
+		std::cout << "Is contained" << std::endl;
+	else
+		std::cout << "Is not contained " << std::endl;*/
+
+	return QPointF(-1, -1);
 }

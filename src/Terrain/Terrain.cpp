@@ -1,8 +1,8 @@
 #include "Terrain/Terrain.h"
 
-Terrain::Terrain(QGraphicsItem * parent) : QGraphicsItem(parent)
+Terrain::Terrain(QGraphicsItem * parent) : QGraphicsItem(parent), m_brush(QPixmap(":/resources/grass.png"))
 {
-	Curves terrainCurve(BezierMode::InsaneCurves, 75, 1920);
+	Curves terrainCurve(BezierMode::InsaneCurves, 75, 2400);
 	m_terrainPoints = terrainCurve.getBasePoint();
 
 	float minimumX = 0.0, minimumY = 0.0, maximumX = 0.0, maximumY = 0.0;
@@ -32,14 +32,16 @@ QRectF Terrain::boundingRect() const
 }
 
 void Terrain::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
-{
-	
+{	
 	painter->setPen(Qt::black);
-	painter->fillPath(m_paintPath, Qt::green);
+	painter->fillPath(m_paintPath, m_brush);
 
-	painter->drawPath(m_paintPath);
-	painter->drawRect(m_bounding);
+	//painter->drawPath(m_paintPath);
+	//painter->drawRect(m_bounding);
 
+
+
+	/*
 	QPen linepen(Qt::red);
 	linepen.setWidth(4);
 	painter->setPen(linepen);
@@ -52,7 +54,7 @@ void Terrain::paint(QPainter * painter, const QStyleOptionGraphicsItem * option,
 	for each (QPointF var in m_terrainPoints)
 	{
 		painter->drawPoint(var);
-	}
+	}*/
 }
 
 

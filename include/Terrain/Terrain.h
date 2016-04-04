@@ -27,4 +27,6 @@ private:
 	QVector<QPointF> m_controlPoints;
 	QRectF m_bounding;
 	QPainterPath m_paintPath;
+
+	QBrush m_brush;
 };

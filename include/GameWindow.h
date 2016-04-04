@@ -31,6 +31,7 @@ public slots:
 protected:
     void keyPressEvent(QKeyEvent * KeyEvent);
     void customEvent(QEvent* event);
+    void resizeEvent(QResizeEvent *event);
 
 protected slots:
 	void playerChanged(Player p_player);

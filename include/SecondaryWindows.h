@@ -2,6 +2,7 @@
 #define SECONDARYWINDOWS_H
 
 #include <QWidget>
+#include <QDialog>
 #include <QPushButton>
 #include <QCheckBox>
 #include <QVBoxLayout>
@@ -10,7 +11,7 @@
 #include <QRadioButton>
 #include <QStatusBar>
 
-class FenetreNewGame : public QWidget
+class FenetreNewGame : public QDialog
 {
 	Q_OBJECT
 public:
@@ -27,7 +28,7 @@ private:
 	QLabel * m_joueur2;
 };
 
-class FenetreTutoriel : public QWidget
+class FenetreTutoriel : public QDialog
 {
 	Q_OBJECT
 public:
@@ -39,7 +40,7 @@ private:
 	QLabel *content;
 };
 
-class FenetreVersion : public QWidget
+class FenetreVersion : public QDialog
 {
 	Q_OBJECT
 public:

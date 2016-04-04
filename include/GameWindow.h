@@ -57,10 +57,6 @@ private:
     FPGAReceiver m_fpga;
     Game m_game;
 	
-	FenetreNewGame * fenNewGame;
-	FenetreTutoriel * fenTutoriel;
-	FenetreVersion * fenVersion;
-	
 private slots:
 	void openNewGame();
 	void openTutoriel();

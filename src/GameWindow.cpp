@@ -157,23 +157,20 @@ void GameWindow::customEvent(QEvent *event)
 
 void GameWindow::openNewGame()
 {
-	fenNewGame = new FenetreNewGame();
-
-	fenNewGame->show();
+    FenetreNewGame fenNewGame;
+    fenNewGame.exec();
 }
 
 void GameWindow::openTutoriel()
 {
-	fenTutoriel = new FenetreTutoriel();
-	fenTutoriel->show();
-	
+    FenetreTutoriel fenTutoriel;
+    fenTutoriel.exec();
 }
 
 void GameWindow::openVersion()
 {
-	fenVersion = new FenetreVersion();
-
-	fenVersion->show();
+    FenetreVersion fenVersion;
+    fenVersion.exec();
 }
 
 void GameWindow::resizeEvent(QResizeEvent *event)

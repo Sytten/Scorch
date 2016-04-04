@@ -13,6 +13,7 @@ FenetreNewGame::FenetreNewGame()
 
 	// choix du nombre de joueurs
 	m_un = new QRadioButton;
+     m_un->click();
 	m_deux = new QRadioButton;
 	m_joueur1 = new QLabel("Un joueur");
 	m_joueur2 = new QLabel("Deux joueurs");

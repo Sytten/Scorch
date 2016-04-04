@@ -31,6 +31,7 @@ public slots:
 protected:
     void keyPressEvent(QKeyEvent * KeyEvent);
     void customEvent(QEvent* event);
+    void resizeEvent(QResizeEvent *event);
 
 protected slots:
 	void playerChanged(Player p_player);
@@ -55,10 +56,6 @@ private:
 
     FPGAReceiver m_fpga;
     Game m_game;
-	
-	FenetreNewGame * fenNewGame;
-	FenetreTutoriel * fenTutoriel;
-	FenetreVersion * fenVersion;
 	
 private slots:
 	void openNewGame();

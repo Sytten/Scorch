@@ -55,6 +55,9 @@ void Game::customEvent(QEvent *event)
 							m_scene.addItem(ball);
 							cannon->reset();
 
+                            m_currentState = Angle;
+                            emit stateChanged(m_currentState);
+
 							m_currentPlayer = (Player)(m_currentPlayer + 1);
 							if (m_currentPlayer == NoPlayer)
 								m_currentPlayer = Player1;
@@ -93,7 +96,7 @@ void Game::update()
 			else {
 				for (auto collider : cannonball->collidingItems()) {
 					if (Castle* castle = dynamic_cast<Castle*>(collider)) {
-						if (castle->owner() != m_currentPlayer) {
+                        if (castle->owner() != cannonball->owner()) {
 							m_scene.removeItem(item);
 							delete item;
 							//remove life from castle
@@ -101,9 +104,9 @@ void Game::update()
 						}
 					}
 					else if (QGraphicsRectItem* terrain = dynamic_cast<QGraphicsRectItem*>(collider)) { //Temp for terrain
-						m_scene.removeItem(item);
+                        /*m_scene.removeItem(item);
 						delete item;
-						break;
+                        break;*/
 					}
 					else if (Cannon* cannon = dynamic_cast<Cannon*>(collider)) {
 						if (cannon->owner() != m_currentPlayer) {
@@ -129,6 +132,12 @@ void Game::newGame()
 
 	m_view->setFrameStyle(QFrame::NoFrame);
 	m_view->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
+    m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_view->setBackgroundBrush(QBrush(QColor(Qt::black)));
+
+    /**Setup Background**/
+    m_scene.addRect(m_scene.sceneRect(), QPen(Qt::NoPen), QBrush(QColor(107, 219, 242)));
 
 	/**Add items**/
     Castle * castle1 = new Castle(QPixmap(":/resources/long_castle_p1.png"),Player::Player1, 100);

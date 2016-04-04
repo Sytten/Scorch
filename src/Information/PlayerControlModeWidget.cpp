@@ -52,13 +52,13 @@ void PlayerControlModeWidget::paintEvent(QPaintEvent * paintEvent)
 
 	painter.setFont(font);
 
-	if (m_isActivated)painter.setPen(Qt::white);
+	if (m_isActivated)painter.setPen(Qt::red);
 	else painter.setPen(Qt::black);
 
 	if (m_gameState == 1)
 		painter.drawText(rect(), Qt::AlignCenter, "Angle");
 	else if (m_gameState == 2)
-		painter.drawText(rect(), Qt::AlignCenter, "Power");
+		painter.drawText(rect(), Qt::AlignCenter, "Puissance");
 	else
 		painter.drawText(rect(), Qt::AlignCenter, "Tir");
 

@@ -86,7 +86,7 @@ CannonBall * Cannon::fire()
 		power *= -1;
 
 	emit fired();
-	return new CannonBall(QPixmap(":/resources/cannonball.png"), QVector2D(power * 2 * cos(toRadians(m_angle)), m_power * 2 * sin(toRadians(m_angle))), QVector2D(m_cannon->mapToScene(m_cannon->boundingRect().right(), m_cannon->boundingRect().top())), owner());
+    return new CannonBall(QPixmap(":/resources/cannonball.png"), QVector2D(power * 2 * cos(toRadians(m_angle)), m_power * 2 * sin(toRadians(m_angle))), QVector2D(m_cannon->mapToScene(m_cannon->boundingRect().right(), m_cannon->boundingRect().top())), owner());
 }
 
 double Cannon::toRadians(double degrees)

@@ -124,3 +124,9 @@ local.properties
 *.unityproj
 *.pidb.meta
 sysinfo.txt
+.gitattributes
+ProjetTest.pro.user
+Scorch.opensdf
+Scorch.sdf
+Scorch.v12.suo
+Scorch.vcxproj.user

@@ -1,12 +1,12 @@
 #ifndef SECONDARYWINDOWS_H
 #define SECONDARYWINDOWS_H
 
-#include <qwidget.h>
-#include <qpushbutton.h>
-#include <qcheckbox.h>
+#include <QWidget>
+#include <QPushButton>
+#include <QCheckBox>
 #include <QVBoxLayout>
-#include <QHBoxlayout>
-#include <qlabel.h>
+#include <QHBoxLayout>
+#include <QLabel>
 
 class FenetreNewGame : public QWidget
 {

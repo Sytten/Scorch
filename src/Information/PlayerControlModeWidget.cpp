@@ -4,7 +4,6 @@ PlayerControlModeWidget::PlayerControlModeWidget(int p_gameState, bool p_isActiv
 {
 	m_gameState = p_gameState;
 	m_isActivated = p_isActivated;
-	setMinimumSize(QSize(100, 50));
 	setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
 }
 
@@ -40,26 +39,32 @@ void PlayerControlModeWidget::paintEvent(QPaintEvent * paintEvent)
 	painter.setPen(pen);
 	painter.setBrush(brush);
 
-	//painter.drawRect(rect());
-	painter.drawRoundedRect(rect(), 10.0, 10.0);
+    QFont font = painter.font();
+    font.setPointSize(24);
+    painter.setFont(font);
+    QFontMetrics fontMetrics(font);
 
-	QPainterPath path;
-	path.addRoundedRect(rect(), 10.0, 10.0);
-	painter.fillPath(path, brush);
+    QSize widgetMinimumSize(0,fontMetrics.height()+20);
+    if (m_gameState == 1)
+        widgetMinimumSize.setWidth(fontMetrics.width("Angle")+20);
+    else if (m_gameState == 2)
+        widgetMinimumSize.setWidth(fontMetrics.width("Puissance")+20);
+    else
+        widgetMinimumSize.setWidth(fontMetrics.width("Tir")+20);
 
-	QFont font = painter.font();
-	font.setPointSize(24);
+    setMinimumSize(widgetMinimumSize);
 
-	painter.setFont(font);
+    painter.drawRoundedRect(rect(), 10.0, 10.0);
+
 
 	if (m_isActivated)painter.setPen(Qt::red);
 	else painter.setPen(Qt::black);
 
 	if (m_gameState == 1)
-		painter.drawText(rect(), Qt::AlignCenter, "Angle");
+        painter.drawText(rect(), Qt::AlignCenter, "Angle");
 	else if (m_gameState == 2)
-		painter.drawText(rect(), Qt::AlignCenter, "Puissance");
+        painter.drawText(rect(), Qt::AlignCenter, "Puissance");
 	else
-		painter.drawText(rect(), Qt::AlignCenter, "Tir");
+        painter.drawText(rect(), Qt::AlignCenter, "Tir");
 
 }

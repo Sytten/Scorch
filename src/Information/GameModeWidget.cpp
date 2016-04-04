@@ -4,40 +4,46 @@ GameModeWidget::GameModeWidget(QWidget * parent) :QWidget(parent)
 {
 	//This should be an object
 	QVBoxLayout *modeLayout = new QVBoxLayout;
+        QHBoxLayout *topLayout = new QHBoxLayout;
+        QHBoxLayout *bottomLayout = new QHBoxLayout;
+    QVBoxLayout *modeNameLayout = new QVBoxLayout;
+    QHBoxLayout *finalLayout = new QHBoxLayout;
+
 	m_playerControlAngle = new PlayerControlModeWidget(1, true);
 	m_playerControlPower = new PlayerControlModeWidget(2, false);
 	m_playerControlFire = new PlayerControlModeWidget(3, false);
+    topLayout->addWidget(m_playerControlAngle);
+    topLayout->addWidget(m_playerControlPower);
+    topLayout->addWidget(m_playerControlFire);
+
 
 	m_player1Indicator = new PlayerActivatedWidget;
 	m_player2Indicator = new PlayerActivatedWidget(2, false);
+    bottomLayout->addWidget(m_player1Indicator);
+    bottomLayout->addWidget(m_player2Indicator);
 
-	QHBoxLayout *topLayout = new QHBoxLayout;
-	QHBoxLayout *bottomLayout = new QHBoxLayout;
 
-	topLayout->addWidget(m_playerControlAngle);
-	topLayout->addWidget(m_playerControlPower);
-	topLayout->addWidget(m_playerControlFire);
+    QLabel * mode = new QLabel("Mode :");
+    modeNameLayout->addWidget(mode);
 
-	QLabel * mode = new QLabel("Mode :");
-	QLabel * joueur = new QLabel("Tour du joueur :");
-	
 	QFont font = mode->font();
 	font.setPointSize(20);
 	font.setBold(true);
 	mode->setFont(font);
 	
+    QLabel * joueur = new QLabel("Tour du joueur :");
+    modeNameLayout->addWidget(joueur);
+
 	QFont font1 = joueur->font();
 	font1.setPointSize(20);
 	font1.setBold(true);
 	joueur->setFont(font1);
 	
-	bottomLayout->addWidget(m_player1Indicator);
-	bottomLayout->addWidget(m_player2Indicator);
-	modeLayout->addWidget(mode);
 	modeLayout->addLayout(topLayout);
-	modeLayout->addWidget(joueur);
 	modeLayout->addLayout(bottomLayout);
-	setLayout(modeLayout);
+    finalLayout->addLayout(modeNameLayout);
+    finalLayout->addLayout(modeLayout);
+    setLayout(finalLayout);
 }
 
 GameModeWidget::~GameModeWidget()

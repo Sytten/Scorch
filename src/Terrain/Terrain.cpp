@@ -34,8 +34,8 @@ QRectF Terrain::boundingRect() const
 void Terrain::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
 {	
 	painter->setPen(Qt::black);
-	//if (scene)
-	painter->setClipRect(scene()->sceneRect());
+	if (scene())
+	painter->setClipRect(mapFromScene(scene()->sceneRect().intersected(mapToScene(boundingRect()).boundingRect())).boundingRect());
 	painter->fillPath(m_paintPath, m_brush);
 
 

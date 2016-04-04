@@ -56,6 +56,7 @@ private:
 	QLabel * m_ligne2;
 	QLabel * m_ligne3;
 	QLabel * m_ligne4;
+	QLabel * m_ligne5;
 };
 
 

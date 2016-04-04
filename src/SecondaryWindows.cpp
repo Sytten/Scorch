@@ -58,33 +58,46 @@ FenetreNewGame::FenetreNewGame()
 FenetreTutoriel::FenetreTutoriel()
 {
 
-	setFixedSize(500, 100);
+	setWindowTitle("Tutoriel");
+	//setFixedSize(500, 100);
 
 	QLabel *empty = new QLabel("");
 
 	Layout = new QWidget();
 	window = new QVBoxLayout();
-	title = new QLabel("Ce pr" + QString(233) + "sent tu tutoriel, l'explication du jeu sera fait enti" + QString(232) + "rement.");
-	content = new QLabel("Pour ajuster l'angle du canon, dite 'A' et le tenire jusqu'" + QString(230) + " ce que vous vouliez arr" + QString(234) + "ter! \nPour Ajuster la force de tire, dite 'I' pour changer le mode et ensuite redite 'A' pour ajuster la valeur! \n");
+	title = new QLabel("Dans ce pr" + QString(233) + "sent tutoriel, l'explication du jeu sera fait enti" + QString(232) + "rement.");
+	content = new QLabel("	Pour ajuster les param"+QString(232)+"tre du canon, dite 'A' ou 'O' et le tenire jusqu'"
+		+ QString(224) + " ce que vous vouliez arr" + QString(234) +
+		"ter! \n	Pour change le mode, dite 'I' pour changer le mode \n");
 
-	window->addWidget(title);
-	window->addWidget(content);
+	window->addWidget(title,1,Qt::AlignCenter);
+	window->addWidget(content,1,Qt::AlignCenter);
 	setLayout(window);
 
 }
 
 FenetreVersion::FenetreVersion()
 {
-	setFixedSize(500, 100);
+	setWindowTitle("Version");
+	setFixedSize(500, 140);
 
 	QVBoxLayout * vertical = new QVBoxLayout();
-	m_ligne1 = new QLabel("SCORCH VERSION 0.1");
+	m_ligne1 = new QLabel("SCORCH VERSION 0.5");
 	m_ligne2 = new QLabel("Derniere mise a jour : 2016-04-03");
 	m_ligne3 = new QLabel("Developpe par l'equipe P19 de l'U de S");
-	m_ligne4 = new QLabel("Julien Larochelle, Emile Fugulin, Jean-Philippe Fournier, Philippe Spino");
+	m_ligne4 = new QLabel("Les programmeurs ayant particip" + QString(233) + " " + QString(231) + " la cr" + QString(233) + "ation de Scorch");
+	m_ligne5 = new QLabel("Emile Fugulin, Jean-Philippe Fournier, Julien Larochelle, Philippe Spino");
+
+	m_ligne1->setFont(QFont("OCR A extented"));
+	m_ligne2->setFont(QFont("fantasque sans mono"));
+	m_ligne3->setFont(QFont("fantasque sans mono"));
+	m_ligne4->setFont(QFont("fantasque sans mono"));
+	m_ligne5->setFont(QFont("fantasque sans mono"));
+
 	vertical->addWidget(m_ligne1, 1, Qt::AlignCenter);
 	vertical->addWidget(m_ligne2, 1, Qt::AlignCenter);
 	vertical->addWidget(m_ligne3, 1, Qt::AlignCenter);
 	vertical->addWidget(m_ligne4, 1, Qt::AlignCenter);
+	vertical->addWidget(m_ligne5, 1, Qt::AlignCenter);
 	setLayout(vertical);
 }

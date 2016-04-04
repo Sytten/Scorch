@@ -139,6 +139,12 @@ void Game::newGame()
     /**Setup Background**/
     m_scene.addRect(m_scene.sceneRect(), QPen(Qt::NoPen), QBrush(QColor(107, 219, 242)));
 
+
+	m_terrain.setPos(0, 500);
+
+	m_scene.addItem(&m_terrain);
+
+
 	/**Add items**/
     Castle * castle1 = new Castle(QPixmap(":/resources/long_castle_p1.png"),Player::Player1, 100);
 		castle1->setPos(50, 600);
@@ -167,6 +173,8 @@ void Game::newGame()
 		connect(cannon2, &Cannon::fired, this, &Game::newCannonball);
 		m_scene.addItem(cannon2);
 
+
+	m_terrain.PointAtX(3);
 	/**Setup Terrain**/
-	m_scene.addRect(0, 750, 1920, 50, QPen(Qt::NoPen), QBrush(QColor(Qt::darkGreen)));
+	//m_scene.addRect(0, 750, 1920, 50, QPen(Qt::NoPen), QBrush(QColor(Qt::darkGreen)));
 }

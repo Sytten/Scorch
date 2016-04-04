@@ -10,6 +10,8 @@
 #include <QLabel>
 #include <QRadioButton>
 #include <QStatusBar>
+#include <QDialogButtonBox>
+#include <QGroupBox>
 
 class FenetreNewGame : public QDialog
 {
@@ -17,15 +19,19 @@ class FenetreNewGame : public QDialog
 public:
 	FenetreNewGame();
 
+
 private:
-	QPushButton * m_facile;
-	QPushButton * m_moyen;
-	QPushButton * m_difficile;
-	QPushButton * m_aleatoire;
+
+	QGroupBox *group1;
+	QGroupBox *group2;
+
+	QRadioButton* m_facile;
+	QRadioButton * m_moyen;
+	QRadioButton * m_difficile;
+	QRadioButton * m_aleatoire;
 	QRadioButton * m_un;
 	QRadioButton * m_deux;
-	QLabel * m_joueur1;
-	QLabel * m_joueur2;
+	QDialogButtonBox *dialogButtons;
 };
 
 class FenetreTutoriel : public QDialog
@@ -50,6 +56,7 @@ private:
 	QLabel * m_ligne2;
 	QLabel * m_ligne3;
 	QLabel * m_ligne4;
+	QLabel * m_ligne5;
 };
 
 

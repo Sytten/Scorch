@@ -1,17 +1,34 @@
 #include <qpainterpath.h>
+#include <QGraphicsScene>
+#include <QGraphicsItem>
+#include <QPainter>
+#include <QVector>
 
+#include "Bezier.h"
 
-
-class Terrain
+class Terrain : public QGraphicsItem
 {
 
 public:
-	Terrain();
+	Terrain(float terrainSize = 1920, float margin = 75, QGraphicsItem *parent = 0);
 	~Terrain();
-	void generateTerrain();
-	//void changeTerrain();
 
+
+	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
+	QRectF boundingRect() const;
+
+	void setPos(const QPointF &pos);
+	void setPos(qreal x, qreal y);
+
+	bool intersects(const QRectF &p_rectangle)const;
+	QPointF PointAtX(const float p_x)const;
+protected:
+	void calculateNewPath();
 private:
-	float xVal[1000];
-	float yVal[1000];
+	QVector<QPointF> m_terrainPoints;
+	QVector<QPointF> m_controlPoints;
+	QRectF m_bounding;
+	QPainterPath m_paintPath;
+
+	QBrush m_brush;
 };

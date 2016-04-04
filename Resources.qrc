@@ -6,5 +6,6 @@
         <file>resources/long_castle_p1.png</file>
         <file>resources/long_castle_p2.png</file>
         <file>resources/cannonball.png</file>
+		<file>resources/grass.png</file>
     </qresource>
 </RCC>

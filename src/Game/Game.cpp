@@ -131,6 +131,10 @@ void Game::newGame()
 	m_view->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
     m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_view->setBackgroundBrush(QBrush(QColor(Qt::black)));
+
+    /**Setup Background**/
+    m_scene.addRect(m_scene.sceneRect(), QPen(Qt::NoPen), QBrush(QColor(107, 219, 242)));
 
 	/**Add items**/
     Castle * castle1 = new Castle(QPixmap(":/resources/long_castle_p1.png"),Player::Player1, 100);

@@ -18,6 +18,7 @@ FenetreNewGame::FenetreNewGame()
 
 
 	setWindowTitle("Nouvelle partie");
+
 	// choix de la difficulte
 	m_facile = new QRadioButton("Facile");
 	m_moyen = new QRadioButton("Moyen");
@@ -83,16 +84,16 @@ FenetreVersion::FenetreVersion()
 
 	QVBoxLayout * vertical = new QVBoxLayout();
 	m_ligne1 = new QLabel("SCORCH VERSION 0.5");
-	m_ligne2 = new QLabel("Derniere mise a jour : 2016-04-03");
+	m_ligne2 = new QLabel("Derniere mise a jour : 2016-04-04");
 	m_ligne3 = new QLabel("Developpe par l'equipe P19 de l'U de S");
-	m_ligne4 = new QLabel("Les programmeurs ayant particip" + QString(233) + " " + QString(231) + " la cr" + QString(233) + "ation de Scorch");
+	m_ligne4 = new QLabel("Les programmeurs ayant particip" + QString(233) + " " + QString(224) + " la cr" + QString(233) + "ation de Scorch");
 	m_ligne5 = new QLabel("Emile Fugulin, Jean-Philippe Fournier, Julien Larochelle, Philippe Spino");
 
-	m_ligne1->setFont(QFont("OCR A extented"));
-	m_ligne2->setFont(QFont("fantasque sans mono"));
-	m_ligne3->setFont(QFont("fantasque sans mono"));
-	m_ligne4->setFont(QFont("fantasque sans mono"));
-	m_ligne5->setFont(QFont("fantasque sans mono"));
+	m_ligne1->setFont(QFont("OCR A extented",10));
+	m_ligne2->setFont(QFont("fantasque sans mono",10));
+	m_ligne3->setFont(QFont("fantasque sans mono",10));
+	m_ligne4->setFont(QFont("fantasque sans mono",10));
+	m_ligne5->setFont(QFont("fantasque sans mono",10));
 
 	vertical->addWidget(m_ligne1, 1, Qt::AlignCenter);
 	vertical->addWidget(m_ligne2, 1, Qt::AlignCenter);

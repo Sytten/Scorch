@@ -4,6 +4,7 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QGraphicsScene>
+#include <QPainter>
 
 #include "Game/State.h"
 #include "Game/Player.h"
@@ -22,6 +23,8 @@ public:
 
     virtual void updateEntity(double deltaTime) = 0;
     Player owner() const;
+
+    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = Q_NULLPTR);
 
 public slots:
     void setOwner(Player owner);

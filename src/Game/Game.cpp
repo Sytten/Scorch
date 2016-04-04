@@ -129,6 +129,8 @@ void Game::newGame()
 
 	m_view->setFrameStyle(QFrame::NoFrame);
 	m_view->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
+    m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
 	/**Add items**/
     Castle * castle1 = new Castle(QPixmap(":/resources/long_castle_p1.png"),Player::Player1, 100);

@@ -175,3 +175,9 @@ void GameWindow::openVersion()
 
 	fenVersion->show();
 }
+
+void GameWindow::resizeEvent(QResizeEvent *event)
+{
+    QMainWindow::resizeEvent(event);
+    m_game.getView()->fitInView(m_game.getView()->sceneRect());
+}

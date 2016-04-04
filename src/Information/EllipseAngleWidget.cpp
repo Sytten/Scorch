@@ -29,9 +29,18 @@ void EllipseAngleWidget::paintEvent(QPaintEvent * paintEvent)
 	Q_UNUSED(paintEvent);
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing);
-	painter.setPen(Qt::white);
+	painter.setPen(Qt::black);
 	painter.setBrush(QBrush(Qt::black));
-	painter.drawEllipse(rect());
+	
+	QPainterPath *remplissage = new QPainterPath();
+	remplissage->moveTo(rect().center());
+	remplissage->lineTo(rect().center().rx(),rect().top());
+	remplissage->arcTo(rect(),90,-90);
+	remplissage->lineTo(rect().center());
+
+	painter.drawPath(*remplissage);
+
+	painter.fillPath(*remplissage,Qt::black);
 
 	painter.setPen(Qt::red);
 	painter.drawLine(rect().center(), getLineEnding());	

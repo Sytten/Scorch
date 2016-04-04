@@ -3,6 +3,7 @@
 
 #include <QGraphicsPixmapItem>
 #include <QObject>
+#include <QGraphicsScene>
 
 #include "Game/State.h"
 #include "Game/Player.h"
@@ -16,6 +17,8 @@ class Entity : public QObject, public QGraphicsPixmapItem
 
 public:
     Entity(const QPixmap &pixmap, Player owner, QGraphicsItem *parent = 0);
+
+	bool outsideOfScene();
 
     virtual void updateEntity(double deltaTime) = 0;
     Player owner() const;

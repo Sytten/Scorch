@@ -20,6 +20,7 @@ HEADERS     += \
     include/Input/FPGAReceiver.h \
     include/GameBottomLayout.h \
     include/GameWindow.h \
+	include/SecondaryWindows.h \
     include/Game/State.h \
     include/Game/Player.h \
 	include/Terrain/Bezier.h \
@@ -40,6 +41,7 @@ SOURCES     += \
     src/Information/PlayerControlModeWidget.cpp \
     src/GameBottomLayout.cpp \
     src/GameWindow.cpp \
+	src//SecondaryWindows.cpp \
     src/main.cpp \
     src/Input/FPGAReceiver.cpp \
 	src/Terrain/Bezier.cpp \

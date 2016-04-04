@@ -31,10 +31,11 @@ public slots:
 
 protected:
     void customEvent(QEvent* event);
-    void checkCollisions();
 
 protected slots:
     void update();
+	void newCannonball();
+	void cannonBallDestroyed();
 
 private:
     QGraphicsScene m_scene;
@@ -43,6 +44,8 @@ private:
     QTime m_timeLastUpdate;
     Player m_currentPlayer;
     State m_currentState;
+
+	bool m_cannonballFired;
 
 signals:
     void playerChanged(Player player);

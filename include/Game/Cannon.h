@@ -2,13 +2,14 @@
 #define CANNON_H
 
 #include "Game/Entity.h"
+#include "Game/CannonBall.h"
 
 class Cannon : public Entity
 {
 	Q_OBJECT
 
 public:
-    Cannon(const QPixmap &cannon, const QPixmap &base, QPointF cannonRelativePosition, Player owner, QGraphicsItem *parent = 0);
+    Cannon(const QPixmap &cannon, const QPixmap &base, QPointF cannonRelativePosition, bool reversed, Player owner, QGraphicsItem *parent = 0);
 
     void updateEntity(double deltaTime) { Q_UNUSED(deltaTime) }
 
@@ -21,16 +22,23 @@ public:
 
 	void reset();
 
+	CannonBall* fire();
+
 private:
+	double toRadians(double degrees);
+
 	QGraphicsPixmapItem* m_cannon;
 	QGraphicsPixmapItem* m_base;
 
 	double m_power;
 	double m_angle;
 
+	bool m_reversed;
+
 signals:
 	void powerChanged(double power);
 	void angleChanged(double angle);
+	void fired();
 };
 
 #endif // CANNON_H

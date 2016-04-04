@@ -4,6 +4,20 @@ Entity::Entity(const QPixmap &pixmap, Player owner, QGraphicsItem *parent) : QGr
 {
 }
 
+bool Entity::outsideOfScene()
+{
+	if (!scene())
+		return true;
+
+	if (pos().x() > scene()->sceneRect().right() || pos().x() < scene()->sceneRect().left())
+		return true;
+
+	if (pos().y() > scene()->sceneRect().bottom() || pos().y() < scene()->sceneRect().top())
+		return true;
+
+	return false;
+}
+
 Player Entity::owner() const
 {
     return m_owner;

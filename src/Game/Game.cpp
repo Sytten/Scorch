@@ -55,6 +55,9 @@ void Game::customEvent(QEvent *event)
 							m_scene.addItem(ball);
 							cannon->reset();
 
+                            m_currentState = Angle;
+                            emit stateChanged(m_currentState);
+
 							m_currentPlayer = (Player)(m_currentPlayer + 1);
 							if (m_currentPlayer == NoPlayer)
 								m_currentPlayer = Player1;

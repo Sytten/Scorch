@@ -1,6 +1,6 @@
 #include "Game/Game.h"
 
-Game::Game(QObject *parent) : QObject(parent), m_timeLastUpdate(QTime::currentTime()), m_currentPlayer(Player1), m_currentState(Angle)
+Game::Game(QObject *parent) : QObject(parent), m_timeLastUpdate(QTime::currentTime()), m_currentPlayer(Player1), m_currentState(Angle), m_cannonballFired(false)
 {
     m_view = new QGraphicsView(&m_scene);
     newGame();
@@ -28,7 +28,7 @@ void Game::newPower(double power)
 
 void Game::customEvent(QEvent *event)
 { 
-	if (event->type() == FPGAEvent::customFPGAEvent) {
+	if (event->type() == FPGAEvent::customFPGAEvent && !m_cannonballFired) {
 		FPGAEvent* fpgaEvent = static_cast<FPGAEvent *>(event);
 
 		if (fpgaEvent->command() == Change) {
@@ -50,7 +50,11 @@ void Game::customEvent(QEvent *event)
 						else if (fpgaEvent->command() == Decrease && m_currentState == Power)
 							cannon->decreasePower(1);
 						else if ((fpgaEvent->command() == Decrease || fpgaEvent->command() == Increase) && m_currentState == Fire) {
+							CannonBall* ball = cannon->fire();
+							connect(ball, &CannonBall::destroyed, this, &Game::cannonBallDestroyed);
+							m_scene.addItem(ball);
 							cannon->reset();
+
 							m_currentPlayer = (Player)(m_currentPlayer + 1);
 							if (m_currentPlayer == NoPlayer)
 								m_currentPlayer = Player1;
@@ -64,16 +68,56 @@ void Game::customEvent(QEvent *event)
 	}
 }
 
-void Game::checkCollisions()
+void Game::newCannonball()
 {
-    //TODO: Check all colliding objects to verify if the cannonball collided with something, if its the case delete it and remove the life to the castle if necessary
+	m_cannonballFired = true;
+}
+
+void Game::cannonBallDestroyed()
+{
+	m_cannonballFired = false;
 }
 
 void Game::update()
 {
-    //TODO: Call the update on the scene with the delta time, the objects will need to be moved to entity based system before!
+	for (auto item : m_scene.items()) {
+		if (CannonBall* cannonball = dynamic_cast<CannonBall*>(item)) {
+			//Update physic
+			cannonball->updateEntity(m_timeLastUpdate.msecsTo(QTime::currentTime()));
+
+			//Check collisions
+			if (cannonball->outsideOfScene()) {
+				m_scene.removeItem(item);
+				delete item;
+			}
+			else {
+				for (auto collider : cannonball->collidingItems()) {
+					if (Castle* castle = dynamic_cast<Castle*>(collider)) {
+						if (castle->owner() != m_currentPlayer) {
+							m_scene.removeItem(item);
+							delete item;
+							//remove life from castle
+							break;
+						}
+					}
+					else if (QGraphicsRectItem* terrain = dynamic_cast<QGraphicsRectItem*>(collider)) { //Temp for terrain
+						m_scene.removeItem(item);
+						delete item;
+						break;
+					}
+					else if (Cannon* cannon = dynamic_cast<Cannon*>(collider)) {
+						if (cannon->owner() != m_currentPlayer) {
+							m_scene.removeItem(item);
+							delete item;
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+
     //TODO: move view to display current player or follow cannonball if fired
-    checkCollisions();
     m_timeLastUpdate = QTime::currentTime();
 }
 
@@ -97,19 +141,21 @@ void Game::newGame()
 		castle2->setScale(1.5);
 		m_scene.addItem(castle2);
 
-	Cannon * cannon1 = new Cannon(QPixmap(":/resources/cannon_gun.png/"), QPixmap(":/resources/cannon_support.png/"), QPointF(300, 0), Player::Player1);
+	Cannon * cannon1 = new Cannon(QPixmap(":/resources/cannon_gun.png/"), QPixmap(":/resources/cannon_support.png/"), QPointF(300, 0), false, Player::Player1);
 		cannon1->setPos(186, 720);
 		cannon1->setScale(0.1);
 		connect(cannon1, &Cannon::angleChanged, this, &Game::newAngle);
 		connect(cannon1, &Cannon::powerChanged, this, &Game::newPower);
+		connect(cannon1, &Cannon::fired, this, &Game::newCannonball);
 		m_scene.addItem(cannon1);
 
-	Cannon * cannon2 = new Cannon(QPixmap(":/resources/cannon_gun.png/"), QPixmap(":/resources/cannon_support.png/"), QPointF(300, 0), Player::Player2);
+	Cannon * cannon2 = new Cannon(QPixmap(":/resources/cannon_gun.png/"), QPixmap(":/resources/cannon_support.png/"), QPointF(300, 0), true, Player::Player2);
 		cannon2->setPos(1734, 720);
 		cannon2->setScale(0.1);
 		cannon2->setTransform(QTransform::fromScale(-1, 1));
 		connect(cannon2, &Cannon::angleChanged, this, &Game::newAngle);
 		connect(cannon2, &Cannon::powerChanged, this, &Game::newPower);
+		connect(cannon2, &Cannon::fired, this, &Game::newCannonball);
 		m_scene.addItem(cannon2);
 
 	/**Setup Terrain**/

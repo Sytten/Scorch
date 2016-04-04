@@ -1,4 +1,5 @@
 #include <qpainterpath.h>
+#include <QGraphicsScene>
 #include <QGraphicsItem>
 #include <QPainter>
 #include <QVector>
@@ -9,7 +10,7 @@ class Terrain : public QGraphicsItem
 {
 
 public:
-	Terrain(QGraphicsItem *parent = 0);
+	Terrain(float terrainSize = 1920, float margin = 75, QGraphicsItem *parent = 0);
 	~Terrain();
 
 
@@ -20,6 +21,7 @@ public:
 	void setPos(qreal x, qreal y);
 
 	bool intersects(const QRectF &p_rectangle)const;
+	QPointF PointAtX(const float p_x)const;
 protected:
 	void calculateNewPath();
 private:

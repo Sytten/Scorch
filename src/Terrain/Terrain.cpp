@@ -1,8 +1,8 @@
 #include "Terrain/Terrain.h"
 
-Terrain::Terrain(QGraphicsItem * parent) : QGraphicsItem(parent), m_brush(QPixmap(":/resources/grass.png"))
+Terrain::Terrain(float terrainSize, float margin, QGraphicsItem * parent) : QGraphicsItem(parent), m_brush(QPixmap(":/resources/grass.png"))
 {
-	Curves terrainCurve(BezierMode::InsaneCurves, 75, 2400);
+	Curves terrainCurve(BezierMode::InsaneCurves, margin, terrainSize + (margin * 2));
 	m_terrainPoints = terrainCurve.getBasePoint();
 
 	float minimumX = 0.0, minimumY = 0.0, maximumX = 0.0, maximumY = 0.0;
@@ -28,19 +28,18 @@ Terrain::~Terrain()
 
 QRectF Terrain::boundingRect() const
 {
-	return QRectF(-1, -1, 2000, 800);
+	return QRectF(0, 0, 1920, 800);
 }
 
 void Terrain::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
 {	
 	painter->setPen(Qt::black);
+	painter->setClipRect(scene()->sceneRect());
 	painter->fillPath(m_paintPath, m_brush);
+
 
 	//painter->drawPath(m_paintPath);
 	//painter->drawRect(m_bounding);
-
-
-
 	/*
 	QPen linepen(Qt::red);
 	linepen.setWidth(4);
@@ -90,10 +89,6 @@ void Terrain::calculateNewPath()
 		QPointF control1 = QPointF((start.rx() + mid.rx()) / 2, (start.ry() + mid.ry()) / 2);
 		QPointF control2 = QPointF((mid.rx() + end.rx()) / 2, (mid.ry() + end.ry()) / 2);
 
-		//control1 += this->pos();
-		//control2 += this->pos();
-		//mid += this->pos();
-
 		m_controlPoints += control1;
 		m_controlPoints += control2;
 		if (i == 0)
@@ -109,4 +104,13 @@ void Terrain::calculateNewPath()
 bool Terrain::intersects(const QRectF &p_rectangle)const
 {
 	return m_paintPath.intersects(p_rectangle);
+}
+
+QPointF Terrain::PointAtX(const float p_x)const
+{
+	QPainterPath t_path;
+	t_path.addRect(QRect(p_x, 0, 0, 600));
+	//m_paintPath.intersected()
+
+	return QPointF();
 }

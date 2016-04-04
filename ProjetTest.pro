@@ -1,4 +1,3 @@
-TEMPLATE     = vcapp
 TARGET       = Scorch
 CONFIG      += warn_on qt debug_and_release windows console c++11
 HEADERS     += \
@@ -48,6 +47,7 @@ SOURCES     += \
 	src/Terrain/Terrain.cpp	
 INCLUDEPATH += include
 win32{
+    TEMPLATE     = vcapp
     LIBS += lib/CommunicationFPGA.lib
     HEADERS += lib/CommunicationFPGA.h
     INCLUDEPATH += lib

@@ -158,6 +158,11 @@ void Game::newGame()
 		connect(cannon2, &Cannon::fired, this, &Game::newCannonball);
 		m_scene.addItem(cannon2);
 
+
+	Terrain * terrain = new Terrain;
+	terrain->setPos(0, 500);
+	
+	m_scene.addItem(terrain);
 	/**Setup Terrain**/
-	m_scene.addRect(0, 750, 1920, 50, QPen(Qt::NoPen), QBrush(QColor(Qt::darkGreen)));
+	//m_scene.addRect(0, 750, 1920, 50, QPen(Qt::NoPen), QBrush(QColor(Qt::darkGreen)));
 }

@@ -2,168 +2,92 @@
 
 using namespace std;
 
-
-Curves::Curves()
-{}
-
-Curves::Curves(string passed)
+Curves::Curves(BezierMode p_mode, float p_basePointsSpacing, float p_curveEndPoints)
 {
 	srand(time(0));
-	setTerrainType(passed);
+	m_mode = p_mode;
+	m_spacing = p_basePointsSpacing;
+	m_end = p_curveEndPoints;
+	createBezierBasePoints();
+	createBezierCurvesPoints();
 
-	if (insaneTerrain)
-	{
-		for (int i = 1; i <= 10; i++)
-		{
-			xTab[i] = i * 10;
-			yTab[i] = (rand() % 100) + (fmod(rand(), 1000) / 1000);
-		}
-	}
-
-	if (flatTerrain)
-	{
-		for (int i = 1; i <= 10; i++)
-		{
-			xTab[i] = i * 10;
-			yTab[i] = 1;
-		}
-	}
-
-	if (highTerrain)
-	{
-		for (int i = 1; i <= 10; i++)
-		{
-			xTab[i] = i * 10;
-			yTab[i] = (rand() % 100) + (fmod(rand(), 100) / 1000);
-		}
-	}
-
-	if (lowTerrain)
-	{
-		for (int i = 1; i <= 10; i++)
-		{
-			xTab[i] = i * 10;
-			yTab[i] = (rand() % 10) + (fmod(rand(), 100) / 1000);
-		}
-	}
+	//for (int i = 0; i < m_points.length(); i++)
+		//cout << " Point : " << i << "; " << m_points[i].rx() << "," << m_points[i].ry() << endl;
 }
 
 Curves::~Curves()
 {}
 
-void Curves::setTerrainType(std::string passed)
+void Curves::setBezierMode(BezierMode p_mode)
 {
-	if (passed == "Insane" || passed == "insane")
-	{
-		insaneTerrain = true;
-		lowTerrain = false;
-		highTerrain = false;
-		flatTerrain = false;
-	}
-
-	if (passed == "High" || passed == "high")
-	{
-		insaneTerrain = false;
-		lowTerrain = false;
-		highTerrain = true;
-		flatTerrain = false;
-	}
-
-	if (passed == "Low" || passed == "low")
-	{
-		insaneTerrain = false;
-		lowTerrain = true;
-		highTerrain = false;
-		flatTerrain = false;
-	}
-
-	if (passed == "Flat" || passed == "flat")
-	{
-		insaneTerrain = false;
-		lowTerrain = false;
-		highTerrain = false;
-		flatTerrain = true;
-	}
-	/*else
-	{
-	cout << "not a choice dumbass!" << endl;
-	return;
-	}*/
-
+	m_mode = p_mode;
 }
 
-void Curves::printDataPTS()
-{
-	for (int i = 1; i <= 10; i++)
-	{
-		cout << "X value: " << xTab[i] << "	Y Value: " << yTab[i] << endl;
-	}
-}
 
 float Curves::getPt(float n1, float n2, float perc)
 {
-	int diff = n2 - n1;
+	float diff = n2 - n1;
 
 	return n1 + diff*perc;
 }
 
-void Curves::drawLine()
+
+QVector<QPointF> Curves::getPoints() const
 {
-	float xa;
-	float xb;
-	float ya;
-	float yb;
+	return m_points;
+}
 
-	for (int j = 0; j <= 8; j++)
+
+void Curves::createBezierBasePoints()
+{
+	if (m_mode == BezierMode::InsaneCurves)	{
+		for (int i = 0; i < m_end; i += m_spacing){
+			m_basePoints += QPointF(i, (rand() % 100) + (fmod(rand(), 1000) / 1000));
+		}
+	}
+	else if (m_mode == BezierMode::Flat){
+		for (int i = 0; i < m_end; i += m_spacing){
+			m_basePoints += QPointF(i, 1.0f);
+		}
+	}
+	else if (m_mode == BezierMode::HighCurves){
+		for (int i = 0; i < m_end; i += m_spacing){
+			m_basePoints += QPointF(i, (rand() % 100) + (fmod(rand(), 100) / 1000));
+		}
+	}
+	else{
+		for (int i = 0; i < m_end; i += m_spacing){
+			m_basePoints += QPointF(i, (rand() % 10) + (fmod(rand(), 100) / 1000));
+		}
+	}
+
+}
+
+void Curves::createBezierCurvesPoints()
+{
+	float xa = -1;
+	float xb = -1;
+	float ya = -1;
+	float yb = -1;
+
+	for (int i = 0; i < m_basePoints.length() - 2; i++)
 	{
-
-		for (int i = 1; i <= 100; i++)
+		for (int j = 1; j <= 10; j++)
 		{
-			// The Green Line
-			xa = getPt(xTab[1+j], xTab[2+j], i*0.01);
-			ya = getPt(yTab[1+j], yTab[2+j], i*0.01);
-			//cout << " " << (float)xa << "," << (float)ya << "		";			DEGUG!!!!!!!!!
-			xb = getPt(xTab[2+j], xTab[3+j], i*0.01);
-			yb = getPt(yTab[2+j], yTab[3+j], i*0.01);
-			//cout << (float)xb << "," << (float)yb << endl;					DEBUG!!!!!!!!!
+			/*xa = getPt(m_basePoints[i].rx(), m_basePoints[i + 1].rx(), j * 0.1);
+			ya = getPt(m_basePoints[i].ry(), m_basePoints[i + 1].ry(), j * -0.1);
 
-			// The Black Dot
-			x[(j*100)+i] = (1 - i*0.01)*xa + i*0.01*xb;
-			y[(j*100)+i] = (1 - i*0.01)*ya + i*0.01*yb;
+			xb = getPt(m_basePoints[i + 1].rx(), m_basePoints[i + 2].rx(), j * 0.1);
+			yb = getPt(m_basePoints[i + 1].ry(), m_basePoints[i + 2].ry(), j * -0.1);
+
+			m_points += QPointF(((1 - j * 0.01) * xa) + (j * 0.01 * xb), ((1 - j * 0.01) * ya) + (j * 0.01 * yb));*/
+			//m_points += QPointF(getPt(xa, xb, 0.1), getPt(ya, yb, 0.1));
 		}
 	}
 }
 
-void Curves::printDataLine()
+
+QVector<QPointF> Curves::getBasePoint() const
 {
-	cout << "pts de la ligne" << endl;
-
-	for (int i = 1; i <= 700;i++)
-	{
-		cout << "	X line: " << x[i] << "	Y line: " << y[i];
-		
-	}
+	return m_basePoints;
 }
-
-void Curves::getXVal(float xVal[])
-{
-	int i = 0;
-
-	while (x != nullptr)
-	{
-		xVal[i] = x[i];
-		i++;
-	}
-}
-
-void Curves::getYVal(float yVal[])
-{
-	int i = 0;
-
-	while (y != nullptr)
-	{
-		yVal[i] = y[i];
-		i++;
-	}
-}
-

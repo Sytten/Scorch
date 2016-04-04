@@ -13,6 +13,8 @@
 #include "Game/Castle.h"
 #include "Game/Cannon.h"
 
+#include "Terrain/Terrain.h"
+
 class Game : public QObject
 {
     Q_OBJECT

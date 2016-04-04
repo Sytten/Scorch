@@ -5,40 +5,40 @@
 #include <math.h>
 #include <time.h>
 
+#include<QVector>
+#include<QPointF>
+
+enum BezierMode{
+	Flat = 0,
+	LowCurves,
+	HighCurves,
+	InsaneCurves
+};
+
 class Curves
 {
 public:
-	Curves();
-	Curves(std::string passed);
+	Curves(BezierMode p_mode = BezierMode::LowCurves, float basePointsSpacing = 10, float curveEndPoints = 1920);
 	~Curves();
 
 	// setter.
-	void setTerrainType(std::string passed);
+	void setBezierMode(BezierMode p_mode);
 
-	//getter.
-	void getXVal(float x[]);
-	void getYVal(float y[]);
-
-	//Functions.
-	void printDataPTS();
-	void printDataLine();
+	QVector<QPointF> getPoints() const;
+	QVector<QPointF> getBasePoint() const;
 	float getPt(float n1, float n2, float perc);
-	void drawLine();
 
 
 private:
-	float xTab[_DMAX];
-	float yTab[_DMAX];
+	BezierMode m_mode;
 
-	bool highTerrain = false;
-	bool lowTerrain = false;
-	bool insaneTerrain = false;
-	bool flatTerrain = true;
+	QVector<QPointF>  m_points;
+	QVector<QPointF>  m_basePoints;
 
-	float x[10000];
-	float y[10000];
+	float m_spacing, m_end;
 
-
+	void createBezierBasePoints();
+	void createBezierCurvesPoints();
 };
 
 #endif

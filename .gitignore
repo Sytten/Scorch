@@ -94,26 +94,32 @@ local.properties
 
 # Visual Studio #
 #################
-#*.pdb
-#*.aps
-#*.vspscc
+*.pdb
+*.aps
+*.vspscc
 *_i.c
 *_p.c
-#*.ncb
-#*.suo
-#*.tlb
-#*.tlh
+*.ncb
+*.suo
+*.tlb
+*.tlh
 *.bak
 *.cache
-#*.ilk
-#*.sln
-#*.suo
+*.ilk
+*.sln
+*.suo
 *.tmp
-#*.user
-#*.userprefs
-#*.pidb
-#*.booproj
-#*.sbr
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.sbr
+*.opensdf
+*.sdf
+*.v12.suo
+*.vcxproj.user
+*.vcxproj
+*.vcxproj.filters
 
 # Unity #
 #########
@@ -125,8 +131,8 @@ local.properties
 *.pidb.meta
 sysinfo.txt
 .gitattributes
-ProjetTest.pro.user
-Scorch.opensdf
-Scorch.sdf
-Scorch.v12.suo
-Scorch.vcxproj.user
+
+# Qt Creator #
+##############
+*.pro.user
+

@@ -168,7 +168,7 @@ void Game::newGame()
     m_scene.addRect(m_scene.sceneRect(), QPen(Qt::NoPen), QBrush(QColor(107, 219, 242)));
 
 	/**Setup Terrain**/
-	m_terrain = new Terrain;
+	m_terrain = new Terrain(BezierMode::InsaneCurves, 1920.0f, 100);
 	m_terrain->setPos(0, 500);
 
 	/**Add items**/

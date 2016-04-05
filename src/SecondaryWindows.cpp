@@ -60,12 +60,42 @@ FenetreTutoriel::FenetreTutoriel()
 
 	window = new QVBoxLayout();
 	title = new QLabel("Dans ce pr" + QString(233) + "sent tutoriel, l'explication du jeu sera fait enti" + QString(232) + "rement.");
-	content = new QLabel("	Pour ajuster les param"+QString(232)+"tre du canon, dite 'A' ou 'O' et le tenire jusqu'"
+
+	content = new QLabel("	Pour ajuster les param" + QString(232) + "tre du canon, dite 'A' ou 'O' et le tenire jusqu'"
 		+ QString(224) + " ce que vous vouliez arr" + QString(234) +
 		"ter! \n	Pour change le mode, dite 'I' pour changer le mode \n");
 
-	window->addWidget(title,1,Qt::AlignCenter);
-	window->addWidget(content,1,Qt::AlignCenter);
+	window->addWidget(title, 1, Qt::AlignCenter);
+	window->addWidget(content, 1, Qt::AlignCenter);
+
+	QHBoxLayout * firstRow = new QHBoxLayout;
+	QLabel * firstPicture = new QLabel;
+	firstPicture->setPixmap(QPixmap(":/resources/tutoriel/tour_joueur.jpg"));
+	QLabel * firstText = new QLabel("Cette partie de l'interface repr" + QString(233) + "sente l'indication du joueur courant.");
+
+	firstRow->addWidget(firstPicture);
+	firstRow->addWidget(firstText, 0, Qt::AlignRight);
+
+	QHBoxLayout * secondRow = new QHBoxLayout;
+	QLabel * secondPicture = new QLabel;
+	secondPicture->setPixmap(QPixmap(":/resources/tutoriel/mode_joueur.jpg"));
+	QLabel * secondText = new QLabel("Cette partie de l'interface repr" + QString(233) + "sente l'indication du mode d'ajustement courant du joueur.");
+
+	secondRow->addWidget(secondPicture);
+	secondRow->addWidget(secondText, 0, Qt::AlignRight);
+
+	QHBoxLayout * thirdRow = new QHBoxLayout;
+	QLabel * thirdPicture = new QLabel;
+	thirdPicture->setPixmap(QPixmap(":/resources/tutoriel/parametres_mode.jpg"));
+	QLabel * thirdText = new QLabel("Indicateur des param" + QString(232) + "tres de tir du joueur");
+
+	thirdRow->addWidget(thirdPicture);
+	thirdRow->addWidget(thirdText, 0, Qt::AlignRight);
+
+	window->addLayout(firstRow);
+	window->addLayout(secondRow);
+	window->addLayout(thirdRow);
+
 	setLayout(window);
 
 }

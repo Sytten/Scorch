@@ -2,7 +2,9 @@
 
 FenetreNewGame::FenetreNewGame()
 {
-	setFixedSize(300, 240);
+    setWindowTitle("Nouvelle partie");
+    setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
+    setFixedSize(300, 240);
 
 	QGridLayout *grid1 = new QGridLayout();
 	QGridLayout *grid2 = new QGridLayout();
@@ -13,9 +15,6 @@ FenetreNewGame::FenetreNewGame()
 
 	connect(dialogButtons, &QDialogButtonBox::accepted, this, &QDialog::accept);
 	connect(dialogButtons, &QDialogButtonBox::rejected, this, &QDialog::reject);
-
-
-	setWindowTitle("Nouvelle partie");
 
 	// choix de la difficulte
 	m_facile = new QRadioButton("Facile");
@@ -57,6 +56,7 @@ FenetreNewGame::FenetreNewGame()
 FenetreTutoriel::FenetreTutoriel()
 {
 	setWindowTitle("Tutoriel");
+    setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
 
 	window = new QVBoxLayout();
 	title = new QLabel("Dans ce pr" + QString(233) + "sent tutoriel, l'explication du jeu sera fait enti" + QString(232) + "rement.");
@@ -103,6 +103,7 @@ FenetreTutoriel::FenetreTutoriel()
 FenetreVersion::FenetreVersion()
 {
 	setWindowTitle("Version");
+    setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
 	setFixedSize(500, 140);
 
 	QVBoxLayout * vertical = new QVBoxLayout();

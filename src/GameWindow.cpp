@@ -6,6 +6,7 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	/****General setup****/
 	this->setWindowTitle("Scorch");
 	this->setStatusBar(new QStatusBar);
+    this->setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
 	
 	setFocus();
 	setStyleSheet("QMainWindow::separator{ width:0px; height:0px;}");

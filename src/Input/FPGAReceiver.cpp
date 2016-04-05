@@ -53,21 +53,21 @@ void FPGAReceiver::handlePressEvent(QKeyEvent *KeyEvent)
 {
     
     switch (KeyEvent->key()){
-    case Qt::Key_Right:
-        QCoreApplication::postEvent(m_receiver, new FPGAEvent(Increase));
+	case Qt::Key_Right:
+		if (KeyEvent->isAutoRepeat())
+			return;
+		QCoreApplication::postEvent(m_receiver, new FPGAEvent(Change));
         break;
-    case Qt::Key_Left:
-        QCoreApplication::postEvent(m_receiver, new FPGAEvent(Decrease));
+	case Qt::Key_Left:
+		if (KeyEvent->isAutoRepeat())
+			return;
+        QCoreApplication::postEvent(m_receiver, new FPGAEvent(Change));
         break;
     case Qt::Key_Up:
-		if (KeyEvent->isAutoRepeat())
-			return;
-        QCoreApplication::postEvent(m_receiver, new FPGAEvent(Change));
+		QCoreApplication::postEvent(m_receiver, new FPGAEvent(Increase));
         break;
     case Qt::Key_Down:
-		if (KeyEvent->isAutoRepeat())
-			return;
-        QCoreApplication::postEvent(m_receiver, new FPGAEvent(Change));
+		QCoreApplication::postEvent(m_receiver, new FPGAEvent(Decrease));
         break;
     default:
         break;

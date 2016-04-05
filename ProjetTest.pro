@@ -9,6 +9,7 @@ HEADERS     += \
     include/Game/Player.h \
     include/Game/State.h \
 	include/Game/PauseOverlay.h \
+    include/Game/GameOverlay.h \
     include/Information/AngleStatusWidget.h \
     include/Information/EllipseAngleWidget.h \
     include/Information/FirePowerWidget.h \
@@ -20,11 +21,11 @@ HEADERS     += \
     include/Input/FPGAReceiver.h \
     include/GameBottomLayout.h \
     include/GameWindow.h \
-	include/SecondaryWindows.h \
+    include/SecondaryWindows.h \
     include/Game/State.h \
     include/Game/Player.h \
-	include/Terrain/Bezier.h \
-	include/Terrain/Terrain.h
+    include/Terrain/Bezier.h \
+    include/Terrain/Terrain.h
 
 SOURCES     += \
     src/Game/Cannon.cpp \
@@ -32,7 +33,8 @@ SOURCES     += \
     src/Game/Castle.cpp \
     src/Game/Game.cpp \
     src/Game/Entity.cpp \
-	src/Game/PauseOverlay.cpp \
+    src/Game/PauseOverlay.cpp \
+    src/Game/GameOverlay.cpp \
     src/Information/AngleStatusWidget.cpp \
     src/Information/EllipseAngleWidget.cpp \
     src/Information/FirePowerWidget.cpp \
@@ -42,11 +44,11 @@ SOURCES     += \
     src/Information/PlayerControlModeWidget.cpp \
     src/GameBottomLayout.cpp \
     src/GameWindow.cpp \
-	src//SecondaryWindows.cpp \
+    src//SecondaryWindows.cpp \
     src/main.cpp \
     src/Input/FPGAReceiver.cpp \
-	src/Terrain/Bezier.cpp \
-	src/Terrain/Terrain.cpp	
+    src/Terrain/Bezier.cpp \
+    src/Terrain/Terrain.cpp
 INCLUDEPATH += include
 win32{
     TEMPLATE     = vcapp

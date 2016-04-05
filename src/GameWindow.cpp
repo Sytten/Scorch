@@ -162,7 +162,15 @@ void GameWindow::pausedTriggered()
 void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)
 {
     //NOTE: Hack to simulate correctly the FPGA input
-    m_fpga.handlePressEvent(KeyEvent);
+	if (m_game.getState() == InputState::Fire && KeyEvent->key() == Qt::Key_Space){
+		QKeyEvent * key = new QKeyEvent(KeyEvent->type(), Qt::Key_Up, Qt::KeyboardModifier::NoModifier);
+
+		m_fpga.handlePressEvent(key);
+	}
+	else if (m_game.getState() == InputState::Fire && (KeyEvent->key() == Qt::Key_Up || KeyEvent->key() == Qt::Key_Down))
+		return;
+	else
+		m_fpga.handlePressEvent(KeyEvent);
 }
 
 void GameWindow::customEvent(QEvent *event)

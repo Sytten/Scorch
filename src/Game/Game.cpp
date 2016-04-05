@@ -150,7 +150,7 @@ void Game::update()
     m_timeLastUpdate = QTime::currentTime();
 }
 
-void Game::newGame()
+void Game::newGame(Difficulty p_difficulty, int p_player)
 {
 	m_gameState = Play;
 
@@ -168,7 +168,25 @@ void Game::newGame()
     m_scene.addRect(m_scene.sceneRect(), QPen(Qt::NoPen), QBrush(QColor(107, 219, 242)));
 
 	/**Setup Terrain**/
-	m_terrain = new Terrain(BezierMode::InsaneCurves, 1920.0f, 100);
+	BezierMode bezier;
+	switch (p_difficulty)
+	{
+	case Difficulty::Easy:
+		bezier = BezierMode::LowCurves;
+		break;
+	case Difficulty::Hard:
+		bezier = BezierMode::InsaneCurves;
+		break;
+	case Difficulty::Intermediate:
+		bezier = BezierMode::HighCurves;
+		break;
+	case Difficulty::Random:
+		bezier = BezierMode(rand() % 4);
+	}
+
+
+
+	m_terrain = new Terrain(bezier, 1920.0f, 100);
 	m_terrain->setPos(0, 500);
 
 	/**Add items**/
@@ -217,4 +235,10 @@ void Game::newGame()
     m_scene.addItem(overlay);
 
     emit newGameGenerated();
+}
+
+
+void Game::createNewTerrain()
+{
+
 }

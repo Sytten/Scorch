@@ -53,6 +53,17 @@ FenetreNewGame::FenetreNewGame()
 	setLayout(vertical);
 }
 
+Difficulty FenetreNewGame::getChosenDifficulty()
+{
+	if (m_facile->isChecked())
+		return Difficulty::Easy;
+	else if (m_moyen->isChecked())
+		return Difficulty::Intermediate;
+	else if (m_difficile->isChecked())
+		return Difficulty::Hard;
+	return Difficulty::Random;
+}
+
 FenetreTutoriel::FenetreTutoriel()
 {
 

@@ -14,19 +14,21 @@
 #include <QGroupBox>
 #include <QScrollArea>
 
+#include "Game/State.h"
+
 class FenetreNewGame : public QDialog
 {
 	Q_OBJECT
 public:
 	FenetreNewGame();
 
-
+	Difficulty getChosenDifficulty();
 private:
 
 	QGroupBox *group1;
 	QGroupBox *group2;
 
-	QRadioButton* m_facile;
+	QRadioButton * m_facile;
 	QRadioButton * m_moyen;
 	QRadioButton * m_difficile;
 	QRadioButton * m_aleatoire;

@@ -196,7 +196,7 @@ void GameWindow::openNewGame()
     FenetreNewGame fenNewGame;
     fenNewGame.exec();
 	if (fenNewGame.result() == QDialog::Accepted)
-		m_game.newGame();
+		m_game.newGame(fenNewGame.getChosenDifficulty(), 2);
 }
 
 void GameWindow::openTutoriel()

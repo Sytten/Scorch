@@ -30,7 +30,8 @@ public:
 	bool pause();
 
 public slots:
-    void newGame();
+	void newGame(Difficulty p_difficulty = Difficulty::Easy, int p_player = 2);
+	void createNewTerrain();
 	void setPause(bool pause);
 	void newAngle(double angle);
 	void newPower(double power);

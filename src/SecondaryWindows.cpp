@@ -1,7 +1,5 @@
 #include "SecondaryWindows.h"
 
-
-
 FenetreNewGame::FenetreNewGame()
 {
 	setFixedSize(300, 240);
@@ -58,13 +56,8 @@ FenetreNewGame::FenetreNewGame()
 
 FenetreTutoriel::FenetreTutoriel()
 {
-
 	setWindowTitle("Tutoriel");
-	//setFixedSize(500, 100);
 
-	QLabel *empty = new QLabel("");
-
-	Layout = new QWidget();
 	window = new QVBoxLayout();
 	title = new QLabel("Dans ce pr" + QString(233) + "sent tutoriel, l'explication du jeu sera fait enti" + QString(232) + "rement.");
 	content = new QLabel("	Pour ajuster les param"+QString(232)+"tre du canon, dite 'A' ou 'O' et le tenire jusqu'"

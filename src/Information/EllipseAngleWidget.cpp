@@ -54,7 +54,7 @@ void EllipseAngleWidget::paintEvent(QPaintEvent * paintEvent)
 
 	painter.setPen(pen);
 	QFont font = painter.font();
-	font.setPixelSize(24);
+	font.setPixelSize(36);
 	painter.setFont(font);
 	painter.drawText(rect().bottomLeft() - QPoint(0, rect().height() / 8), QString(QString::number(m_angle) + '\260'));
 }

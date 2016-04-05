@@ -28,6 +28,19 @@ void GradientBarWidget::paintEvent(QPaintEvent * paintEvent)
 	painter.fillRect(greenRect, Qt::black);
 	painter.drawRect(rect());
 
+	//WTF
+	//painter.drawText(rect().center(), QString(m_currentPercent + QString("%")));
+
+	if (m_currentPercent < 15.0)
+		painter.setPen(Qt::white);
+	else
+		painter.setPen(Qt::black);
+
+	QFont font = painter.font();
+	font.setPixelSize(36);
+	painter.setFont(font);
+	painter.drawText(rect().bottomLeft() - QPoint(0, rect().height() / 8), QString(QString::number(m_currentPercent) + QString("%")));
+
 }
 
 

@@ -55,60 +55,76 @@ FenetreNewGame::FenetreNewGame()
 
 FenetreTutoriel::FenetreTutoriel()
 {
+
 	setWindowTitle("Tutoriel");
     setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
-	setMaximumSize(QSize(600, 2000));
-	setSizePolicy(QSizePolicy::Maximum, QSizePolicy::MinimumExpanding);
+	setMinimumSize(QSize(655, 400));
+	setMaximumSize(QSize(655, 600));
+	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 
 	window = new QVBoxLayout();
-	//title = new QLabel("Dans ce pr" + QString(233) + "sent tutoriel, l'explication du jeu sera fait enti" + QString(232) + "rement.");
 
+
+	QGroupBox * group0 = new QGroupBox("General");
+	QHBoxLayout * zeroRow = new QHBoxLayout;
 	content = new QLabel("Pour ajuster les param" + QString(232) + "tre du canon, dite 'A' ou 'O' et le tenir jusqu'"
-		+ QString(224) + " ce que vous vouliez arr" + QString(234) + "ter. Pour changer le mode, il faut prononcer la lettre 'I'. Les clavier peut aussi contrôler les activités de tir, les flèches gauche et droite permettant de modifier le mode d'ajustement et les flèches haut et bas permettant d'ajuster le paramètre. La barre espace permet quant à elle de provoquer le tir lorsque le mode est \"tir\"");
+		+ QString(224) + " ce que vous vouliez arr" + QString(234) + "ter. Pour changer le mode, il faut prononcer la lettre 'I'. Les clavier peut aussi contr" + QString(147) + "ler les activit" + QString(233) + "s de tir, les fl" + QString(232) + "ches gauche et droite permettant de modifier le mode d'ajustement et les fl" + QString(232) + "ches haut et bas permettant d'ajuster le param" + QString(232) + "tre. La barre espace permet quant à elle de provoquer le tir lorsque le mode est \"tir\"");
 	content->setWordWrap(true);
-	//window->addWidget(title, 0, Qt::AlignCenter);
-	window->addWidget(content, 0, Qt::AlignLeft);
+	zeroRow->addWidget(content, 0, Qt::AlignLeft);
+	group0->setLayout(zeroRow);
 
+	QGroupBox * group1 = new QGroupBox("Cette partie de l'interface repr" + QString(233) + "sente l'indication du joueur courant. Dans ce cas-ci, le joueur 1 est actif");
 	QHBoxLayout * firstRow = new QHBoxLayout;
 	QLabel * firstPicture = new QLabel;
 	firstPicture->setPixmap(QPixmap(":/resources/tutoriel/tour_joueur.jpg"));
-	QLabel * firstText = new QLabel("Cette partie de l'interface repr" + QString(233) + "sente l'indication du joueur courant.");
-	//firstText->setWordWrap(true);
+	firstRow->addWidget(firstPicture, 0, Qt::AlignCenter);
+	group1->setLayout(firstRow);
 
-	firstRow->addWidget(firstText, 0, Qt::AlignLeft);
-	firstRow->addWidget(firstPicture, 0, Qt::AlignRight);
-
+	QGroupBox * group2 = new QGroupBox("Cette partie de l'interface repr" + QString(233) + "sente l'indication du mode d'ajustement courant du joueur.");
 	QHBoxLayout * secondRow = new QHBoxLayout;
 	QLabel * secondPicture = new QLabel;
 	secondPicture->setPixmap(QPixmap(":/resources/tutoriel/mode_joueur.jpg"));
-	QLabel * secondText = new QLabel("Cette partie de l'interface repr" + QString(233) + "sente l'indication du mode d'ajustement courant du joueur.");
-	//secondText->setWordWrap(true);
+	secondRow->addWidget(secondPicture, 0, Qt::AlignCenter);
+	group2->setLayout(secondRow);
 
-	secondRow->addWidget(secondText, 0, Qt::AlignLeft);
-	secondRow->addWidget(secondPicture, 0, Qt::AlignRight);
-
+	QGroupBox * group3 = new QGroupBox("Indicateur des param" + QString(232) + "tres de tir du joueur");
 	QHBoxLayout * thirdRow = new QHBoxLayout;
 	QLabel * thirdPicture = new QLabel;
 	thirdPicture->setPixmap(QPixmap(":/resources/tutoriel/parametres_mode.jpg"));
-	QLabel * thirdText = new QLabel("Indicateur des param" + QString(232) + "tres de tir du joueur");
-	thirdText->setWordWrap(true);
+	thirdRow->addWidget(thirdPicture, 0, Qt::AlignCenter);
+	group3->setLayout(thirdRow);
 
-	thirdRow->addWidget(thirdText, 0, Qt::AlignLeft);
-	thirdRow->addWidget(thirdPicture, 0, Qt::AlignRight);
-
-	QHBoxLayout * fourthRow = new QHBoxLayout;
+	QGroupBox * group4 = new QGroupBox("Dialogue de nouvelle partie");
+	QVBoxLayout * fourthRow = new QVBoxLayout;
 	QLabel * fourthText = new QLabel("Dans le menu de nouvelle partie, il est possible de s" + QString(233) + "lectionner un mode de jeu entre \"un joueur\" et \"deux joueurs\". Le mode simple joueur inclut une intelligence pour l'adversaire." + QString("Aussi dans la cr" + QString(233) + "ation d'une nouvelle partie, il est possible de s" + QString(233) + "lectionner le difficult" + QString(233) + ", qui ajuste premi" + QString(232) + "rement le niveau de difficult" + QString(233) + " du terrain."));
 	fourthText->setWordWrap(true);
-
+	QLabel * fourthPicture = new QLabel;
+	fourthPicture->setPixmap(QPixmap(":/resources/tutoriel/fenetre_nouvelle_partie.jpg"));
 	fourthRow->addWidget(fourthText, 0, Qt::AlignLeft);
+	fourthRow->addWidget(fourthPicture, 0, Qt::AlignLeft);
+	group4->setLayout(fourthRow);
 
-	window->addLayout(firstRow);
-	window->addLayout(secondRow);
-	window->addLayout(thirdRow);
-	window->addLayout(fourthRow);
+	window->addWidget(group0);
+	window->addWidget(group1);
+	window->addWidget(group2);
+	window->addWidget(group3);
+	window->addWidget(group4);
+	//window->setSizeConstraint(QLayout::SizeConstraint::SetMaximumSize);
 
-	setLayout(window);
+	QWidget * main = new QWidget();
+	main->setLayout(window);
+	//main->setMaximumSize(QSize(800, 400));
+	//main->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+	
 
+	QScrollArea * scrollArea = new QScrollArea;
+	scrollArea->setWidget(main);
+	//scrollArea->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+
+	QVBoxLayout * mainLayout = new QVBoxLayout;
+	mainLayout->addWidget(scrollArea);
+
+	setLayout(mainLayout);
 }
 
 FenetreVersion::FenetreVersion()

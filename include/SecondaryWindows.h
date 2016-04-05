@@ -12,6 +12,7 @@
 #include <QStatusBar>
 #include <QDialogButtonBox>
 #include <QGroupBox>
+#include <QScrollArea>
 
 class FenetreNewGame : public QDialog
 {

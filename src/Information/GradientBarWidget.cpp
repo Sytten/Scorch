@@ -22,10 +22,10 @@ void GradientBarWidget::paintEvent(QPaintEvent * paintEvent)
 	gradient.setColorAt(0, Qt::green);
 	gradient.setColorAt(1, Qt::red);
 	
-	QRect greenRect = getFillRectangle();
+	QRect blackRect = getFillRectangle();
 
 	painter.fillRect(rect(), gradient);
-	painter.fillRect(greenRect, Qt::black);
+	painter.fillRect(blackRect, Qt::black);
 	painter.drawRect(rect());
 
 	//WTF

@@ -3,11 +3,14 @@
 #include<iostream>
 
 #include <QKeyEvent>
-#include <QtWidgets>
 #include <QString>
 #include <QCloseEvent>
 #include <QApplication>
 #include <QMainWindow>
+#include <QDockWidget>
+#include <QMenu>
+#include <QMenuBar>
+#include <QAction>
 
 #include "SecondaryWindows.h"
 #include "Input/FPGAReceiver.h"

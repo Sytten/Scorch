@@ -1,7 +1,7 @@
 #include "GameWindow.h"
 
 
-GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this), m_game()
+GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 0), m_game()
 {
 	/****General setup****/
 	this->setWindowTitle("Scorch");
@@ -100,6 +100,7 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	connect(m_actionQuit, &QAction::triggered, this, &QMainWindow::close);
 	connect(actionAboutQt, &QAction::triggered, QApplication::instance(), &QApplication::aboutQt);
 	connect(m_actionPause, &QAction::triggered, this, &GameWindow::pausedTriggered);
+    connect(m_actionMuet, &QAction::triggered, this, &GameWindow::muteTriggered);
 	connect(m_actionNewGame, SIGNAL(triggered()), this, SLOT(openNewGame()));
 	connect(m_actionTutoriel, SIGNAL(triggered()), this, SLOT(openTutoriel()));
 	connect(m_actionVersion, SIGNAL(triggered()), this, SLOT(openVersion()));
@@ -120,7 +121,20 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	connect(this, &GameWindow::changePower, m_currentPower, &FirePowerWidget::setPower);
 	connect(this, &GameWindow::changeState, m_gameModeWidget, &GameModeWidget::setCurrentMode);
 
+
 	QTimer::singleShot(1, this, &GameWindow::openMainMenu);
+    /****Music****/
+    QMediaPlaylist* playlist = new QMediaPlaylist;
+        playlist->addMedia(QUrl::fromLocalFile(QDir::currentPath() + "/resources/music/Angevin_B.mp3"));
+        playlist->addMedia(QUrl::fromLocalFile(QDir::currentPath() + "/resources/music/Celtic_Impulse.mp3"));
+        playlist->addMedia(QUrl::fromLocalFile(QDir::currentPath() + "/resources/music/Pippin_the_Hunchback.mp3"));
+        playlist->shuffle();
+        playlist->setPlaybackMode(QMediaPlaylist::Loop);
+
+    m_musicPlayer.setPlaylist(playlist);
+    m_musicPlayer.play();
+
+    QTimer::singleShot(1, this, &GameWindow::openMainMenu);
 }
 
 GameWindow::~GameWindow()
@@ -168,6 +182,18 @@ void GameWindow::pausedTriggered()
 void GameWindow::resetPause()
 {
 	m_actionPause->setText("&Pause");
+}
+
+void GameWindow::muteTriggered()
+{
+    if(m_musicPlayer.state() == QMediaPlayer::PlayingState) {
+        m_musicPlayer.pause();
+        m_actionMuet->setText("Non Muet");
+    }
+    else if(m_musicPlayer.state() == QMediaPlayer::PausedState) {
+        m_musicPlayer.play();
+        m_actionMuet->setText("Muet");
+    }
 }
 
 void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)

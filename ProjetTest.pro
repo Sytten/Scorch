@@ -55,5 +55,5 @@ win32{
     INCLUDEPATH += lib
 }
 RESOURCES += Resources.qrc
-QT += widgets core gui
+QT += widgets core gui multimedia
 

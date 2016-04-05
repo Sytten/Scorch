@@ -4,6 +4,11 @@
 AngleStatusWidget::AngleStatusWidget(QWidget *parent) : QWidget(parent)
 {
 	m_currentAngle = new QLabel;
+	QFont font = m_currentAngle->font();
+	font.setBold(true);
+	font.setPixelSize(14);
+	m_currentAngle->setFont(font);
+
 	m_ellipseAngle = new EllipseAngleWidget;
 
 	QVBoxLayout * layout = new QVBoxLayout;

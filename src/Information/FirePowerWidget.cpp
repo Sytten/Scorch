@@ -8,6 +8,11 @@ FirePowerWidget::FirePowerWidget(QWidget *parent) :QWidget(parent)
 	QVBoxLayout * layout = new QVBoxLayout;
 
 	m_firePower = new QLabel("Puissance:");
+	QFont font = m_firePower->font();
+	font.setBold(true);
+	font.setPixelSize(14);
+	m_firePower->setFont(font);
+
 	m_powerBar = new GradientBarWidget;
 
 	m_firePower->setAlignment(Qt::AlignCenter);

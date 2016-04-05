@@ -80,8 +80,11 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	//Help menu
 	m_menuAide = new QMenu("Aide");
 	m_actionTutoriel = new QAction("Tutoriel", this);
+        m_actionPause->setShortcut(QKeySequence("F2"));
 	m_actionVersion = new QAction("Version", this);
+        m_actionPause->setShortcut(QKeySequence("F1"));
 	QAction* actionAboutQt = new QAction("A Propos de Qt", this);
+        m_actionPause->setShortcut(QKeySequence("F3"));
 
 	m_menuAide->addAction(m_actionTutoriel);
 	m_menuAide->addSeparator();

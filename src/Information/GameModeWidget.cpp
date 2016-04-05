@@ -80,32 +80,32 @@ Player GameModeWidget::currentPlayer()const
 	return Player::NoPlayer;
 }
 
-State GameModeWidget::currentMode()const
+InputState GameModeWidget::currentMode()const
 {
 	if (m_playerControlAngle->activated())
-		return State::Angle;
+		return InputState::Angle;
 	else if (m_playerControlFire->activated())
-		return State::Fire;
+		return InputState::Fire;
 	else if (m_playerControlPower->activated())
-		return State::Power;
-	return State::NoState;
+		return InputState::Power;
+	return InputState::NoState;
 }
 
-void GameModeWidget::setCurrentMode(State gameMode)
+void GameModeWidget::setCurrentMode(InputState gameMode)
 {
-	if (gameMode == State::Angle)
+	if (gameMode == InputState::Angle)
 	{
 		m_playerControlAngle->setActivated(true);
 		m_playerControlFire->setActivated(false);
 		m_playerControlPower->setActivated(false);
 	}
-	else if (gameMode == State::Fire)
+	else if (gameMode == InputState::Fire)
 	{
 		m_playerControlAngle->setActivated(false);
 		m_playerControlFire->setActivated(true);
 		m_playerControlPower->setActivated(false);
 	}
-	else if (gameMode == State::Power)
+	else if (gameMode == InputState::Power)
 	{
 		m_playerControlAngle->setActivated(false);
 		m_playerControlFire->setActivated(false);

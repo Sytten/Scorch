@@ -16,7 +16,7 @@ public:
 	~GameModeWidget();
 
 	Player currentPlayer()const;
-	State currentMode()const;
+	InputState currentMode()const;
 
 protected:
 
@@ -27,7 +27,7 @@ private:
 							* m_playerControlPower, 
 							* m_playerControlFire;
 public slots:
-	void setCurrentMode(State gameMode);
+	void setCurrentMode(InputState gameMode);
 	void setCurrentPlayer(Player player);
 };
 

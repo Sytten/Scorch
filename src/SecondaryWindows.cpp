@@ -142,7 +142,7 @@ FenetreVersion::FenetreVersion()
 {
 	setWindowTitle("Version");
     setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
-	setFixedSize(500, 140);
+	setFixedSize(560, 250);
 
 	QVBoxLayout * vertical = new QVBoxLayout();
 	m_ligne1 = new QLabel("SCORCH VERSION 0.5");
@@ -150,17 +150,26 @@ FenetreVersion::FenetreVersion()
 	m_ligne3 = new QLabel("Developpe par l'equipe P19 de l'U de S");
 	m_ligne4 = new QLabel("Les programmeurs ayant particip" + QString(233) + " " + QString(224) + " la cr" + QString(233) + "ation de Scorch");
 	m_ligne5 = new QLabel("Emile Fugulin, Jean-Philippe Fournier, Julien Larochelle, Philippe Spino");
+	QLabel * ligne6 = new QLabel("Pippin the Hunchback, Celtic Impulse, Angevin B by Kevin MacLeod (incompetech.com) \n" +
+		QString("Licensed under Creative Commons : By Attribution 3.0 License\n") +
+		QString("http ://creativecommons.org/licenses/by/3.0/"));
+	QGroupBox * group = new QGroupBox("Cr" + QString(233) + "dits additionnels");
+	QVBoxLayout * layout = new QVBoxLayout;
 
 	m_ligne1->setFont(QFont("OCR A extented",10));
 	m_ligne2->setFont(QFont("fantasque sans mono",10));
 	m_ligne3->setFont(QFont("fantasque sans mono",10));
 	m_ligne4->setFont(QFont("fantasque sans mono",10));
 	m_ligne5->setFont(QFont("fantasque sans mono",10));
+	ligne6->setFont(QFont("fantasque sans mono", 10));
+	layout->addWidget(ligne6);
+	group->setLayout(layout);
 
 	vertical->addWidget(m_ligne1, 1, Qt::AlignCenter);
 	vertical->addWidget(m_ligne2, 1, Qt::AlignCenter);
 	vertical->addWidget(m_ligne3, 1, Qt::AlignCenter);
 	vertical->addWidget(m_ligne4, 1, Qt::AlignCenter);
 	vertical->addWidget(m_ligne5, 1, Qt::AlignCenter);
+	vertical->addWidget(group, 1, Qt::AlignCenter);
 	setLayout(vertical);
 }

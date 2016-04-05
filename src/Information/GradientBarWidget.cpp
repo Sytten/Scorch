@@ -16,17 +16,16 @@ void GradientBarWidget::paintEvent(QPaintEvent * paintEvent)
 
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing);
+
 	int middleY = ((rect().top() + rect().bottom()) / 2);
-	QRect fillRect = getFillRectangle();
-	QRect greenRect = rect();
-	greenRect.setRight(greenRect.left() + (greenRect.right() - 80) * (m_currentPercent / 8000.0f));
-
-	QLinearGradient gradient(fillRect.left(), middleY, fillRect.right(), middleY);
-	gradient.setColorAt(0.8, Qt::green);
+	QLinearGradient gradient(rect().left(), middleY, rect().right(), middleY);
+	gradient.setColorAt(0, Qt::green);
 	gradient.setColorAt(1, Qt::red);
+	
+	QRect greenRect = getFillRectangle();
 
-	painter.fillRect(fillRect, gradient);
-	painter.fillRect(greenRect, Qt::green);
+	painter.fillRect(rect(), gradient);
+	painter.fillRect(greenRect, Qt::black);
 	painter.drawRect(rect());
 
 }
@@ -38,7 +37,7 @@ QRect GradientBarWidget::getFillRectangle()
 
 	fillRectangle = rect();
 
-	fillRectangle.setRight(fillRectangle.left() + (fillRectangle.right() - fillRectangle.left()) * (m_currentPercent / 100.0f));
+	fillRectangle.setLeft(fillRectangle.right() - (fillRectangle.right() - fillRectangle.left()) * ((100.0f - m_currentPercent )/ 100.0f));
 
 	return fillRectangle;
 }

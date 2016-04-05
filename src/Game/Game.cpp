@@ -191,11 +191,11 @@ void Game::newGame(Difficulty p_difficulty, int p_player)
 
 	/**Add items**/
     Castle * castle1 = new Castle(QPixmap(":/resources/long_castle_p1.png"),Player::Player1, 100);
-		castle1->setScale(1.5);
+        castle1->setScale(2);
 		m_scene.addItem(castle1);
 
 	Castle * castle2 = new Castle(QPixmap(":/resources/long_castle_p2.png"), Player::Player2, 100);
-		castle2->setScale(1.5);
+        castle2->setScale(2);
 		m_scene.addItem(castle2);
 		
 
@@ -215,8 +215,8 @@ void Game::newGame(Difficulty p_difficulty, int p_player)
 		connect(cannon2, &Cannon::fired, this, &Game::newCannonball);
 		m_scene.addItem(cannon2);
 
-	castle1->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(0, m_terrain->boundingRect().width() / 8)) - QPointF(0, 150));
-	castle2->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(m_terrain->boundingRect().width() * (7.0f / 8.0f), m_terrain->boundingRect().width() - castle2->boundingRect().width())) - QPointF(0, 150));
+    castle1->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(0, m_terrain->boundingRect().width() / 8)) - QPointF(castle1->boundingRect().width()/2, 150));
+    castle2->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(m_terrain->boundingRect().width() * (7.0f / 8.0f), m_terrain->boundingRect().width() - castle2->boundingRect().width())) - QPointF(castle2->boundingRect().width()/2, 150));
 
 	QPointF chosenPoint = m_terrain->mapToScene(m_terrain->getHighestPointBetween(
 		castle1->pos().rx(),

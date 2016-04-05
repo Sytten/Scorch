@@ -23,7 +23,6 @@ HEADERS     += \
 	include/SecondaryWindows.h \
     include/Game/State.h \
     include/Game/Player.h \
-	include/Terrain/Bezier.h \
 	include/Terrain/Terrain.h
 
 SOURCES     += \
@@ -45,7 +44,6 @@ SOURCES     += \
 	src//SecondaryWindows.cpp \
     src/main.cpp \
     src/Input/FPGAReceiver.cpp \
-	src/Terrain/Bezier.cpp \
 	src/Terrain/Terrain.cpp	
 INCLUDEPATH += include
 win32{

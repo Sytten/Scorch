@@ -1,9 +1,9 @@
 #include "Terrain/Terrain.h"
 
-Terrain::Terrain(float terrainSize, float margin, QGraphicsItem * parent) : QGraphicsItem(parent), m_brush(QPixmap(":/resources/grass.png"))
+Terrain::Terrain(BezierMode mode, float terrainSize, float margin, QGraphicsItem * parent) : QGraphicsItem(parent), m_brush(QPixmap(":/resources/grass.png"))
 {
-	Curves terrainCurve(BezierMode::InsaneCurves, margin, terrainSize + (margin * 2));
-	m_terrainPoints = terrainCurve.getBasePoint();
+	
+	createBezierBasePoints(mode, margin, terrainSize + (2 * margin));
 
 	float minimumX = 0.0, minimumY = 0.0, maximumX = 0.0, maximumY = 0.0;
 
@@ -33,12 +33,15 @@ QRectF Terrain::boundingRect() const
 
 void Terrain::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
 {	
+	Q_UNUSED(widget);
+	Q_UNUSED(option);
+
 	painter->setPen(Qt::black);
 	if (scene())
 		painter->setClipRect(mapFromScene(scene()->sceneRect().intersected(mapToScene(boundingRect()).boundingRect())).boundingRect());
 	painter->fillPath(m_paintPath, m_brush);
 
-
+	//Debugging for terrain generation
 	//painter->drawPath(m_paintPath);
 	//painter->drawRect(m_bounding);
 	/*
@@ -161,4 +164,29 @@ QPointF Terrain::getLowestPointBetween(float p_x1, float p_x2)
 		}
 	}
 	return currentLowest;
+}
+
+void Terrain::createBezierBasePoints(BezierMode p_mode, float p_basePointsSpacing, float p_curveEndPoints)
+{
+	m_terrainPoints.clear();
+	if (p_mode == BezierMode::InsaneCurves)	{
+		for (int i = 0; i < p_curveEndPoints; i += p_basePointsSpacing){
+			m_terrainPoints += QPointF(i, (rand() % 100) + (fmod(rand(), 1000) / 1000));
+		}
+	}
+	else if (p_mode == BezierMode::Flat){
+		for (int i = 0; i < p_curveEndPoints; i += p_basePointsSpacing){
+			m_terrainPoints += QPointF(i, 1.0f);
+		}
+	}
+	else if (p_mode == BezierMode::HighCurves){
+		for (int i = 0; i < p_curveEndPoints; i += p_basePointsSpacing){
+			m_terrainPoints += QPointF(i, (rand() % 100) + (fmod(rand(), 100) / 1000));
+		}
+	}
+	else{
+		for (int i = 0; i < p_curveEndPoints; i += p_basePointsSpacing){
+			m_terrainPoints += QPointF(i, (rand() % 10) + (fmod(rand(), 100) / 1000));
+		}
+	}
 }

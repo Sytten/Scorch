@@ -4,13 +4,18 @@
 #include <QPainter>
 #include <QVector>
 
-#include "Bezier.h"
+enum BezierMode{
+	Flat = 0,
+	LowCurves,
+	HighCurves,
+	InsaneCurves
+};
 
 class Terrain : public QGraphicsItem
 {
 
 public:
-	Terrain(float terrainSize = 1920, float margin = 75, QGraphicsItem *parent = 0);
+	Terrain(BezierMode mode = BezierMode::HighCurves, float terrainSize = 1920, float margin = 75, QGraphicsItem *parent = 0);
 	~Terrain();
 	
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
@@ -27,6 +32,8 @@ public:
 protected:
 	void calculateNewPath();
 private:
+	void createBezierBasePoints(BezierMode p_mode, float p_basePointsSpacing, float p_curveEndPoints);
+
 	QVector<QPointF> m_terrainPoints;
 	QVector<QPointF> m_controlPoints;
 	QRectF m_bounding;

@@ -27,18 +27,19 @@ void EllipseAngleWidget::setValue(float p_angle)
 void EllipseAngleWidget::paintEvent(QPaintEvent * paintEvent)
 {
 	Q_UNUSED(paintEvent);
+
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing);
 	painter.setPen(Qt::black);
 	painter.setBrush(QBrush(Qt::black));
 	
-	QPainterPath *remplissage = new QPainterPath();
-	remplissage->moveTo(rect().bottomRight());
-	remplissage->lineTo(rect().bottomLeft().rx(),rect().top()-1);
-	remplissage->arcTo(QRect(-100,0,200,200), 0, 90);
-	remplissage->lineTo(rect().bottomLeft());
+	QPainterPath remplissage = QPainterPath();
+	remplissage.moveTo(rect().bottomRight());
+	remplissage.lineTo(rect().bottomLeft().rx(),rect().top());
+	remplissage.arcTo(QRect(-rect().width(), 0, rect().width() * 2, rect().height() * 2), 0, 90);
+	remplissage.lineTo(rect().bottomLeft());
 
-	painter.drawPath(*remplissage);
+	painter.drawPath(remplissage);
 
 	//painter.fillPath(*remplissage,Qt::black);
 
@@ -51,11 +52,10 @@ QPoint EllipseAngleWidget::getLineEnding() const
 {
 	QPoint finalPoint;
 
-	float radius = ((rect().right() - rect().bottomLeft().x()) * (rect().bottomLeft().y() - rect().top())) /
-		sqrtf(pow((rect().bottomLeft().y() - rect().top()) * cos(m_angle * PI / 180.0), 2) + pow((rect().right() - rect().bottomLeft().x()) * sin(m_angle * PI / 180.0), 2));
+	float radius = rect().right();
 
 	finalPoint.setX(rect().bottomLeft().x() + (radius * cos(m_angle * PI / 180.0)));
-	finalPoint.setY(rect().bottomLeft().y() + (radius * sin(m_angle * PI / 180.0)));
+	finalPoint.setY(rect().bottomLeft().y() - (radius * sin(m_angle * PI / 180.0)));
 
 	return finalPoint;
 }

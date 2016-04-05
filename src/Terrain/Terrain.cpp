@@ -171,7 +171,7 @@ void Terrain::createBezierBasePoints(BezierMode p_mode, float p_basePointsSpacin
 	m_terrainPoints.clear();
 	if (p_mode == BezierMode::InsaneCurves)	{
 		for (int i = 0; i < p_curveEndPoints; i += p_basePointsSpacing){
-			m_terrainPoints += QPointF(i, (rand() % 100) + (fmod(rand(), 1000) / 1000));
+			m_terrainPoints += QPointF(i, (rand() % 200) + (fmod(rand(), 1000) / 10));
 		}
 	}
 	else if (p_mode == BezierMode::Flat){

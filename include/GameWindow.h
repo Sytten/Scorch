@@ -11,6 +11,8 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QAction>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 #include "SecondaryWindows.h"
 #include "Input/FPGAReceiver.h"
@@ -41,8 +43,9 @@ protected slots:
 	void stateChanged(InputState p_state);
 	void angleChanged(float p_angle);
 	void powerChanged(float p_power);
-	void pausedTriggered();
+    void pausedTriggered();
     void resetPause();
+    void muteTriggered();
 
 private:
     QLabel * m_mainGameWidget;
@@ -58,6 +61,7 @@ private:
 	QAction * m_actionTutoriel;
 	QAction * m_actionVersion;
 
+    QMediaPlayer m_musicPlayer;
     FPGAReceiver m_fpga;
     Game m_game;
 	

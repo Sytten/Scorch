@@ -12,6 +12,7 @@
 #include "Game/Player.h"
 #include "Game/Castle.h"
 #include "Game/Cannon.h"
+#include "Game/PauseOverlay.h"
 
 #include "Terrain/Terrain.h"
 
@@ -23,11 +24,13 @@ public:
     Game(QObject* parent = 0);
     ~Game();
 
-    State getState() { return m_currentState; }
+    InputState getState() { return m_currentState; }
     QGraphicsView* getView() { return m_view; }
+	bool pause();
 
 public slots:
     void newGame();
+	void setPause(bool pause);
 	void newAngle(double angle);
 	void newPower(double power);
 
@@ -45,7 +48,8 @@ private:
     QTimer m_timer;
     QTime m_timeLastUpdate;
     Player m_currentPlayer;
-    State m_currentState;
+    InputState m_currentState;
+	GameState m_gameState;
 
 	Terrain * m_terrain;
 
@@ -53,7 +57,7 @@ private:
 
 signals:
     void playerChanged(Player player);
-    void stateChanged(State state);
+    void stateChanged(InputState state);
 	void angleChanged(double angle);
 	void powerChanged(double power);
 };

@@ -57,44 +57,55 @@ FenetreTutoriel::FenetreTutoriel()
 {
 	setWindowTitle("Tutoriel");
     setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
+	setMaximumSize(QSize(600, 2000));
+	setSizePolicy(QSizePolicy::Maximum, QSizePolicy::MinimumExpanding);
 
 	window = new QVBoxLayout();
-	title = new QLabel("Dans ce pr" + QString(233) + "sent tutoriel, l'explication du jeu sera fait enti" + QString(232) + "rement.");
+	//title = new QLabel("Dans ce pr" + QString(233) + "sent tutoriel, l'explication du jeu sera fait enti" + QString(232) + "rement.");
 
-	content = new QLabel("	Pour ajuster les param" + QString(232) + "tre du canon, dite 'A' ou 'O' et le tenire jusqu'"
-		+ QString(224) + " ce que vous vouliez arr" + QString(234) +
-		"ter! \n	Pour change le mode, dite 'I' pour changer le mode \n");
-
-	window->addWidget(title, 1, Qt::AlignCenter);
-	window->addWidget(content, 1, Qt::AlignCenter);
+	content = new QLabel("Pour ajuster les param" + QString(232) + "tre du canon, dite 'A' ou 'O' et le tenir jusqu'"
+		+ QString(224) + " ce que vous vouliez arr" + QString(234) + "ter. Pour changer le mode, il faut prononcer la lettre 'I'. Les clavier peut aussi contrôler les activités de tir, les flèches gauche et droite permettant de modifier le mode d'ajustement et les flèches haut et bas permettant d'ajuster le paramètre. La barre espace permet quant à elle de provoquer le tir lorsque le mode est \"tir\"");
+	content->setWordWrap(true);
+	//window->addWidget(title, 0, Qt::AlignCenter);
+	window->addWidget(content, 0, Qt::AlignLeft);
 
 	QHBoxLayout * firstRow = new QHBoxLayout;
 	QLabel * firstPicture = new QLabel;
 	firstPicture->setPixmap(QPixmap(":/resources/tutoriel/tour_joueur.jpg"));
 	QLabel * firstText = new QLabel("Cette partie de l'interface repr" + QString(233) + "sente l'indication du joueur courant.");
+	//firstText->setWordWrap(true);
 
-	firstRow->addWidget(firstPicture);
-	firstRow->addWidget(firstText, 0, Qt::AlignRight);
+	firstRow->addWidget(firstText, 0, Qt::AlignLeft);
+	firstRow->addWidget(firstPicture, 0, Qt::AlignRight);
 
 	QHBoxLayout * secondRow = new QHBoxLayout;
 	QLabel * secondPicture = new QLabel;
 	secondPicture->setPixmap(QPixmap(":/resources/tutoriel/mode_joueur.jpg"));
 	QLabel * secondText = new QLabel("Cette partie de l'interface repr" + QString(233) + "sente l'indication du mode d'ajustement courant du joueur.");
+	//secondText->setWordWrap(true);
 
-	secondRow->addWidget(secondPicture);
-	secondRow->addWidget(secondText, 0, Qt::AlignRight);
+	secondRow->addWidget(secondText, 0, Qt::AlignLeft);
+	secondRow->addWidget(secondPicture, 0, Qt::AlignRight);
 
 	QHBoxLayout * thirdRow = new QHBoxLayout;
 	QLabel * thirdPicture = new QLabel;
 	thirdPicture->setPixmap(QPixmap(":/resources/tutoriel/parametres_mode.jpg"));
 	QLabel * thirdText = new QLabel("Indicateur des param" + QString(232) + "tres de tir du joueur");
+	thirdText->setWordWrap(true);
 
-	thirdRow->addWidget(thirdPicture);
-	thirdRow->addWidget(thirdText, 0, Qt::AlignRight);
+	thirdRow->addWidget(thirdText, 0, Qt::AlignLeft);
+	thirdRow->addWidget(thirdPicture, 0, Qt::AlignRight);
+
+	QHBoxLayout * fourthRow = new QHBoxLayout;
+	QLabel * fourthText = new QLabel("Dans le menu de nouvelle partie, il est possible de s" + QString(233) + "lectionner un mode de jeu entre \"un joueur\" et \"deux joueurs\". Le mode simple joueur inclut une intelligence pour l'adversaire." + QString("Aussi dans la cr" + QString(233) + "ation d'une nouvelle partie, il est possible de s" + QString(233) + "lectionner le difficult" + QString(233) + ", qui ajuste premi" + QString(232) + "rement le niveau de difficult" + QString(233) + " du terrain."));
+	fourthText->setWordWrap(true);
+
+	fourthRow->addWidget(fourthText, 0, Qt::AlignLeft);
 
 	window->addLayout(firstRow);
 	window->addLayout(secondRow);
 	window->addLayout(thirdRow);
+	window->addLayout(fourthRow);
 
 	setLayout(window);
 

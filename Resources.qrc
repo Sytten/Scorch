@@ -1,17 +1,18 @@
 <RCC>
     <qresource prefix="/">
-		<file>resources/cannon_base.png</file>
-		<file>resources/cannon_gun.png</file>
-		<file>resources/cannon_support.png</file>
-		<file>resources/long_castle_p1.png</file>
-		<file>resources/long_castle_p2.png</file>	  
-		<file>resources/cannonball.png</file>
-		<file>resources/tutoriel/fpga_non_connecte.jpg</file>
-		<file>resources/tutoriel/mode_joueur.jpg</file>
-		<file>resources/tutoriel/parametres_mode.jpg</file>
-		<file>resources/tutoriel/tour_joueur.jpg</file>
-		<file>resources/tutoriel/joueur_1.jpg</file>
-		<file>resources/tutoriel/joueur_2.jpg</file>    
-		<file>resources/icon_big.png</file>
+		  <file>resources/cannon_base.png</file>
+		  <file>resources/cannon_gun.png</file>
+		  <file>resources/cannon_support.png</file>
+		  <file>resources/long_castle_p1.png</file>
+		  <file>resources/long_castle_p2.png</file>	  
+		  <file>resources/cannonball.png</file>
+		  <file>resources/tutoriel/fpga_non_connecte.jpg</file>
+		  <file>resources/tutoriel/mode_joueur.jpg</file>
+		  <file>resources/tutoriel/parametres_mode.jpg</file>
+		  <file>resources/tutoriel/tour_joueur.jpg</file>
+		  <file>resources/tutoriel/joueur_1.jpg</file>
+		  <file>resources/tutoriel/joueur_2.jpg</file>    
+		  <file>resources/icon_big.png</file>
+      <file>resources/grass.png</file>
     </qresource>
 </RCC>

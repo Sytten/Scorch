@@ -4,9 +4,10 @@
 AngleStatusWidget::AngleStatusWidget(QWidget *parent) : QWidget(parent)
 {
 	m_currentAngle = new QLabel;
+
 	QFont font = m_currentAngle->font();
 	font.setBold(true);
-	font.setPixelSize(14);
+	font.setPixelSize(12);
 	m_currentAngle->setFont(font);
 
 	m_ellipseAngle = new EllipseAngleWidget;
@@ -29,9 +30,7 @@ AngleStatusWidget::AngleStatusWidget(QWidget *parent) : QWidget(parent)
 }
 
 AngleStatusWidget::~AngleStatusWidget()
-{
-
-}
+{}
 
 void AngleStatusWidget::setAngle(float p_angle)
 {

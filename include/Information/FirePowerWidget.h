@@ -1,7 +1,8 @@
 #ifndef FIREPOWERWIDGET_H
 #define FIREPOWERWIDGET_H
 
-#include<QtWidgets>
+#include<QWidget>
+#include<QLabel>
 #include<QLayout>
 
 #include "GradientBarWidget.h"

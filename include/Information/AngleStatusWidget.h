@@ -1,7 +1,8 @@
 #ifndef ANGLESTATUSWIDGET_H
 #define ANGLESTATUSWIDGET_H
 
-#include<QtWidgets>
+#include<QWidget>
+#include<QLabel>
 #include<QLayout>
 #include<QSizePolicy>
 

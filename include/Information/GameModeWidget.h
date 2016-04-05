@@ -1,7 +1,11 @@
 #ifndef GAMEMODEWIDGET_H
 #define GAMEMODEWIDGET_H
 
-#include <QtWidgets>
+#include <QWidget>
+#include <QLabel>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+
 
 #include "PlayerActivatedWidget.h"
 #include "PlayerControlModeWidget.h"

@@ -1,7 +1,9 @@
 #ifndef PLAYERACTIVATEDWIDGET_H
 #define PLAYERACTIVATEDWIDGET_H
 
-#include <QtWidgets>
+#include<QWidget>
+#include<QPainter>
+#include<QPen>
 
 class PlayerActivatedWidget : public QWidget
 {

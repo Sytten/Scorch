@@ -1,7 +1,9 @@
 #ifndef PLAYERCONTROLMODEWIDGET_H
 #define PLAYERCONTROLMODEWIDGET_H
 
-#include <QtWidgets>
+#include <QWidget>
+#include <QPen>
+#include <QPainter>
 
 class PlayerControlModeWidget : public QWidget
 {

@@ -1,7 +1,7 @@
 #ifndef ELLIPSEANGLEWIDGET_H
 #define ELLIPSEANGLEWIDGET_H
 
-#include<QtWidgets>
+#include<QWidget>
 #include<QLayout>
 #include<QPainter>
 

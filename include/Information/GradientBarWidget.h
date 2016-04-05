@@ -1,7 +1,8 @@
 #ifndef GRADIENTBARWIDGET_H
 #define GRADIENTBARWIDGET_H
 
-#include <QtWidgets>
+#include <QWidget>
+#include <QPainter>
 #include <QLayout>
 
 class GradientBarWidget : public QWidget

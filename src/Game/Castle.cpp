@@ -17,4 +17,5 @@ void Castle::takeDamage(int p_damage)
     m_life -= p_damage;
     if(m_life < 0)
         m_life = 0;
+    emit damageTaken(owner(), m_life);
 }

@@ -5,6 +5,8 @@
 
 class Castle : public Entity
 {
+    Q_OBJECT
+
 public:
     Castle(const QPixmap &pixmap, Player owner, int p_initialLife, QGraphicsItem *parent = 0);
 
@@ -17,6 +19,9 @@ public:
 
 private:
     int m_life;
+
+signals:
+    void damageTaken(Player player, int life);
 };
 
 #endif // CASTLE_H

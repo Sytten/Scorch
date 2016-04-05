@@ -14,4 +14,6 @@ void CannonBall::updateEntity(double deltaTime)
 	double y = m_initialPosition.y() - m_initialVelocity.y() * m_timeSinceShot + 0.5 * m_gravity * m_timeSinceShot * m_timeSinceShot;
 
 	setPos(x, y);
+
+   update(boundingRect());
 }

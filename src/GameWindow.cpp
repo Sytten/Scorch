@@ -8,6 +8,7 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	this->setStatusBar(new QStatusBar);
 	
 	setFocus();
+	setStyleSheet("QMainWindow::separator{ width:0px; height:0px;}");
 	m_game.getView()->setFocusPolicy(Qt::NoFocus);
 	
 	
@@ -54,8 +55,9 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	// File menu
 	m_menuFichier = new QMenu("Fichier");
 	m_actionQuit = new QAction("Quitter", this);
+		m_actionQuit->setShortcut(QKeySequence("Q"));
 	m_actionNewGame = new QAction("Nouvelle partie", this);
-	
+		m_actionNewGame->setShortcut(QKeySequence("N"));
 
 	m_menuFichier->addAction(m_actionNewGame);
 	m_menuFichier->addSeparator();
@@ -64,12 +66,11 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 
 	// Game menu
 	m_menuJeux = new QMenu("Jeux");
-	m_actionPlay = new QAction("Play", this);
 	m_actionPause = new QAction("Pause", this);
+		m_actionPause->setShortcut(QKeySequence("P"));
 	m_actionMuet = new QAction("Muet", this);
+		m_actionMuet->setShortcut(QKeySequence("M"));
 
-	m_menuJeux->addAction(m_actionPlay);
-	m_menuJeux->addSeparator();
 	m_menuJeux->addAction(m_actionPause);
 	m_menuJeux->addSeparator();
 	m_menuJeux->addAction(m_actionMuet);
@@ -79,18 +80,22 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	m_menuAide = new QMenu("Aide");
 	m_actionTutoriel = new QAction("Tutoriel", this);
 	m_actionVersion = new QAction("Version", this);
+	QAction* actionAboutQt = new QAction("A Propos de Qt", this);
 
 	m_menuAide->addAction(m_actionTutoriel);
 	m_menuAide->addSeparator();
 	m_menuAide->addAction(m_actionVersion);
+	m_menuAide->addSeparator();
+	m_menuAide->addAction(actionAboutQt);
 	m_menuBar->addMenu(m_menuAide);
 
 	this->setMenuBar(m_menuBar);
-
 	
 	/****Connections****/
 	// Connect Menu
 	connect(m_actionQuit, &QAction::triggered, QApplication::instance(), &QApplication::quit);
+	connect(actionAboutQt, &QAction::triggered, QApplication::instance(), &QApplication::aboutQt);
+	connect(m_actionPause, &QAction::triggered, this, &GameWindow::pausedTriggered);
 	connect(m_actionNewGame, SIGNAL(triggered()), this, SLOT(openNewGame()));
 	connect(m_actionTutoriel, SIGNAL(triggered()), this, SLOT(openTutoriel()));
 	connect(m_actionVersion, SIGNAL(triggered()), this, SLOT(openVersion()));
@@ -125,7 +130,7 @@ void GameWindow::playerChanged(Player p_player)
 	emit changePlayer(p_player);
 }
 
-void GameWindow::stateChanged(State p_state)
+void GameWindow::stateChanged(InputState p_state)
 {
 	emit changeState(p_state);
 }
@@ -138,6 +143,19 @@ void GameWindow::angleChanged(float p_angle)
 void GameWindow::powerChanged(float p_power)
 {
 	emit changePower(p_power);
+}
+
+void GameWindow::pausedTriggered()
+{
+	if (m_game.pause()) {
+		m_game.setPause(false);
+		m_actionPause->setText("&Pause");
+	}
+	else {
+		m_game.setPause(true);
+		if(m_game.pause())
+			m_actionPause->setText("&Play");
+	}
 }
 
 void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)

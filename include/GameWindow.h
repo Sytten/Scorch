@@ -35,9 +35,10 @@ protected:
 
 protected slots:
 	void playerChanged(Player p_player);
-	void stateChanged(State p_state);
+	void stateChanged(InputState p_state);
 	void angleChanged(float p_angle);
 	void powerChanged(float p_power);
+	void pausedTriggered();
 
 private:
     QLabel * m_mainGameWidget;
@@ -48,7 +49,6 @@ private:
 	QMenu * m_menuAide;
 	QAction * m_actionQuit;
 	QAction * m_actionNewGame;
-	QAction * m_actionPlay;
 	QAction * m_actionPause;
 	QAction * m_actionMuet;
 	QAction * m_actionTutoriel;
@@ -64,7 +64,7 @@ private slots:
 
 signals:
 	void changePlayer(Player p_player);
-	void changeState(State p_state);
+	void changeState(InputState p_state);
 	void changeAngle(float p_angle);
 	void changePower(float p_power);
 };

@@ -44,7 +44,7 @@ protected slots:
 	void powerChanged(float p_power);
 	void pausedTriggered();
     void resetPause();
-	void quitTriggered();
+	void closeEvent(QCloseEvent *event);
 
 private:
     QLabel * m_mainGameWidget;

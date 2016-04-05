@@ -97,10 +97,7 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 
 	/****Connections****/
 	// Connect Menu
-
-
-
-	connect(m_actionQuit, SIGNAL(triggered()), this, SLOT(quitTriggered()));
+	connect(m_actionQuit, &QAction::triggered, this, &QMainWindow::close);
 	connect(actionAboutQt, &QAction::triggered, QApplication::instance(), &QApplication::aboutQt);
 	connect(m_actionPause, &QAction::triggered, this, &GameWindow::pausedTriggered);
 	connect(m_actionNewGame, SIGNAL(triggered()), this, SLOT(openNewGame()));
@@ -223,7 +220,7 @@ void GameWindow::openMainMenu()
 	if (fenNewGame.result() == QDialog::Accepted)
 		m_game.newGame(fenNewGame.getChosenDifficulty(), 2);
 	else
-		QApplication::quit();
+		this->close();
 }
 
 void GameWindow::resizeEvent(QResizeEvent *event)
@@ -232,7 +229,7 @@ void GameWindow::resizeEvent(QResizeEvent *event)
 	m_game.getView()->fitInView(m_game.getView()->sceneRect(), Qt::KeepAspectRatio);
 }
 
-void GameWindow::quitTriggered()
+void GameWindow::closeEvent(QCloseEvent *event)
 {
 	QMessageBox *quitMessage = new QMessageBox(QMessageBox::Information, "Quitter", "Etes vous sur de vouloir quitter?", QMessageBox::Yes | QMessageBox::No);
 
@@ -240,6 +237,7 @@ void GameWindow::quitTriggered()
 	quitMessage->setFixedSize(80, 220);
 
 	if (QMessageBox::Yes == quitMessage->exec())
-		QApplication::quit();
-
+		event->accept();
+	else
+		event->ignore();
 }

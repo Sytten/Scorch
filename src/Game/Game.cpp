@@ -139,6 +139,7 @@ void Game::newGame()
     /**Setup Background**/
     m_scene.addRect(m_scene.sceneRect(), QPen(Qt::NoPen), QBrush(QColor(107, 219, 242)));
 
+	/**Setup Terrain**/
 	m_terrain = new Terrain();
 	m_terrain->setPos(0, 500);
 
@@ -168,15 +169,20 @@ void Game::newGame()
 		connect(cannon2, &Cannon::fired, this, &Game::newCannonball);
 		m_scene.addItem(cannon2);
 
-		QPointF bestPoint1;
-		QPointF bestPoint2;
+	castle1->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(0, m_terrain->boundingRect().width() / 8)) - QPointF(0, 150));
+	castle2->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(m_terrain->boundingRect().width() * (7.0f / 8.0f), m_terrain->boundingRect().width() - castle2->boundingRect().width())) - QPointF(0, 150));
 
-		castle1->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(0, m_terrain->boundingRect().width() / 8)) - QPointF(0, 150));
-		castle2->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(m_terrain->boundingRect().width() * (7.0f / 8.0f), m_terrain->boundingRect().width() - castle2->boundingRect().width())) - QPointF(0, 150));
+	QPointF chosenPoint = m_terrain->mapToScene(m_terrain->getHighestPointBetween(
+		castle1->pos().rx(),
+		castle1->pos().rx() + m_terrain->boundingRect().width() / 8.0));
+	QPointF offset = QPointF(960 * cannon1->scale() / -2.0f, 480 * cannon1->scale() / -3.0f);
+	cannon1->setPos(chosenPoint + offset);
+		
+	chosenPoint = m_terrain->mapToScene(m_terrain->getHighestPointBetween(
+		castle2->pos().rx() - m_terrain->boundingRect().width() / 8.0,
+		castle2->pos().rx()));
+	offset = QPointF(960 * cannon2->scale() / 2.0f, 480 * cannon2->scale() / -3.0f);
+	cannon2->setPos(chosenPoint + offset);
 
-		cannon2->setPos(m_terrain->mapToScene(m_terrain->PointAtX(1734)) - QPointF(0,(cannon2->boundingRect().height() / 2)));
-		cannon1->setPos(m_terrain->mapToScene(m_terrain->PointAtX(186)) - QPointF(0,(cannon2->boundingRect().height() / 2)));
-
-	/**Setup Terrain**/
-	//m_scene.addRect(0, 750, 1920, 50, QPen(Qt::NoPen), QBrush(QColor(Qt::darkGreen)));
+	
 }

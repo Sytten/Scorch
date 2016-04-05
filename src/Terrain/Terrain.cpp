@@ -121,7 +121,7 @@ QPointF Terrain::PointAtX(const float p_x)const
 
 QPointF Terrain::getHighestPointBetween(float p_x1, float p_x2)
 {
-	QPointF currentHighest = QPointF(0,0);
+	QPointF currentHighest = QPointF(4000,4000);
 	for (QPointF var : m_terrainPoints){
 		//Inversed because of coordinate system
 		if (var.rx() < p_x2 && var.rx() > p_x1)

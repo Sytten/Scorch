@@ -159,6 +159,8 @@ void GameWindow::openNewGame()
 {
     FenetreNewGame fenNewGame;
     fenNewGame.exec();
+	if (fenNewGame.result() == QDialog::Accepted)
+		m_game.newGame();
 }
 
 void GameWindow::openTutoriel()

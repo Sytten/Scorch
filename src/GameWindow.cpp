@@ -119,6 +119,8 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	connect(this, &GameWindow::changePlayer, m_gameModeWidget, &GameModeWidget::setCurrentPlayer);
 	connect(this, &GameWindow::changePower, m_currentPower, &FirePowerWidget::setPower);
 	connect(this, &GameWindow::changeState, m_gameModeWidget, &GameModeWidget::setCurrentMode);
+
+    QTimer::singleShot(1, this, &GameWindow::openMainMenu);
 }
 
 GameWindow::~GameWindow()
@@ -209,6 +211,16 @@ void GameWindow::openVersion()
 {
     FenetreVersion fenVersion;
     fenVersion.exec();
+}
+
+void GameWindow::openMainMenu()
+{
+    FenetreNewGame fenNewGame;
+    fenNewGame.exec();
+    if (fenNewGame.result() == QDialog::Accepted)
+        m_game.newGame(fenNewGame.getChosenDifficulty(), 2);
+    else
+        QApplication::quit();
 }
 
 void GameWindow::resizeEvent(QResizeEvent *event)

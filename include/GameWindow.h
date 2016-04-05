@@ -65,6 +65,7 @@ private slots:
 	void openNewGame();
 	void openTutoriel();
 	void openVersion();
+    void openMainMenu();
 
 signals:
 	void changePlayer(Player p_player);

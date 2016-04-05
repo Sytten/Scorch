@@ -2,7 +2,7 @@
 
 QRectF GameOverlay::boundingRect() const
 {
-    return QRectF(pos().x(), pos().y(), 960, 50);
+    return QRectF(pos().x()-m_outlineWidth/2, pos().y() -5 - m_outlineWidth/2, 960 + m_outlineWidth, 60 + m_outlineWidth);
 }
 
 void GameOverlay::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
@@ -14,6 +14,7 @@ void GameOverlay::paint(QPainter * painter, const QStyleOptionGraphicsItem * opt
     path.addRoundedRect(QRect(pos().x()+510, pos().y(), 450, 50),10,10);
 
     QPen pen(QColor(188, 198, 204), 5);
+    m_outlineWidth = pen.widthF();
     painter->setPen(pen);
     painter->fillPath(path, Qt::yellow);
     painter->drawPath(path);
@@ -54,4 +55,6 @@ void GameOverlay::newPlayerLife(Player player, int life)
 		m_player1Life = life;
 	else if (player == Player2)
 		m_player2Life = life;
+
+    update(boundingRect());
 }

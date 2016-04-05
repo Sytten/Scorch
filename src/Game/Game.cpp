@@ -125,7 +125,7 @@ void Game::update()
 							if (castle->owner() != cannonball->owner()) {
 								m_scene.removeItem(item);
 								delete item;
-								//remove life from castle
+                                castle->takeDamage(20);
 								break;
 							}
 						}
@@ -214,6 +214,8 @@ void Game::newGame()
 
     GameOverlay* overlay = new GameOverlay();
     overlay->setPos(240, 10);
+    connect(castle1, &Castle::damageTaken, overlay, &GameOverlay::newPlayerLife);
+    connect(castle2, &Castle::damageTaken, overlay, &GameOverlay::newPlayerLife);
     m_scene.addItem(overlay);
 
     emit newGameGenerated();

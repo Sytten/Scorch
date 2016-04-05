@@ -3,13 +3,16 @@
 
 #include <QGraphicsRectItem>
 #include <QPainter>
+#include <QObject>
 
 #include "Player.h"
 
-class GameOverlay : public QGraphicsItem
+class GameOverlay : public QObject, public QGraphicsItem
 {
+    Q_OBJECT
+
 public:
-    GameOverlay(QGraphicsItem* parent = 0) : QGraphicsItem(parent), m_player1Life(100), m_player2Life(100) {}
+    GameOverlay(QGraphicsItem* parent = 0) : QGraphicsItem(parent), m_player1Life(100), m_player2Life(100), m_outlineWidth(0) {}
 
     virtual QRectF boundingRect() const;
 
@@ -21,6 +24,7 @@ public slots:
 private:
 	int m_player1Life;
 	int m_player2Life;
+    double m_outlineWidth;
 };
 
 #endif

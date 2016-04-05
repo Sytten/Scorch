@@ -11,6 +11,7 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QAction>
+#include <QMessageBox>
 
 #include "SecondaryWindows.h"
 #include "Input/FPGAReceiver.h"
@@ -43,6 +44,7 @@ protected slots:
 	void powerChanged(float p_power);
 	void pausedTriggered();
     void resetPause();
+	void quitTriggered();
 
 private:
     QLabel * m_mainGameWidget;

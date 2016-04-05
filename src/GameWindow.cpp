@@ -6,13 +6,13 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	/****General setup****/
 	this->setWindowTitle("Scorch");
 	this->setStatusBar(new QStatusBar);
-    this->setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
-	
+	this->setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
+
 	setFocus();
 	setStyleSheet("QMainWindow::separator{ width:0px; height:0px;}");
 	m_game.getView()->setFocusPolicy(Qt::NoFocus);
-	
-	
+
+
 	/****Central widget****/
 	GameModeWidget * m_gameModeWidget;
 	AngleStatusWidget * m_currentAngle;
@@ -20,7 +20,7 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 
 	this->setCentralWidget(m_game.getView());
 
-	
+
 	/****Bottom Widget (Information about player)****/
 	QWidget* bottomWidget = new QWidget;
 	QDockWidget* informationPanel = new QDockWidget;
@@ -49,16 +49,16 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 
 	this->addDockWidget(Qt::BottomDockWidgetArea, informationPanel);
 
-	
+
 	/****Menus****/
 	m_menuBar = new QMenuBar;
-	
+
 	// File menu
 	m_menuFichier = new QMenu("Fichier");
 	m_actionQuit = new QAction("Quitter", this);
-		m_actionQuit->setShortcut(QKeySequence("Q"));
+	m_actionQuit->setShortcut(QKeySequence("Q"));
 	m_actionNewGame = new QAction("Nouvelle partie", this);
-		m_actionNewGame->setShortcut(QKeySequence("N"));
+	m_actionNewGame->setShortcut(QKeySequence("N"));
 
 	m_menuFichier->addAction(m_actionNewGame);
 	m_menuFichier->addSeparator();
@@ -68,9 +68,9 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	// Game menu
 	m_menuJeux = new QMenu("Jeux");
 	m_actionPause = new QAction("Pause", this);
-		m_actionPause->setShortcut(QKeySequence("P"));
+	m_actionPause->setShortcut(QKeySequence("P"));
 	m_actionMuet = new QAction("Muet", this);
-		m_actionMuet->setShortcut(QKeySequence("M"));
+	m_actionMuet->setShortcut(QKeySequence("M"));
 
 	m_menuJeux->addAction(m_actionPause);
 	m_menuJeux->addSeparator();
@@ -80,11 +80,11 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	//Help menu
 	m_menuAide = new QMenu("Aide");
 	m_actionTutoriel = new QAction("Tutoriel", this);
-        m_actionTutoriel->setShortcut(QKeySequence("F2"));
+	m_actionTutoriel->setShortcut(QKeySequence("F2"));
 	m_actionVersion = new QAction("Version", this);
-        m_actionVersion->setShortcut(QKeySequence("F1"));
+	m_actionVersion->setShortcut(QKeySequence("F1"));
 	QAction* actionAboutQt = new QAction("A Propos de Qt", this);
-        actionAboutQt->setShortcut(QKeySequence("F3"));
+	actionAboutQt->setShortcut(QKeySequence("F3"));
 
 	m_menuAide->addAction(m_actionTutoriel);
 	m_menuAide->addSeparator();
@@ -94,10 +94,13 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	m_menuBar->addMenu(m_menuAide);
 
 	this->setMenuBar(m_menuBar);
-	
+
 	/****Connections****/
 	// Connect Menu
-	connect(m_actionQuit, &QAction::triggered, QApplication::instance(), &QApplication::quit);
+
+
+
+	connect(m_actionQuit, SIGNAL(triggered()), this, SLOT(quitTriggered()));
 	connect(actionAboutQt, &QAction::triggered, QApplication::instance(), &QApplication::aboutQt);
 	connect(m_actionPause, &QAction::triggered, this, &GameWindow::pausedTriggered);
 	connect(m_actionNewGame, SIGNAL(triggered()), this, SLOT(openNewGame()));
@@ -112,15 +115,15 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	connect(&m_game, &Game::angleChanged, this, &GameWindow::angleChanged);
 	connect(&m_game, &Game::powerChanged, this, &GameWindow::powerChanged);
 	connect(&m_game, &Game::stateChanged, this, &GameWindow::stateChanged);
-    connect(&m_game, &Game::newGameGenerated, this, &GameWindow::resetPause);
-	
+	connect(&m_game, &Game::newGameGenerated, this, &GameWindow::resetPause);
+
 	// Connect Info Widgets
 	connect(this, &GameWindow::changeAngle, m_currentAngle, &AngleStatusWidget::setAngle);
 	connect(this, &GameWindow::changePlayer, m_gameModeWidget, &GameModeWidget::setCurrentPlayer);
 	connect(this, &GameWindow::changePower, m_currentPower, &FirePowerWidget::setPower);
 	connect(this, &GameWindow::changeState, m_gameModeWidget, &GameModeWidget::setCurrentMode);
 
-    QTimer::singleShot(1, this, &GameWindow::openMainMenu);
+	QTimer::singleShot(1, this, &GameWindow::openMainMenu);
 }
 
 GameWindow::~GameWindow()
@@ -160,19 +163,19 @@ void GameWindow::pausedTriggered()
 	}
 	else {
 		m_game.setPause(true);
-		if(m_game.pause())
+		if (m_game.pause())
 			m_actionPause->setText("&Play");
-    }
+	}
 }
 
 void GameWindow::resetPause()
 {
-    m_actionPause->setText("&Pause");
+	m_actionPause->setText("&Pause");
 }
 
 void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)
 {
-    //NOTE: Hack to simulate correctly the FPGA input
+	//NOTE: Hack to simulate correctly the FPGA input
 	if (m_game.getState() == InputState::Fire && KeyEvent->key() == Qt::Key_Space){
 		QKeyEvent * key = new QKeyEvent(KeyEvent->type(), Qt::Key_Up, Qt::KeyboardModifier::NoModifier);
 
@@ -186,45 +189,57 @@ void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)
 
 void GameWindow::customEvent(QEvent *event)
 {
-    if(event->type() == FPGAEvent::customFPGAEvent) {
-        FPGAEvent* fpgaEvent = static_cast<FPGAEvent *>(event);
+	if (event->type() == FPGAEvent::customFPGAEvent) {
+		FPGAEvent* fpgaEvent = static_cast<FPGAEvent *>(event);
 
-        QCoreApplication::postEvent(&m_game, new FPGAEvent(*fpgaEvent));
-    }
+		QCoreApplication::postEvent(&m_game, new FPGAEvent(*fpgaEvent));
+	}
 }
 
 void GameWindow::openNewGame()
 {
-    FenetreNewGame fenNewGame;
-    fenNewGame.exec();
+	FenetreNewGame fenNewGame;
+	fenNewGame.exec();
 	if (fenNewGame.result() == QDialog::Accepted)
 		m_game.newGame(fenNewGame.getChosenDifficulty(), 2);
 }
 
 void GameWindow::openTutoriel()
 {
-    FenetreTutoriel fenTutoriel;
-    fenTutoriel.exec();
+	FenetreTutoriel fenTutoriel;
+	fenTutoriel.exec();
 }
 
 void GameWindow::openVersion()
 {
-    FenetreVersion fenVersion;
-    fenVersion.exec();
+	FenetreVersion fenVersion;
+	fenVersion.exec();
 }
 
 void GameWindow::openMainMenu()
 {
-    FenetreNewGame fenNewGame;
-    fenNewGame.exec();
-    if (fenNewGame.result() == QDialog::Accepted)
-        m_game.newGame(fenNewGame.getChosenDifficulty(), 2);
-    else
-        QApplication::quit();
+	FenetreNewGame fenNewGame;
+	fenNewGame.exec();
+	if (fenNewGame.result() == QDialog::Accepted)
+		m_game.newGame(fenNewGame.getChosenDifficulty(), 2);
+	else
+		QApplication::quit();
 }
 
 void GameWindow::resizeEvent(QResizeEvent *event)
 {
-    QMainWindow::resizeEvent(event);
-    m_game.getView()->fitInView(m_game.getView()->sceneRect(), Qt::KeepAspectRatio);
+	QMainWindow::resizeEvent(event);
+	m_game.getView()->fitInView(m_game.getView()->sceneRect(), Qt::KeepAspectRatio);
+}
+
+void GameWindow::quitTriggered()
+{
+	QMessageBox *quitMessage = new QMessageBox(QMessageBox::Information, "Quitter", "Etes vous sur de vouloir quitter?", QMessageBox::Yes | QMessageBox::No);
+
+	quitMessage->setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
+	quitMessage->setFixedSize(80, 220);
+
+	if (QMessageBox::Yes == quitMessage->exec())
+		QApplication::quit();
+
 }

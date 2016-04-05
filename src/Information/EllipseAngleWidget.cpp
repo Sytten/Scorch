@@ -42,9 +42,21 @@ void EllipseAngleWidget::paintEvent(QPaintEvent * paintEvent)
 	painter.drawPath(remplissage);
 
 	//painter.fillPath(*remplissage,Qt::black);
+	QPen pen = painter.pen();
+	pen.setColor(Qt::white);
+	pen.setWidth(2);
+	painter.setPen(pen);
+	for (int i = 0; i <= 90; i += 10)
+		painter.drawLine(getPointOnLineAtAngle(i, 0.9), getPointOnLineAtAngle(i, 1.0));
 
 	painter.setPen(Qt::red);
 	painter.drawLine(rect().bottomLeft(), getLineEnding());	
+
+	painter.setPen(pen);
+	QFont font = painter.font();
+	font.setPixelSize(24);
+	painter.setFont(font);
+	painter.drawText(rect().bottomLeft() - QPoint(0, rect().height() / 8), QString(QString::number(m_angle) + '\260'));
 }
 
 
@@ -56,6 +68,18 @@ QPoint EllipseAngleWidget::getLineEnding() const
 
 	finalPoint.setX(rect().bottomLeft().x() + (radius * cos(m_angle * PI / 180.0)));
 	finalPoint.setY(rect().bottomLeft().y() - (radius * sin(m_angle * PI / 180.0)));
+
+	return finalPoint;
+}
+
+QPoint EllipseAngleWidget::getPointOnLineAtAngle(float angle, float prct)
+{
+	QPoint finalPoint;
+
+	float radius = rect().right();
+
+	finalPoint.setX(rect().bottomLeft().x() + (prct * (radius * cos(angle * PI / 180.0))));
+	finalPoint.setY(rect().bottomLeft().y() - (prct * (radius * sin(angle * PI / 180.0))));
 
 	return finalPoint;
 }

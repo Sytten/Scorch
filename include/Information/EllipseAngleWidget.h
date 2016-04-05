@@ -23,6 +23,7 @@ private:
 	float m_angle;
 
 	QPoint getLineEnding() const;
+	QPoint getPointOnLineAtAngle(float angle, float prct);
 };
 
 #endif

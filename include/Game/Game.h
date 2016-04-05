@@ -13,6 +13,7 @@
 #include "Game/Castle.h"
 #include "Game/Cannon.h"
 #include "Game/PauseOverlay.h"
+#include "Game/GameOverlay.h"
 
 #include "Terrain/Terrain.h"
 
@@ -60,6 +61,7 @@ signals:
     void stateChanged(InputState state);
 	void angleChanged(double angle);
 	void powerChanged(double power);
+    void newGameGenerated();
 };
 
 #endif // GAME_H

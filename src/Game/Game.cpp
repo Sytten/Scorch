@@ -212,5 +212,5 @@ void Game::newGame()
 	offset = QPointF(960 * cannon2->scale() / 2.0f, 480 * cannon2->scale() / -3.0f);
 	cannon2->setPos(chosenPoint + offset);
 
-	
+    emit newGameGenerated();
 }

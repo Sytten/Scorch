@@ -39,6 +39,7 @@ protected slots:
 	void angleChanged(float p_angle);
 	void powerChanged(float p_power);
 	void pausedTriggered();
+    void resetPause();
 
 private:
     QLabel * m_mainGameWidget;

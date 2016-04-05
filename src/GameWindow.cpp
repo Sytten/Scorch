@@ -112,6 +112,7 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	connect(&m_game, &Game::angleChanged, this, &GameWindow::angleChanged);
 	connect(&m_game, &Game::powerChanged, this, &GameWindow::powerChanged);
 	connect(&m_game, &Game::stateChanged, this, &GameWindow::stateChanged);
+    connect(&m_game, &Game::newGameGenerated, this, &GameWindow::resetPause);
 	
 	// Connect Info Widgets
 	connect(this, &GameWindow::changeAngle, m_currentAngle, &AngleStatusWidget::setAngle);
@@ -159,7 +160,12 @@ void GameWindow::pausedTriggered()
 		m_game.setPause(true);
 		if(m_game.pause())
 			m_actionPause->setText("&Play");
-	}
+    }
+}
+
+void GameWindow::resetPause()
+{
+    m_actionPause->setText("&Pause");
 }
 
 void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)

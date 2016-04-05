@@ -66,7 +66,7 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	m_menuBar->addMenu(m_menuFichier);
 
 	// Game menu
-	m_menuJeux = new QMenu("Jeux");
+	m_menuJeux = new QMenu("Jeu");
 	m_actionPause = new QAction("Pause", this);
 	m_actionPause->setShortcut(QKeySequence("P"));
 	m_actionMuet = new QAction("Muet", this);

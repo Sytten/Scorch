@@ -109,6 +109,8 @@ void Game::cannonBallDestroyed()
 void Game::update()
 {
 	if (m_gameState == Play) {
+        m_scene.advance();
+
 		for (auto item : m_scene.items()) {
 			if (CannonBall* cannonball = dynamic_cast<CannonBall*>(item)) {
 				//Update physic
@@ -124,6 +126,9 @@ void Game::update()
 						if (Castle* castle = dynamic_cast<Castle*>(collider)) {
 							if (castle->owner() != cannonball->owner()) {
 								m_scene.removeItem(item);
+                                Animation* explosion = new Animation(QPixmap(":/resources/explosion.png"),25,64,64);
+                                    explosion->setPos(item->pos());
+                                    m_scene.addItem(explosion);
 								delete item;
                                 castle->takeDamage(20);
 								break;
@@ -144,6 +149,12 @@ void Game::update()
 					}
 				}
 			}
+            else if(Animation* explosion = dynamic_cast<Animation*>(item)) {
+                if(explosion->done()){
+                    m_scene.removeItem(item);
+                    delete item;
+                }
+            }
 		}
 	}
 

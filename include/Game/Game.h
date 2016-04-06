@@ -14,7 +14,7 @@
 #include "Game/Cannon.h"
 #include "Game/PauseOverlay.h"
 #include "Game/GameOverlay.h"
-
+#include "Game/Animation.h"
 #include "Terrain/Terrain.h"
 
 class Game : public QObject

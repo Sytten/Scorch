@@ -24,7 +24,8 @@ HEADERS     += \
     include/SecondaryWindows.h \
     include/Game/State.h \
     include/Game/Player.h \
-	include/Terrain/Terrain.h
+	include/Terrain/Terrain.h \
+    include/Game/Animation.h
 
 SOURCES     += \
     src/Game/Cannon.cpp \
@@ -46,7 +47,8 @@ SOURCES     += \
     src/SecondaryWindows.cpp \
     src/main.cpp \
     src/Input/FPGAReceiver.cpp \
-	src/Terrain/Terrain.cpp	
+	src/Terrain/Terrain.cpp \  	
+    src/Game/Animation.cpp
 INCLUDEPATH += include
 win32{
     TEMPLATE     = vcapp

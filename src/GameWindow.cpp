@@ -128,11 +128,10 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 
 	playlist->addMedia(QUrl::fromLocalFile(QDir::currentPath() + "/resources/music/Angevin_B.mp3"));
 	playlist->addMedia(QUrl::fromLocalFile(QDir::currentPath() + "/resources/music/Celtic_Impulse.mp3"));
 	playlist->addMedia(QUrl::fromLocalFile(QDir::currentPath() + "/resources/music/Pippin_the_Hunchback.mp3"));
-	playlist->shuffle();
 	playlist->setPlaybackMode(QMediaPlaylist::Loop);
-
+	
 	m_musicPlayer.setPlaylist(playlist);
-	m_musicPlayer.play();
+	m_musicPlayer.setVolume(30);
 
 	QTimer::singleShot(1, this, &GameWindow::openMainMenu);
 }
@@ -243,6 +242,7 @@ void GameWindow::openMainMenu()
 	if (fenNewGame.result() == QDialog::Accepted) {
 		m_game.newGame(fenNewGame.getChosenDifficulty(), 2);
 		m_game.startPlaying();
+		m_musicPlayer.play();
 	}
 	else
 		this->close();

@@ -251,7 +251,9 @@ void Game::newGame(Difficulty p_difficulty, int p_player)
     connect(castle2, &Castle::damageTaken, overlay, &GameOverlay::newPlayerLife);
     m_scene.addItem(overlay);
 
-    emit newGameGenerated();
+	m_currentPlayer = Player1;
+	emit newGameGenerated();
+	emit playerChanged(m_currentPlayer);
 }
 
 void Game::startPlaying()

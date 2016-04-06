@@ -7,6 +7,7 @@ Terrain::Terrain(BezierMode mode, float terrainSize, float margin, QGraphicsItem
 
 	float minimumX = 0.0, minimumY = 0.0, maximumX = 0.0, maximumY = 0.0;
 
+	//Calculate bounding rect parameters
 	for (QPointF var : m_terrainPoints)
 	{
 		if (minimumX > var.rx())
@@ -39,6 +40,7 @@ void Terrain::paint(QPainter * painter, const QStyleOptionGraphicsItem * option,
 	painter->setPen(Qt::black);
 	if (scene())
 		painter->setClipRect(mapFromScene(scene()->sceneRect().intersected(mapToScene(boundingRect()).boundingRect())).boundingRect());
+	//Fill paint path
 	painter->fillPath(m_paintPath, m_brush);
 
 	//Debugging for terrain generation
@@ -60,9 +62,6 @@ void Terrain::paint(QPainter * painter, const QStyleOptionGraphicsItem * option,
 	}*/
 }
 
-
-
-
 void Terrain::setPos(const QPointF &pos)
 {
 	QGraphicsItem::setPos(pos);
@@ -83,7 +82,8 @@ void Terrain::calculateNewPath()
 
 	m_paintPath.moveTo(this->pos().x(), this->pos().y() + m_bounding.size().height());
 
-	m_paintPath.lineTo(/*this->pos() + */m_terrainPoints[0]);
+	m_paintPath.lineTo(m_terrainPoints[0]);
+	//For each terrain point create control points and draw bezier path
 	for (int i = 0; i < m_terrainPoints.length() - 2; i += 1)
 	{
 		QPointF start = m_terrainPoints[i];
@@ -110,8 +110,10 @@ bool Terrain::intersects(const QRectF &p_rectangle)const
 	return m_paintPath.intersects(p_rectangle);
 }
 
+
 QPointF Terrain::PointAtX(const float p_x)const
 {	
+	//Start from top of the item rectangle and go down to find the first point at which the is an intersection
 	for (int i = 1; i < scene()->sceneRect().bottom(); i++)
 	{
 		if (m_paintPath.intersects(QRectF(p_x, 0, 0, i))){			
@@ -125,6 +127,7 @@ QPointF Terrain::PointAtX(const float p_x)const
 QPointF Terrain::getHighestPointBetween(float p_x1, float p_x2)
 {
 	QPointF currentHighest = QPointF(4000,4000);
+	//For each generated terrain points and control points, check which is highest and return 
 	for (QPointF var : m_terrainPoints){
 		//Inversed because of coordinate system
 		if (var.rx() < p_x2 && var.rx() > p_x1)
@@ -147,6 +150,7 @@ QPointF Terrain::getHighestPointBetween(float p_x1, float p_x2)
 QPointF Terrain::getLowestPointBetween(float p_x1, float p_x2)
 {
 	QPointF currentLowest = QPointF(0, 0);
+	//For each generated terrain points and control points, check which is lowest and return 
 	for (QPointF var : m_terrainPoints){
 		//Inversed because of coordinate system
 		if (var.rx() < p_x2 && var.rx() > p_x1)
@@ -168,6 +172,7 @@ QPointF Terrain::getLowestPointBetween(float p_x1, float p_x2)
 
 void Terrain::createBezierBasePoints(BezierMode p_mode, float p_basePointsSpacing, float p_curveEndPoints)
 {
+	//Creates random points with different limits depending on generation mode
 	m_terrainPoints.clear();
 	if (p_mode == BezierMode::InsaneCurves)	{
 		for (int i = 0; i < p_curveEndPoints; i += p_basePointsSpacing){

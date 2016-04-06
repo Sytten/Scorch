@@ -12,6 +12,7 @@ public:
 
     bool isAlive();
     void takeDamage(int p_damage);
+    int life() { return m_life; }
 
     void updateEntity(double deltaTime) {Q_UNUSED(deltaTime)}
 

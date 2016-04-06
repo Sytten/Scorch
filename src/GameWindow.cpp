@@ -161,7 +161,7 @@ void GameWindow::pausedTriggered()
 	else {
 		m_game.setPause(true);
 		if(m_game.pause())
-			m_actionPause->setText("&Jouez");
+			m_actionPause->setText("&Jouer");
     }
 }
 

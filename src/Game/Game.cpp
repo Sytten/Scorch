@@ -1,6 +1,6 @@
 #include "Game/Game.h"
 
-Game::Game(QObject *parent) : QObject(parent), m_timeLastUpdate(QTime::currentTime()), m_currentPlayer(Player1), m_currentState(Angle), m_gameState(Menu), m_cannonballFired(false)
+Game::Game(QObject *parent) : QObject(parent), m_timeLastUpdate(QTime::currentTime()), m_currentPlayer(Player1), m_currentState(Angle), m_gameState(Exit), m_cannonballFired(false)
 {
     m_view = new QGraphicsView(&m_scene);
     newGame();
@@ -23,7 +23,7 @@ bool Game::pause()
 
 void Game::setPause(bool pause)
 {
-	if (m_gameState == Play && pause){
+    if (m_gameState == Play && pause){
 		m_gameState = Pause;
 		m_scene.addItem(new PauseOverlay(m_scene.sceneRect()));
 	}	
@@ -108,7 +108,9 @@ void Game::cannonBallDestroyed()
 
 void Game::update()
 {
-	if (m_gameState == Play) {
+    if (m_gameState == Play || m_gameState == Transition) {
+        m_scene.advance();
+
 		for (auto item : m_scene.items()) {
 			if (CannonBall* cannonball = dynamic_cast<CannonBall*>(item)) {
 				//Update physic
@@ -124,8 +126,12 @@ void Game::update()
 						if (Castle* castle = dynamic_cast<Castle*>(collider)) {
 							if (castle->owner() != cannonball->owner()) {
 								m_scene.removeItem(item);
+                                Animation* explosion = new Animation(QPixmap(":/resources/explosion.png"),25,64,64);
+                                    explosion->setPos(item->pos());
+                                    m_scene.addItem(explosion);
 								delete item;
                                 castle->takeDamage(20);
+                                m_gameState = Transition;
 								break;
 							}
 						}
@@ -144,6 +150,16 @@ void Game::update()
 					}
 				}
 			}
+            else if(Animation* explosion = dynamic_cast<Animation*>(item)) {
+                if(explosion->done()){
+                    m_scene.removeItem(item);
+                    delete item;
+                    if(m_gameState == Transition) {
+                        createNewTerrain();
+                        return;
+                    }
+                }
+            }
 		}
 	}
 
@@ -153,6 +169,7 @@ void Game::update()
 void Game::newGame(Difficulty p_difficulty, int p_player)
 {
 	m_gameState = Play;
+    m_gameDifficulty = p_difficulty;
 
 	/**Setup basic scene and view**/
     m_scene.clear();
@@ -191,11 +208,11 @@ void Game::newGame(Difficulty p_difficulty, int p_player)
 
 	/**Add items**/
     Castle * castle1 = new Castle(QPixmap(":/resources/long_castle_p1.png"),Player::Player1, 100);
-		castle1->setScale(1.5);
+        castle1->setScale(2);
 		m_scene.addItem(castle1);
 
 	Castle * castle2 = new Castle(QPixmap(":/resources/long_castle_p2.png"), Player::Player2, 100);
-		castle2->setScale(1.5);
+        castle2->setScale(2);
 		m_scene.addItem(castle2);
 		
 
@@ -215,8 +232,8 @@ void Game::newGame(Difficulty p_difficulty, int p_player)
 		connect(cannon2, &Cannon::fired, this, &Game::newCannonball);
 		m_scene.addItem(cannon2);
 
-	castle1->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(0, m_terrain->boundingRect().width() / 8)) - QPointF(0, 150));
-	castle2->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(m_terrain->boundingRect().width() * (7.0f / 8.0f), m_terrain->boundingRect().width() - castle2->boundingRect().width())) - QPointF(0, 150));
+    castle1->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(0, m_terrain->boundingRect().width() / 8)) - QPointF(castle1->boundingRect().width()/2, 150));
+    castle2->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(m_terrain->boundingRect().width() * (7.0f / 8.0f), m_terrain->boundingRect().width() - castle2->boundingRect().width())) - QPointF(castle2->boundingRect().width()/2, 150));
 
 	QPointF chosenPoint = m_terrain->mapToScene(m_terrain->getHighestPointBetween(
 		castle1->pos().rx(),
@@ -242,5 +259,25 @@ void Game::newGame(Difficulty p_difficulty, int p_player)
 
 void Game::createNewTerrain()
 {
+    int player1Life;
+    int player2Life;
+    for (auto item : m_scene.items()) {
+        if (Castle* castle = dynamic_cast<Castle*>(item)) {
+            if (castle->owner() == Player1)
+                player1Life = castle->life();
+            else if (castle->owner() == Player2)
+                player2Life = castle->life();
+        }
+    }
 
+    newGame(m_gameDifficulty, 2);
+
+    for (auto item : m_scene.items()) {
+        if (Castle* castle = dynamic_cast<Castle*>(item)) {
+            if (castle->owner() == Player1)
+                castle->takeDamage(castle->life() - player1Life);
+            else if (castle->owner() == Player2)
+                castle->takeDamage(castle->life() - player2Life);
+        }
+    }
 }

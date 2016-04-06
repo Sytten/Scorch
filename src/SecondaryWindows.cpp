@@ -2,9 +2,9 @@
 
 FenetreNewGame::FenetreNewGame()
 {
-    setWindowTitle("Nouvelle partie");
-    setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
-    setFixedSize(300, 240);
+	setWindowTitle("Nouvelle partie");
+	setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
+	setFixedSize(300, 240);
 
 	QGridLayout *grid1 = new QGridLayout();
 	QGridLayout *grid2 = new QGridLayout();
@@ -68,7 +68,7 @@ FenetreTutoriel::FenetreTutoriel()
 {
 
 	setWindowTitle("Tutoriel");
-    setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
+	setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
 	setMinimumSize(QSize(655, 400));
 	setMaximumSize(QSize(655, 600));
 	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
@@ -126,7 +126,7 @@ FenetreTutoriel::FenetreTutoriel()
 	main->setLayout(window);
 	//main->setMaximumSize(QSize(800, 400));
 	//main->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-	
+
 
 	QScrollArea * scrollArea = new QScrollArea;
 	scrollArea->setWidget(main);
@@ -141,7 +141,7 @@ FenetreTutoriel::FenetreTutoriel()
 FenetreVersion::FenetreVersion()
 {
 	setWindowTitle("Version");
-    setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
+	setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
 	setFixedSize(560, 250);
 
 	QVBoxLayout * vertical = new QVBoxLayout();
@@ -156,11 +156,11 @@ FenetreVersion::FenetreVersion()
 	QGroupBox * group = new QGroupBox("Cr" + QString(233) + "dits additionnels");
 	QVBoxLayout * layout = new QVBoxLayout;
 
-	m_ligne1->setFont(QFont("OCR A extented",10));
-	m_ligne2->setFont(QFont("fantasque sans mono",10));
-	m_ligne3->setFont(QFont("fantasque sans mono",10));
-	m_ligne4->setFont(QFont("fantasque sans mono",10));
-	m_ligne5->setFont(QFont("fantasque sans mono",10));
+	m_ligne1->setFont(QFont("fantasque sans mono", 10));
+	m_ligne2->setFont(QFont("fantasque sans mono", 10));
+	m_ligne3->setFont(QFont("fantasque sans mono", 10));
+	m_ligne4->setFont(QFont("fantasque sans mono", 10));
+	m_ligne5->setFont(QFont("fantasque sans mono", 10));
 	ligne6->setFont(QFont("fantasque sans mono", 10));
 	layout->addWidget(ligne6);
 	group->setLayout(layout);

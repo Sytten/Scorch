@@ -117,8 +117,12 @@ void Game::update()
 				cannonball->updateEntity(m_timeLastUpdate.msecsTo(QTime::currentTime()));
 
 				//Check collisions
-				if (cannonball->outsideOfScene()) {
+				if (cannonball->outsideOfScene() || 
+							m_terrain->mapToScene(m_terrain->PointAtX(cannonball->pos().rx())).ry() < cannonball->pos().ry()) {
 					m_scene.removeItem(item);
+					Animation* explosion = new Animation(QPixmap(":/resources/explosion.png"), 25, 64, 64);
+						explosion->setPos(item->pos());
+						m_scene.addItem(explosion);
 					delete item;
 				}
 				else {
@@ -134,11 +138,6 @@ void Game::update()
                                 m_gameState = Transition;
 								break;
 							}
-						}
-						else if (QGraphicsRectItem* terrain = dynamic_cast<QGraphicsRectItem*>(collider)) { //Temp for terrain
-							/*m_scene.removeItem(item);
-							delete item;
-							break;*/
 						}
 						else if (Cannon* cannon = dynamic_cast<Cannon*>(collider)) {
 							if (cannon->owner() != m_currentPlayer) {

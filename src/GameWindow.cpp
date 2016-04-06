@@ -69,8 +69,10 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 
 	m_menuJeux = new QMenu("&Jeu");
 	m_actionPause = new QAction("&Pause", this);
 	m_actionPause->setShortcut(QKeySequence("P"));
+	m_actionPause->setCheckable(true);
 	m_actionMuet = new QAction("&Muet", this);
 	m_actionMuet->setShortcut(QKeySequence("M"));
+	m_actionMuet->setCheckable(true);
 
 	m_menuJeux->addAction(m_actionPause);
 	m_menuJeux->addSeparator();
@@ -168,12 +170,9 @@ void GameWindow::pausedTriggered()
 {
 	if (m_game.pause()) {
 		m_game.setPause(false);
-		m_actionPause->setText("&Pause");
 	}
 	else {
 		m_game.setPause(true);
-		if (m_game.pause())
-			m_actionPause->setText("&Jouer");
 	}
 }
 
@@ -181,17 +180,15 @@ void GameWindow::muteTriggered()
 {
 	if (m_musicPlayer.state() == QMediaPlayer::PlayingState) {
 		m_musicPlayer.pause();
-		m_actionMuet->setText("Non &Muet");
 	}
 	else if (m_musicPlayer.state() == QMediaPlayer::PausedState) {
 		m_musicPlayer.play();
-		m_actionMuet->setText("&Muet");
 	}
 }
 
 void GameWindow::resetPause()
 {
-	m_actionPause->setText("&Pause");
+	m_actionPause->setChecked(false);
 }
 
 void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)

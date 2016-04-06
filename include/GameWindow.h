@@ -1,3 +1,10 @@
+/********
+File: GameWindow.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Costum MainWindow to display the game and foward interactions/events
+********/
+
 #pragma once
 
 #include<iostream>

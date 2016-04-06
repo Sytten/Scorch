@@ -1,3 +1,10 @@
+/********
+File: PauseOverlay.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Overlay that appears when the game is on pause
+********/
+
 #ifndef PAUSEOVERLAY_H
 #define PAUSEOVERLAY_H
 

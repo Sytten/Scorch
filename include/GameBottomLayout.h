@@ -1,3 +1,10 @@
+/********
+File: GameBottomLayout.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Costum Layout for the information panel
+********/
+
 #include<QHBoxLayout>
 
 class GameBottomLayout : public QHBoxLayout

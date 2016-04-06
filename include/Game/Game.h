@@ -1,3 +1,10 @@
+/********
+File: Game.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Handles all the game logic and foward events to the right objects
+********/
+
 #ifndef GAME_H
 #define GAME_H
 

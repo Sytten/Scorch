@@ -1,3 +1,10 @@
+/********
+File: AngleStatusWidget.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Costum layout for angle widget with some slots to receive new information
+********/
+
 #ifndef ANGLESTATUSWIDGET_H
 #define ANGLESTATUSWIDGET_H
 

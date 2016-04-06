@@ -7,17 +7,17 @@ Animation::Animation(const QPixmap &spriteSheet, int numberOfFrame, int spriteWi
 
 void Animation::advance(int phase)
 {
-    if(phase == 0 && !done()) {
+    if(phase == 0 && !done()) { // Change sprite used in the spritesheet
         m_currentFrame++;
 
         m_currentSpriteRect.translate(m_spriteWidth, 0);
 
-        if(m_currentSpriteRect.x() >= pixmap().width()) {
+        if(m_currentSpriteRect.x() >= pixmap().width()) { // End of line!, change line
             m_currentSpriteRect.setX(0);
             m_currentSpriteRect.setWidth(m_spriteWidth);
             m_currentSpriteRect.translate(0, m_spriteHeight);
         }
-        update(boundingRect());
+        update(boundingRect()); // Call a repaint
     }
 }
 

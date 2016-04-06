@@ -1,3 +1,10 @@
+/********
+File: FPGAEvent.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Costum event sent by the FPGAReceiver to notify the program about new inputs
+********/
+
 #ifndef FPGAEVENT_H
 #define FPGAEVENT_H
 

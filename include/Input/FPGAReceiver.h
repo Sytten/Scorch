@@ -1,3 +1,10 @@
+/********
+File: FPGAReceiver.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Wrapper around the communication library to check the fpga periodically and send events
+********/
+
 #ifndef FPGARECEIVER_H
 #define FPGARECEIVER_H
 

@@ -9,6 +9,7 @@ void GameOverlay::paint(QPainter * painter, const QStyleOptionGraphicsItem * opt
 {
     painter->setRenderHint(QPainter::Antialiasing);
 
+	/**Draw the full health bar**/
     QPainterPath path;
     path.addRoundedRect(QRect(pos().x(), pos().y(), 450, 50),10,10);
     path.addRoundedRect(QRect(pos().x()+510, pos().y(), 450, 50),10,10);
@@ -19,12 +20,13 @@ void GameOverlay::paint(QPainter * painter, const QStyleOptionGraphicsItem * opt
     painter->fillPath(path, Qt::yellow);
     painter->drawPath(path);
 
+	/**Draw the real health lost over it**/
     path = QPainterPath();
     path.addRoundedRect(QRect(pos().x()+pen.width()/2, pos().y()+pen.width()/2, 450 * (100-m_player1Life)/100, 50-pen.width()),10,10);
     path.addRoundedRect(QRect(pos().x()+960-450 * (100-m_player2Life)/100-pen.width()/2, pos().y()+pen.width()/2, 450 * (100-m_player2Life)/100, 50-pen.width()),10,10);
     painter->fillPath(path, Qt::red);
 
-
+	/**Draw The Central widget for KO**/
     path = QPainterPath();
     pen.setColor(Qt::white);
     painter->setPen(pen);
@@ -32,6 +34,7 @@ void GameOverlay::paint(QPainter * painter, const QStyleOptionGraphicsItem * opt
     painter->fillPath(path, Qt::black);
     painter->drawPath(path);
 
+	/**Draw the text in the central widget**/
     if(m_player1Life == 0 || m_player2Life == 0)
         pen.setColor(Qt::red);
     else

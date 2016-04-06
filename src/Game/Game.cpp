@@ -28,7 +28,7 @@ void Game::setPause(bool pause)
 		m_scene.addItem(new PauseOverlay(m_scene.sceneRect()));
 	}	
 	else if (m_gameState == Pause && !pause) {
-		for (auto item : m_scene.items()) {
+		for (auto item : m_scene.items()) { //Remove pause overlay when resuming
 			if (PauseOverlay* pauseOverlay = dynamic_cast<PauseOverlay*>(item)) {
 				m_scene.removeItem(item);
 				delete pauseOverlay;
@@ -55,13 +55,14 @@ void Game::customEvent(QEvent *event)
 		if (event->type() == FPGAEvent::customFPGAEvent) {
 			FPGAEvent* fpgaEvent = static_cast<FPGAEvent *>(event);
 
+			//Change event state
 			if (fpgaEvent->command() == Change) {
                 m_inputState = (InputState)(m_inputState + 1);
                 if (m_inputState == NoState)
                     m_inputState = Angle;
                 emit stateChanged(m_inputState);
 			}
-			else {
+			else { //Look for the cannon owned by the player and change its properties
 				for (auto item : m_scene.items()) {
 					if (Cannon* cannon = dynamic_cast<Cannon*>(item)) {
 						if (cannon->owner() == m_currentPlayer) {
@@ -77,12 +78,12 @@ void Game::customEvent(QEvent *event)
 								CannonBall* ball = cannon->fire();
 								connect(ball, &CannonBall::destroyed, this, &Game::cannonBallDestroyed);
 								m_scene.addItem(ball);
-								cannon->reset();
+								cannon->reset(); //Reset all properties
 
-                                m_inputState = Angle;
+                                m_inputState = Angle; 
                                 emit stateChanged(m_inputState);
 
-								m_currentPlayer = (Player)(m_currentPlayer + 1);
+								m_currentPlayer = (Player)(m_currentPlayer + 1); //Change active player
 								if (m_currentPlayer == NoPlayer)
 									m_currentPlayer = Player1;
 								emit playerChanged(m_currentPlayer);
@@ -108,15 +109,15 @@ void Game::cannonBallDestroyed()
 
 void Game::update()
 {
-    if (m_gameState == Play || m_gameState == Transition) {
+    if (m_gameState == Play || m_gameState == Transition) { //Only update when playing or during transition between terrains
         m_scene.advance();
 
-		for (auto item : m_scene.items()) {
+		for (auto item : m_scene.items()) { // Update the cannonball
 			if (CannonBall* cannonball = dynamic_cast<CannonBall*>(item)) {
 				//Update physic
 				cannonball->updateEntity(m_timeLastUpdate.msecsTo(QTime::currentTime()));
 
-				//Check collisions
+				//Check collisions with terrain or outside frame
 				if (cannonball->outsideOfScene() || 
 							m_terrain->mapToScene(m_terrain->PointAtX(cannonball->pos().rx())).ry() < cannonball->pos().ry()) {
 					m_scene.removeItem(item);
@@ -125,7 +126,7 @@ void Game::update()
 						m_scene.addItem(explosion);
 					delete item;
 				}
-				else {
+				else { //Check for collisions with other items
 					for (auto collider : cannonball->collidingItems()) {
 						if (Castle* castle = dynamic_cast<Castle*>(collider)) {
 							if (castle->owner() != cannonball->owner()) {
@@ -148,7 +149,7 @@ void Game::update()
 						}
 					}
 				}
-			}
+			} //Remove Animation when its done and change state if it was a transition
             else if(Animation* explosion = dynamic_cast<Animation*>(item)) {
                 if(explosion->done()){
                     m_scene.removeItem(item);
@@ -199,12 +200,7 @@ void Game::newGame(Difficulty p_difficulty, int p_player, Player p_startingPlaye
 		bezier = BezierMode(rand() % 4);
 	}
 
-
-
-	m_terrain = new Terrain(bezier, 1920.0f, 100);
-	m_terrain->setPos(0, 500);
-
-	/**Add items**/
+	/**Add castles**/
     Castle * castle1 = new Castle(QPixmap(":/resources/long_castle_p1.png"),Player::Player1, 100);
         castle1->setScale(2);
 		m_scene.addItem(castle1);
@@ -212,9 +208,13 @@ void Game::newGame(Difficulty p_difficulty, int p_player, Player p_startingPlaye
 	Castle * castle2 = new Castle(QPixmap(":/resources/long_castle_p2.png"), Player::Player2, 100);
         castle2->setScale(2);
 		m_scene.addItem(castle2);
-		
-
+	
+	/**Add terrain**/
+	m_terrain = new Terrain(bezier, 1920.0f, 100);
+	m_terrain->setPos(0, 500);
 	m_scene.addItem(m_terrain);
+
+	/**Add cannons**/
 	Cannon * cannon1 = new Cannon(QPixmap(":/resources/cannon_gun.png/"), QPixmap(":/resources/cannon_support.png/"), QPointF(300, 0), false, Player::Player1);
 		cannon1->setScale(0.1);
 		connect(cannon1, &Cannon::angleChanged, this, &Game::newAngle);
@@ -230,9 +230,11 @@ void Game::newGame(Difficulty p_difficulty, int p_player, Player p_startingPlaye
 		connect(cannon2, &Cannon::fired, this, &Game::newCannonball);
 		m_scene.addItem(cannon2);
 
+	/**Castle placement logic**/
     castle1->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(0, m_terrain->boundingRect().width() / 8)) - QPointF(castle1->boundingRect().width()/2, 150));
     castle2->setPos(m_terrain->mapToScene(m_terrain->getLowestPointBetween(m_terrain->boundingRect().width() * (7.0f / 8.0f), m_terrain->boundingRect().width() - castle2->boundingRect().width())) - QPointF(castle2->boundingRect().width()/2, 150));
 
+	/**Cannon placement logic**/
 	QPointF chosenPoint = m_terrain->mapToScene(m_terrain->getHighestPointBetween(
 		castle1->pos().rx(),
 		castle1->pos().rx() + m_terrain->boundingRect().width() / 8.0));
@@ -245,14 +247,14 @@ void Game::newGame(Difficulty p_difficulty, int p_player, Player p_startingPlaye
 	offset = QPointF(960 * cannon2->scale() / 2.0f, 480 * cannon2->scale() / -3.0f);
 	cannon2->setPos(chosenPoint + offset);
 
+	/**Add game overlay**/
     GameOverlay* overlay = new GameOverlay();
     overlay->setPos(240, 10);
     connect(castle1, &Castle::damageTaken, overlay, &GameOverlay::newPlayerLife);
     connect(castle2, &Castle::damageTaken, overlay, &GameOverlay::newPlayerLife);
     m_scene.addItem(overlay);
 
-
-
+	/**Save some stuff and emit new changes**/
 	m_inputState = Angle;
 	m_currentPlayer = p_startingPlayer;
 
@@ -271,6 +273,7 @@ void Game::startPlaying()
 
 void Game::createNewTerrain()
 {
+	/**Same information before generating new terrain**/
     int player1Life;
     int player2Life;
     for (auto item : m_scene.items()) {
@@ -282,9 +285,11 @@ void Game::createNewTerrain()
         }
     }
 
+	/**Generate new terrain**/
     newGame(m_gameDifficulty, 2, m_currentPlayer);
 	m_gameState = Play;
 
+	/**Set back the finormation in the new scene**/
     for (auto item : m_scene.items()) {
         if (Castle* castle = dynamic_cast<Castle*>(item)) {
             if (castle->owner() == Player1)

@@ -1,3 +1,10 @@
+/********
+File: Castle.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Entity castle that maintains the life system coherent for the player
+********/
+
 #ifndef CASTLE_H
 #define CASTLE_H
 

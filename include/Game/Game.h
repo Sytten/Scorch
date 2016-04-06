@@ -25,12 +25,14 @@ public:
     Game(QObject* parent = 0);
     ~Game();
 
-    InputState getState() { return m_currentState; }
+    InputState getInputState() { return m_inputState; }
+    GameState getGameState() { return m_gameState; }
     QGraphicsView* getView() { return m_view; }
 	bool pause();
 
 public slots:
 	void newGame(Difficulty p_difficulty = Difficulty::Easy, int p_player = 2);
+    void startPlaying();
 	void createNewTerrain();
 	void setPause(bool pause);
 	void newAngle(double angle);
@@ -50,7 +52,7 @@ private:
     QTimer m_timer;
     QTime m_timeLastUpdate;
     Player m_currentPlayer;
-    InputState m_currentState;
+    InputState m_inputState;
 	GameState m_gameState;
 
 	Terrain * m_terrain;

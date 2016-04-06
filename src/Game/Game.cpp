@@ -1,6 +1,6 @@
 #include "Game/Game.h"
 
-Game::Game(QObject *parent) : QObject(parent), m_timeLastUpdate(QTime::currentTime()), m_currentPlayer(Player1), m_currentState(Angle), m_gameState(Exit), m_cannonballFired(false)
+Game::Game(QObject *parent) : QObject(parent), m_timeLastUpdate(QTime::currentTime()), m_currentPlayer(Player1), m_inputState(Angle), m_gameState(Menu), m_cannonballFired(false)
 {
     m_view = new QGraphicsView(&m_scene);
     newGame();
@@ -56,31 +56,31 @@ void Game::customEvent(QEvent *event)
 			FPGAEvent* fpgaEvent = static_cast<FPGAEvent *>(event);
 
 			if (fpgaEvent->command() == Change) {
-				m_currentState = (InputState)(m_currentState + 1);
-				if (m_currentState == NoState)
-					m_currentState = Angle;
-				emit stateChanged(m_currentState);
+                m_inputState = (InputState)(m_inputState + 1);
+                if (m_inputState == NoState)
+                    m_inputState = Angle;
+                emit stateChanged(m_inputState);
 			}
 			else {
 				for (auto item : m_scene.items()) {
 					if (Cannon* cannon = dynamic_cast<Cannon*>(item)) {
 						if (cannon->owner() == m_currentPlayer) {
-							if (fpgaEvent->command() == Increase && m_currentState == Angle)
+                            if (fpgaEvent->command() == Increase && m_inputState == Angle)
 								cannon->increaseAngle(1);
-							else if (fpgaEvent->command() == Decrease && m_currentState == Angle)
+                            else if (fpgaEvent->command() == Decrease && m_inputState == Angle)
 								cannon->decreaseAngle(1);
-							else if (fpgaEvent->command() == Increase && m_currentState == Power)
+                            else if (fpgaEvent->command() == Increase && m_inputState == Power)
 								cannon->increasePower(1);
-							else if (fpgaEvent->command() == Decrease && m_currentState == Power)
+                            else if (fpgaEvent->command() == Decrease && m_inputState == Power)
 								cannon->decreasePower(1);
-							else if ((fpgaEvent->command() == Decrease || fpgaEvent->command() == Increase) && m_currentState == Fire) {
+                            else if ((fpgaEvent->command() == Decrease || fpgaEvent->command() == Increase) && m_inputState == Fire) {
 								CannonBall* ball = cannon->fire();
 								connect(ball, &CannonBall::destroyed, this, &Game::cannonBallDestroyed);
 								m_scene.addItem(ball);
 								cannon->reset();
 
-								m_currentState = Angle;
-								emit stateChanged(m_currentState);
+                                m_inputState = Angle;
+                                emit stateChanged(m_inputState);
 
 								m_currentPlayer = (Player)(m_currentPlayer + 1);
 								if (m_currentPlayer == NoPlayer)
@@ -168,7 +168,6 @@ void Game::update()
 
 void Game::newGame(Difficulty p_difficulty, int p_player)
 {
-	m_gameState = Play;
     m_gameDifficulty = p_difficulty;
 
 	/**Setup basic scene and view**/
@@ -254,6 +253,11 @@ void Game::newGame(Difficulty p_difficulty, int p_player)
     m_scene.addItem(overlay);
 
     emit newGameGenerated();
+}
+
+void Game::startPlaying()
+{
+    m_gameState = Play;
 }
 
 

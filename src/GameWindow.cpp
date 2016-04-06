@@ -197,12 +197,12 @@ void GameWindow::muteTriggered()
 void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)
 {
 	//NOTE: Hack to simulate correctly the FPGA input
-	if (m_game.getState() == InputState::Fire && KeyEvent->key() == Qt::Key_Space){
+    if (m_game.getInputState() == InputState::Fire && KeyEvent->key() == Qt::Key_Space){
 		QKeyEvent * key = new QKeyEvent(KeyEvent->type(), Qt::Key_Up, Qt::KeyboardModifier::NoModifier);
 
 		m_fpga.handlePressEvent(key);
 	}
-	else if (m_game.getState() == InputState::Fire && (KeyEvent->key() == Qt::Key_Up || KeyEvent->key() == Qt::Key_Down))
+    else if (m_game.getInputState() == InputState::Fire && (KeyEvent->key() == Qt::Key_Up || KeyEvent->key() == Qt::Key_Down))
 		return;
 	else
 		m_fpga.handlePressEvent(KeyEvent);
@@ -221,8 +221,10 @@ void GameWindow::openNewGame()
 {
 	FenetreNewGame fenNewGame;
 	fenNewGame.exec();
-	if (fenNewGame.result() == QDialog::Accepted)
+    if (fenNewGame.result() == QDialog::Accepted) {
 		m_game.newGame(fenNewGame.getChosenDifficulty(), 2);
+        m_game.startPlaying();
+    }
 }
 
 void GameWindow::openTutoriel()
@@ -241,8 +243,10 @@ void GameWindow::openMainMenu()
 {
 	FenetreNewGame fenNewGame;
 	fenNewGame.exec();
-	if (fenNewGame.result() == QDialog::Accepted)
-		m_game.newGame(fenNewGame.getChosenDifficulty(), 2);
+    if (fenNewGame.result() == QDialog::Accepted) {
+        m_game.newGame(fenNewGame.getChosenDifficulty(), 2);
+        m_game.startPlaying();
+    }
 	else
 		this->close();
 }
@@ -262,6 +266,9 @@ void GameWindow::closeEvent(QCloseEvent *event)
 
 	if (QMessageBox::Yes == quitMessage->exec())
 		event->accept();
-	else
-		event->ignore();
+    else {
+        event->ignore();
+        if (m_game.getGameState() == Menu)
+            QTimer::singleShot(1, this, &GameWindow::openMainMenu);
+    }
 }

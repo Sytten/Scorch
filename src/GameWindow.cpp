@@ -80,10 +80,10 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this),
 	//Help menu
 	m_menuAide = new QMenu("Aide");
 	m_actionTutoriel = new QAction("Tutoriel", this);
-        m_actionTutoriel->setShortcut(QKeySequence("F2"));
+        m_actionTutoriel->setShortcut(QKeySequence("F1"));
 	m_actionVersion = new QAction("Version", this);
-        m_actionVersion->setShortcut(QKeySequence("F1"));
-	QAction* actionAboutQt = new QAction("A Propos de Qt", this);
+        m_actionVersion->setShortcut(QKeySequence("F2"));
+	QAction* actionAboutQt = new QAction(QString(224)+" Propos de Qt", this);
         actionAboutQt->setShortcut(QKeySequence("F3"));
 
 	m_menuAide->addAction(m_actionTutoriel);
@@ -161,7 +161,7 @@ void GameWindow::pausedTriggered()
 	else {
 		m_game.setPause(true);
 		if(m_game.pause())
-			m_actionPause->setText("&Play");
+			m_actionPause->setText("&Jouez");
     }
 }
 

@@ -44,7 +44,7 @@ FenetreNewGame::FenetreNewGame()
 	group1->setLayout(grid1);
 	group1->setTitle("Selectionner le nombre de joueurs");
 	group2->setLayout(grid2);
-	group2->setTitle("Selectionner la difficulte");
+	group2->setTitle("Selectionner la difficult" + QString(233));
 	vertical->addWidget(group1);
 	horizontal->addWidget(group2);
 	vertical->addLayout(horizontal);
@@ -69,19 +69,22 @@ FenetreTutoriel::FenetreTutoriel()
 
 	setWindowTitle("Tutoriel");
 	setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
-	setMinimumSize(QSize(655, 400));
-	setMaximumSize(QSize(655, 600));
+	setMinimumSize(QSize(655, 200));
+	setMaximumSize(QSize(655, 800));
+	resize(QSize(655,600));
 	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+
+	move(Qt::AlignVCenter,Qt::AlignTop);
 
 	window = new QVBoxLayout();
 
 
-	QGroupBox * group0 = new QGroupBox("General");
+	QGroupBox * group0 = new QGroupBox("G" + QString(233) + "n" + QString(233) + "ral");
 	QHBoxLayout * zeroRow = new QHBoxLayout;
-	content = new QLabel("Pour ajuster les param" + QString(232) + "tre du canon, dite 'A' ou 'O' et le tenir jusqu'"
-		+ QString(224) + " ce que vous vouliez arr" + QString(234) + "ter. Pour changer le mode, il faut prononcer la lettre 'I'. Les clavier peut aussi contr" + QString(147) + "ler les activit" + QString(233) + "s de tir, les fl" + QString(232) + "ches gauche et droite permettant de modifier le mode d'ajustement et les fl" + QString(232) + "ches haut et bas permettant d'ajuster le param" + QString(232) + "tre. La barre espace permet quant à elle de provoquer le tir lorsque le mode est \"tir\"");
-	content->setWordWrap(true);
-	zeroRow->addWidget(content, 0, Qt::AlignLeft);
+	content = new QLabel("Pour ajuster les param" + QString(232) + "tres du canon, dite 'A' ou 'O' et le tenir jusqu'"
+		+ QString(224) + " ce que vous vouliez arr" + QString(234) + "ter.\nPour changer le mode, il faut prononcer la lettre 'I'. Le clavier peut aussi contr" + QString(244) + "ler les activit" + QString(233) + "s de tir,\nles fl" + QString(232) + "ches gauche et droite permettent de modifier le mode d'ajustement.\nFinalement, les fl" + QString(232) + "ches haut et bas permettent d'ajuster le param" + QString(232) + "tre.\nLa barre espace permet quant " + QString(224) + " elle de provoquer le tir lorsque le mode est \"tir\"");
+	//content->setWordWrap(true);
+	zeroRow->addWidget(content, 0, Qt::AlignJustify);
 	group0->setLayout(zeroRow);
 
 	QGroupBox * group1 = new QGroupBox("Cette partie de l'interface repr" + QString(233) + "sente l'indication du joueur courant. Dans ce cas-ci, le joueur 1 est actif");
@@ -147,7 +150,7 @@ FenetreVersion::FenetreVersion()
 	QVBoxLayout * vertical = new QVBoxLayout();
 	m_ligne1 = new QLabel("SCORCH VERSION 0.5");
 	m_ligne2 = new QLabel("Derniere mise a jour : 2016-04-04");
-	m_ligne3 = new QLabel("Developp"+QString(233)+" par l'equipe P19 de l'Universit"+QString(233)+" de Sherbrooke.");
+	m_ligne3 = new QLabel("Developp" + QString(233) + " par l'equipe P19 de l'Universit" + QString(233) + " de Sherbrooke.");
 	m_ligne4 = new QLabel("Les programmeurs ayant particip" + QString(233) + " " + QString(224) + " la cr" + QString(233) + "ation de Scorch");
 	m_ligne5 = new QLabel("Emile Fugulin, Jean-Philippe Fournier, Julien Larochelle, Philippe Spino");
 	QLabel * ligne6 = new QLabel("Pippin the Hunchback, Celtic Impulse, Angevin B by Kevin MacLeod (incompetech.com) \n" +

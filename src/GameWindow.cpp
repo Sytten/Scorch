@@ -83,7 +83,7 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 
         m_actionTutoriel->setShortcut(QKeySequence("F1"));
 	m_actionVersion = new QAction("Version", this);
         m_actionVersion->setShortcut(QKeySequence("F2"));
-	QAction* actionAboutQt = new QAction(QString(224)+" Propos de Qt", this);
+    QAction* actionAboutQt = new QAction(QString(224)+"A Propos de Qt", this);
         actionAboutQt->setShortcut(QKeySequence("F3"));
 
 	m_menuAide->addAction(m_actionTutoriel);

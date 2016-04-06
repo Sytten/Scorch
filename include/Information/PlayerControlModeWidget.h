@@ -1,3 +1,10 @@
+/********
+File: PlayerControlModeWidget.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Costum widget to display a mode
+********/
+
 #ifndef PLAYERCONTROLMODEWIDGET_H
 #define PLAYERCONTROLMODEWIDGET_H
 

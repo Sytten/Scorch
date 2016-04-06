@@ -1,3 +1,10 @@
+/********
+File: Animation.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Animation can display a spritesheet to create movement in the game
+********/
+
 #ifndef ANIMATION_H
 #define ANIMATION_H
 

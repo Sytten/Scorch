@@ -1,3 +1,10 @@
+/********
+File: SecondaryWindows.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Various helper, option and information windows
+********/
+
 #ifndef SECONDARYWINDOWS_H
 #define SECONDARYWINDOWS_H
 

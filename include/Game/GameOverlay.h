@@ -1,3 +1,10 @@
+/********
+File: GameOverlay.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Game overlay to display the life of each player and if a player won.
+********/
+
 #ifndef GAMEOVERLAY_H
 #define GAMEOVERLAY_H
 

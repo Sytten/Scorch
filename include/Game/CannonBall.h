@@ -1,3 +1,10 @@
+/********
+File: CannonBall.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Entity cannonball is fired by cannons and travel each frame
+********/
+
 #ifndef CANNONBALL_H
 #define CANNONBALL_H
 

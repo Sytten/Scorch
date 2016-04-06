@@ -1,3 +1,10 @@
+/********
+File: Entity.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Base class for all entities in the scene
+********/
+
 #ifndef ENTITY_H
 #define ENTITY_H
 

@@ -1,3 +1,10 @@
+/********
+File: FirePowerWidget.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Costum layout to display the current power and receive new information
+********/
+
 #ifndef FIREPOWERWIDGET_H
 #define FIREPOWERWIDGET_H
 

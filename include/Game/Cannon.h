@@ -1,3 +1,10 @@
+/********
+File: Cannon.h
+Authors: Émile Fugulin, Jean-Philippe Fournier, Philippe Spino, Julien Larochelle
+Date: 06 avril 2016
+Description: Entity cannon can fire cannonball and maintains the properties set by the player
+********/
+
 #ifndef CANNON_H
 #define CANNON_H
 

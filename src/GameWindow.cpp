@@ -54,10 +54,10 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 
 	m_menuBar = new QMenuBar;
 
 	// File menu
-	m_menuFichier = new QMenu("Fichier");
-	m_actionQuit = new QAction("Quitter", this);
+	m_menuFichier = new QMenu("&Fichier");
+	m_actionQuit = new QAction("&Quitter", this);
 	m_actionQuit->setShortcut(QKeySequence("Q"));
-	m_actionNewGame = new QAction("Nouvelle partie", this);
+	m_actionNewGame = new QAction("&Nouvelle partie", this);
 	m_actionNewGame->setShortcut(QKeySequence("N"));
 
 	m_menuFichier->addAction(m_actionNewGame);
@@ -66,10 +66,10 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 
 	m_menuBar->addMenu(m_menuFichier);
 
 	// Game menu
-	m_menuJeux = new QMenu("Jeu");
-	m_actionPause = new QAction("Pause", this);
+	m_menuJeux = new QMenu("&Jeu");
+	m_actionPause = new QAction("&Pause", this);
 	m_actionPause->setShortcut(QKeySequence("P"));
-	m_actionMuet = new QAction("Muet", this);
+	m_actionMuet = new QAction("&Muet", this);
 	m_actionMuet->setShortcut(QKeySequence("M"));
 
 	m_menuJeux->addAction(m_actionPause);
@@ -78,12 +78,12 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 
 	m_menuBar->addMenu(m_menuJeux);
 
 	//Help menu
-	m_menuAide = new QMenu("Aide");
-	m_actionTutoriel = new QAction("Tutoriel", this);
+	m_menuAide = new QMenu("&Aide");
+	m_actionTutoriel = new QAction("&Tutoriel", this);
 	m_actionTutoriel->setShortcut(QKeySequence("F1"));
-	m_actionVersion = new QAction("Version", this);
+	m_actionVersion = new QAction("&Version", this);
 	m_actionVersion->setShortcut(QKeySequence("F2"));
-	QAction* actionAboutQt = new QAction(QString(192) + " Propos de Qt", this);
+	QAction* actionAboutQt = new QAction(QString(192) + " Propos de &Qt", this);
 	actionAboutQt->setShortcut(QKeySequence("F3"));
 
 	m_menuAide->addAction(m_actionTutoriel);
@@ -168,12 +168,12 @@ void GameWindow::pausedTriggered()
 {
 	if (m_game.pause()) {
 		m_game.setPause(false);
-		m_actionPause->setText("Pause");
+		m_actionPause->setText("&Pause");
 	}
 	else {
 		m_game.setPause(true);
 		if (m_game.pause())
-			m_actionPause->setText("Jouer");
+			m_actionPause->setText("&Jouer");
 	}
 }
 
@@ -181,17 +181,17 @@ void GameWindow::muteTriggered()
 {
 	if (m_musicPlayer.state() == QMediaPlayer::PlayingState) {
 		m_musicPlayer.pause();
-		m_actionMuet->setText("Non Muet");
+		m_actionMuet->setText("Non &Muet");
 	}
 	else if (m_musicPlayer.state() == QMediaPlayer::PausedState) {
 		m_musicPlayer.play();
-		m_actionMuet->setText("Muet");
+		m_actionMuet->setText("&Muet");
 	}
 }
 
 void GameWindow::resetPause()
 {
-	m_actionPause->setText("Pause");
+	m_actionPause->setText("&Pause");
 }
 
 void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)

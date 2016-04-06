@@ -121,8 +121,6 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 
 	connect(this, &GameWindow::changePower, m_currentPower, &FirePowerWidget::setPower);
 	connect(this, &GameWindow::changeState, m_gameModeWidget, &GameModeWidget::setCurrentMode);
 
-
-	QTimer::singleShot(1, this, &GameWindow::openMainMenu);
     /****Music****/
     QMediaPlaylist* playlist = new QMediaPlaylist;
         playlist->addMedia(QUrl::fromLocalFile(QDir::currentPath() + "/resources/music/Angevin_B.mp3"));

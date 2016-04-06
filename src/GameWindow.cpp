@@ -1,18 +1,18 @@
 #include "GameWindow.h"
 
 
-GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 0), m_game()
+GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this), m_game()
 {
 	/****General setup****/
 	this->setWindowTitle("Scorch");
 	this->setStatusBar(new QStatusBar);
-	this->setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
-
+    this->setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
+	
 	setFocus();
 	setStyleSheet("QMainWindow::separator{ width:0px; height:0px;}");
 	m_game.getView()->setFocusPolicy(Qt::NoFocus);
-
-
+	
+	
 	/****Central widget****/
 	GameModeWidget * m_gameModeWidget;
 	AngleStatusWidget * m_currentAngle;
@@ -20,7 +20,7 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 
 
 	this->setCentralWidget(m_game.getView());
 
-
+	
 	/****Bottom Widget (Information about player)****/
 	QWidget* bottomWidget = new QWidget;
 	QDockWidget* informationPanel = new QDockWidget;
@@ -49,16 +49,16 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 
 
 	this->addDockWidget(Qt::BottomDockWidgetArea, informationPanel);
 
-
+	
 	/****Menus****/
 	m_menuBar = new QMenuBar;
-
+	
 	// File menu
 	m_menuFichier = new QMenu("Fichier");
 	m_actionQuit = new QAction("Quitter", this);
-	m_actionQuit->setShortcut(QKeySequence("Q"));
+		m_actionQuit->setShortcut(QKeySequence("Q"));
 	m_actionNewGame = new QAction("Nouvelle partie", this);
-	m_actionNewGame->setShortcut(QKeySequence("N"));
+		m_actionNewGame->setShortcut(QKeySequence("N"));
 
 	m_menuFichier->addAction(m_actionNewGame);
 	m_menuFichier->addSeparator();
@@ -66,11 +66,11 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 
 	m_menuBar->addMenu(m_menuFichier);
 
 	// Game menu
-	m_menuJeux = new QMenu("Jeu");
+	m_menuJeux = new QMenu("Jeux");
 	m_actionPause = new QAction("Pause", this);
-	m_actionPause->setShortcut(QKeySequence("P"));
+		m_actionPause->setShortcut(QKeySequence("P"));
 	m_actionMuet = new QAction("Muet", this);
-	m_actionMuet->setShortcut(QKeySequence("M"));
+		m_actionMuet->setShortcut(QKeySequence("M"));
 
 	m_menuJeux->addAction(m_actionPause);
 	m_menuJeux->addSeparator();
@@ -83,8 +83,8 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 
         m_actionTutoriel->setShortcut(QKeySequence("F1"));
 	m_actionVersion = new QAction("Version", this);
         m_actionVersion->setShortcut(QKeySequence("F2"));
-	QAction* actionAboutQt = new QAction("A Propos de Qt", this);
-	actionAboutQt->setShortcut(QKeySequence("F3"));
+	QAction* actionAboutQt = new QAction(QString(224)+" Propos de Qt", this);
+        actionAboutQt->setShortcut(QKeySequence("F3"));
 
 	m_menuAide->addAction(m_actionTutoriel);
 	m_menuAide->addSeparator();
@@ -94,13 +94,12 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 
 	m_menuBar->addMenu(m_menuAide);
 
 	this->setMenuBar(m_menuBar);
-
+	
 	/****Connections****/
 	// Connect Menu
-	connect(m_actionQuit, &QAction::triggered, this, &QMainWindow::close);
+	connect(m_actionQuit, &QAction::triggered, QApplication::instance(), &QApplication::quit);
 	connect(actionAboutQt, &QAction::triggered, QApplication::instance(), &QApplication::aboutQt);
 	connect(m_actionPause, &QAction::triggered, this, &GameWindow::pausedTriggered);
-    	connect(m_actionMuet, &QAction::triggered, this, &GameWindow::muteTriggered);
 	connect(m_actionNewGame, SIGNAL(triggered()), this, SLOT(openNewGame()));
 	connect(m_actionTutoriel, SIGNAL(triggered()), this, SLOT(openTutoriel()));
 	connect(m_actionVersion, SIGNAL(triggered()), this, SLOT(openVersion()));
@@ -113,8 +112,8 @@ GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 
 	connect(&m_game, &Game::angleChanged, this, &GameWindow::angleChanged);
 	connect(&m_game, &Game::powerChanged, this, &GameWindow::powerChanged);
 	connect(&m_game, &Game::stateChanged, this, &GameWindow::stateChanged);
-	connect(&m_game, &Game::newGameGenerated, this, &GameWindow::resetPause);
-
+    connect(&m_game, &Game::newGameGenerated, this, &GameWindow::resetPause);
+	
 	// Connect Info Widgets
 	connect(this, &GameWindow::changeAngle, m_currentAngle, &AngleStatusWidget::setAngle);
 	connect(this, &GameWindow::changePlayer, m_gameModeWidget, &GameModeWidget::setCurrentPlayer);
@@ -168,30 +167,18 @@ void GameWindow::pausedTriggered()
 {
 	if (m_game.pause()) {
 		m_game.setPause(false);
-        	m_actionPause->setText("Pause");
+		m_actionPause->setText("&Pause");
 	}
 	else {
 		m_game.setPause(true);
 		if(m_game.pause())
-            		m_actionPause->setText("Jouer");
+			m_actionPause->setText("&Jouer");
     }
 }
 
 void GameWindow::resetPause()
 {
-    m_actionPause->setText("Pause");
-}
-
-void GameWindow::muteTriggered()
-{
-    if(m_musicPlayer.state() == QMediaPlayer::PlayingState) {
-        m_musicPlayer.pause();
-        m_actionMuet->setText("Non Muet");
-    }
-    else if(m_musicPlayer.state() == QMediaPlayer::PausedState) {
-        m_musicPlayer.play();
-        m_actionMuet->setText("Muet");
-    }
+    m_actionPause->setText("&Pause");
 }
 
 void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)
@@ -210,11 +197,11 @@ void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)
 
 void GameWindow::customEvent(QEvent *event)
 {
-	if (event->type() == FPGAEvent::customFPGAEvent) {
-		FPGAEvent* fpgaEvent = static_cast<FPGAEvent *>(event);
+    if(event->type() == FPGAEvent::customFPGAEvent) {
+        FPGAEvent* fpgaEvent = static_cast<FPGAEvent *>(event);
 
-		QCoreApplication::postEvent(&m_game, new FPGAEvent(*fpgaEvent));
-	}
+        QCoreApplication::postEvent(&m_game, new FPGAEvent(*fpgaEvent));
+    }
 }
 
 void GameWindow::openNewGame()
@@ -229,14 +216,14 @@ void GameWindow::openNewGame()
 
 void GameWindow::openTutoriel()
 {
-	FenetreTutoriel fenTutoriel;
-	fenTutoriel.exec();
+    FenetreTutoriel fenTutoriel;
+    fenTutoriel.exec();
 }
 
 void GameWindow::openVersion()
 {
-	FenetreVersion fenVersion;
-	fenVersion.exec();
+    FenetreVersion fenVersion;
+    fenVersion.exec();
 }
 
 void GameWindow::openMainMenu()

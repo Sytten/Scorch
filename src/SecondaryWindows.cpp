@@ -147,7 +147,7 @@ FenetreVersion::FenetreVersion()
 	QVBoxLayout * vertical = new QVBoxLayout();
 	m_ligne1 = new QLabel("SCORCH VERSION 0.5");
 	m_ligne2 = new QLabel("Derniere mise a jour : 2016-04-04");
-	m_ligne3 = new QLabel("Developpe par l'equipe P19 de l'U de S");
+	m_ligne3 = new QLabel("Developp"+QString(233)+" par l'equipe P19 de l'Universit"+QString(233)+" de Sherbrooke.");
 	m_ligne4 = new QLabel("Les programmeurs ayant particip" + QString(233) + " " + QString(224) + " la cr" + QString(233) + "ation de Scorch");
 	m_ligne5 = new QLabel("Emile Fugulin, Jean-Philippe Fournier, Julien Larochelle, Philippe Spino");
 	QLabel * ligne6 = new QLabel("Pippin the Hunchback, Celtic Impulse, Angevin B by Kevin MacLeod (incompetech.com) \n" +

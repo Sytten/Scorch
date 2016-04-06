@@ -3,6 +3,7 @@
 
 AngleStatusWidget::AngleStatusWidget(QWidget *parent) : QWidget(parent)
 {
+	//Label creation
 	m_currentAngle = new QLabel("Angle: ");
 
 	QFont font = m_currentAngle->font();
@@ -38,9 +39,7 @@ void AngleStatusWidget::setAngle(float p_angle)
 	while (p_angle < 0)p_angle += 360;
 	m_angle = p_angle;
 
-	/*QString labelText("Angle courant : ");
-	labelText.append(QString::number(m_angle));
-	m_currentAngle->setText(labelText);*/
 
+	//Set new value into dial
 	m_ellipseAngle->setValue(m_angle);
 }

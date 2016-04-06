@@ -2,6 +2,7 @@
 
 GradientBarWidget::GradientBarWidget(QWidget *parent) :QWidget(parent)
 {
+	//Set initial gradient bar power
 	setPercent(50.0f);
 }
 
@@ -24,13 +25,14 @@ void GradientBarWidget::paintEvent(QPaintEvent * paintEvent)
 	
 	QRect blackRect = getFillRectangle();
 
+
+	//Draw background gradient rectangle
 	painter.fillRect(rect(), gradient);
+	//Draw foreground blackrectangle at adequate size
 	painter.fillRect(blackRect, Qt::black);
 	painter.drawRect(rect());
 
-	//WTF
-	//painter.drawText(rect().center(), QString(m_currentPercent + QString("%")));
-
+	//Change text color if percentage is smaller than 15% so that text is not lost into foreground rectangle
 	if (m_currentPercent < 15.0)
 		painter.setPen(Qt::white);
 	else
@@ -39,6 +41,7 @@ void GradientBarWidget::paintEvent(QPaintEvent * paintEvent)
 	QFont font = painter.font();
 	font.setPixelSize(36);
 	painter.setFont(font);
+	//Draw power text
 	painter.drawText(rect().bottomLeft() - QPoint(0, rect().height() / 8), QString(QString::number(m_currentPercent) + QString("%")));
 
 }
@@ -57,6 +60,7 @@ QRect GradientBarWidget::getFillRectangle()
 
 void GradientBarWidget::setPercent(float p_percent)
 {
+	//Check the bounds of the power percentage
 	m_currentPercent = qBound(0.0f, p_percent, 100.0f);
 	update();
 }

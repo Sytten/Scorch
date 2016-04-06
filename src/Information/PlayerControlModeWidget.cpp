@@ -33,6 +33,7 @@ void PlayerControlModeWidget::paintEvent(QPaintEvent * paintEvent)
 
 	QBrush brush;
 
+	//Depending on activation status, set to black if activated
 	if (m_isActivated)brush = QBrush(Qt::black);
 	else brush = QBrush(Qt::transparent);
 
@@ -42,8 +43,9 @@ void PlayerControlModeWidget::paintEvent(QPaintEvent * paintEvent)
     QFont font = painter.font();
     font.setPointSize(24);
     painter.setFont(font);
-    QFontMetrics fontMetrics(font);
+    QFontMetrics fontMetrics(font);	
 
+    //Set good widget size depending on font size and text
     QSize widgetMinimumSize(0,fontMetrics.height()+20);
     if (m_gameState == 1)
         widgetMinimumSize.setWidth(fontMetrics.width("Angle")+20);
@@ -57,9 +59,11 @@ void PlayerControlModeWidget::paintEvent(QPaintEvent * paintEvent)
     painter.drawRoundedRect(rect(), 10.0, 10.0);
 
 
+	//Depending on activation status, set to red if activated
 	if (m_isActivated)painter.setPen(Qt::red);
 	else painter.setPen(Qt::black);
 
+	//Draw text
 	if (m_gameState == 1)
         painter.drawText(rect(), Qt::AlignCenter, "Angle");
 	else if (m_gameState == 2)

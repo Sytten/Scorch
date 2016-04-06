@@ -16,6 +16,7 @@ EllipseAngleWidget::~EllipseAngleWidget()
 
 void EllipseAngleWidget::setValue(float p_angle)
 {
+	//Check for bounds of angle or add/subtract to get a good value
 	while (p_angle >= 360)p_angle -= 360;
 	while (p_angle < 0)p_angle += 360;
 	m_angle = p_angle;
@@ -33,6 +34,7 @@ void EllipseAngleWidget::paintEvent(QPaintEvent * paintEvent)
 	painter.setPen(Qt::black);
 	painter.setBrush(QBrush(Qt::black));
 	
+	//Paint 1/4 ellipse
 	QPainterPath remplissage = QPainterPath();
 	remplissage.moveTo(rect().bottomRight());
 	remplissage.lineTo(rect().bottomLeft().rx(),rect().top());
@@ -41,13 +43,17 @@ void EllipseAngleWidget::paintEvent(QPaintEvent * paintEvent)
 
 	painter.drawPath(remplissage);
 
+
 	QPen pen = painter.pen();
 	pen.setColor(Qt::white);
 	pen.setWidth(2);
 	painter.setPen(pen);
+
+	//Paint the dial increments
 	for (int i = 0; i <= 90; i += 10)
 		painter.drawLine(getPointOnLineAtAngle(i, 0.9), getPointOnLineAtAngle(i, 1.0));
 
+	//Draw red line
 	painter.setPen(Qt::red);
 	painter.drawLine(rect().bottomLeft(), getLineEnding());	
 
@@ -55,6 +61,7 @@ void EllipseAngleWidget::paintEvent(QPaintEvent * paintEvent)
 	QFont font = painter.font();
 	font.setPixelSize(36);
 	painter.setFont(font);
+	//Draw angle indication text
 	painter.drawText(rect().bottomLeft() - QPoint(0, rect().height() / 8), QString(QString::number(m_angle) + '\260'));
 }
 
@@ -65,6 +72,7 @@ QPoint EllipseAngleWidget::getLineEnding() const
 
 	float radius = rect().right();
 
+	//Calculate the end point of the dial line
 	finalPoint.setX(rect().bottomLeft().x() + (radius * cos(m_angle * PI / 180.0)));
 	finalPoint.setY(rect().bottomLeft().y() - (radius * sin(m_angle * PI / 180.0)));
 
@@ -77,6 +85,7 @@ QPoint EllipseAngleWidget::getPointOnLineAtAngle(float angle, float prct)
 
 	float radius = rect().right();
 
+	//Calculate a point from a line at a certain angle
 	finalPoint.setX(rect().bottomLeft().x() + (prct * (radius * cos(angle * PI / 180.0))));
 	finalPoint.setY(rect().bottomLeft().y() - (prct * (radius * sin(angle * PI / 180.0))));
 

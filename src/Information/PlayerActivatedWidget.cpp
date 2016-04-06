@@ -24,6 +24,7 @@ void PlayerActivatedWidget::paintEvent(QPaintEvent * paintEvent)
 
 	QBrush brush;
 
+	//If the player is activated, set brush to black
 	if (m_isActivated)brush = QBrush(Qt::black);
 	else brush = QBrush(Qt::transparent);
 
@@ -42,6 +43,7 @@ void PlayerActivatedWidget::paintEvent(QPaintEvent * paintEvent)
 
 	painter.setFont(font);
 
+	//If the player is activated, setPen to red
 	if (m_isActivated)painter.setPen(Qt::red);
 	else painter.setPen(Qt::black);
 

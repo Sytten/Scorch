@@ -56,6 +56,7 @@ private:
 	Terrain * m_terrain;
 
 	bool m_cannonballFired;
+    Difficulty m_gameDifficulty;
 
 signals:
     void playerChanged(Player player);

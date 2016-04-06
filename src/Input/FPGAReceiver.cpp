@@ -58,11 +58,11 @@ void FPGAReceiver::handlePressEvent(QKeyEvent *KeyEvent)
 			return;
 		QCoreApplication::postEvent(m_receiver, new FPGAEvent(Change));
         break;
-	case Qt::Key_Left:
+	/*case Qt::Key_Left:
 		if (KeyEvent->isAutoRepeat())
 			return;
         QCoreApplication::postEvent(m_receiver, new FPGAEvent(Change));
-        break;
+        break;*/
     case Qt::Key_Up:
 		QCoreApplication::postEvent(m_receiver, new FPGAEvent(Increase));
         break;

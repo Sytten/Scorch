@@ -14,6 +14,7 @@ FPGAReceiver::~FPGAReceiver()
 
 void FPGAReceiver::updateFPGA()
 {
+	//If OS is windows, use FPGA
 #ifdef Q_OS_WIN
 	if (!m_fpga.estOk()) {
 		emit fpgaError(QString::fromUtf8(m_fpga.messageErreur()));
@@ -51,18 +52,13 @@ void FPGAReceiver::updateFPGA()
 
 void FPGAReceiver::handlePressEvent(QKeyEvent *KeyEvent)
 {
-    
+    //Handle events
     switch (KeyEvent->key()){
 	case Qt::Key_Right:
 		if (KeyEvent->isAutoRepeat())
 			return;
 		QCoreApplication::postEvent(m_receiver, new FPGAEvent(Change));
         break;
-	/*case Qt::Key_Left:
-		if (KeyEvent->isAutoRepeat())
-			return;
-        QCoreApplication::postEvent(m_receiver, new FPGAEvent(Change));
-        break;*/
     case Qt::Key_Up:
 		QCoreApplication::postEvent(m_receiver, new FPGAEvent(Increase));
         break;

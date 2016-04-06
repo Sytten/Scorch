@@ -31,7 +31,7 @@ public:
 	bool pause();
 
 public slots:
-	void newGame(Difficulty p_difficulty = Difficulty::Easy, int p_player = 2);
+	void newGame(Difficulty p_difficulty = Difficulty::Easy, int p_player = 2, Player p_startingPlayer = Player::Player1);
     void startPlaying();
 	void createNewTerrain();
 	void setPause(bool pause);

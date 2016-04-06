@@ -165,7 +165,7 @@ void Game::update()
     m_timeLastUpdate = QTime::currentTime();
 }
 
-void Game::newGame(Difficulty p_difficulty, int p_player)
+void Game::newGame(Difficulty p_difficulty, int p_player, Player p_startingPlayer)
 {
     m_gameDifficulty = p_difficulty;
 
@@ -251,9 +251,16 @@ void Game::newGame(Difficulty p_difficulty, int p_player)
     connect(castle2, &Castle::damageTaken, overlay, &GameOverlay::newPlayerLife);
     m_scene.addItem(overlay);
 
-	m_currentPlayer = Player1;
+
+
+	m_inputState = Angle;
+	m_currentPlayer = p_startingPlayer;
+
 	emit newGameGenerated();
 	emit playerChanged(m_currentPlayer);
+	emit stateChanged(m_inputState);
+	emit newPower(50);
+	emit newAngle(0);
 }
 
 void Game::startPlaying()
@@ -275,7 +282,8 @@ void Game::createNewTerrain()
         }
     }
 
-    newGame(m_gameDifficulty, 2);
+    newGame(m_gameDifficulty, 2, m_currentPlayer);
+	m_gameState = Play;
 
     for (auto item : m_scene.items()) {
         if (Castle* castle = dynamic_cast<Castle*>(item)) {

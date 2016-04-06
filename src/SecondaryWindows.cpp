@@ -11,7 +11,10 @@ FenetreNewGame::FenetreNewGame()
 
 	group1 = new QGroupBox();
 	group2 = new QGroupBox();
-	dialogButtons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+	dialogButtons = new QDialogButtonBox();
+	dialogButtons->addButton(new QPushButton("Accepter"), QDialogButtonBox::AcceptRole);
+	dialogButtons->addButton(new QPushButton("Annuler"), QDialogButtonBox::RejectRole);
+	
 
 	connect(dialogButtons, &QDialogButtonBox::accepted, this, &QDialog::accept);
 	connect(dialogButtons, &QDialogButtonBox::rejected, this, &QDialog::reject);
@@ -78,7 +81,6 @@ FenetreTutoriel::FenetreTutoriel()
 
 	window = new QVBoxLayout();
 
-
 	QGroupBox * group0 = new QGroupBox("G" + QString(233) + "n" + QString(233) + "ral");
 	QHBoxLayout * zeroRow = new QHBoxLayout;
 	content = new QLabel("Pour ajuster les param" + QString(232) + "tres du canon, dite 'A' ou 'O' et le tenir jusqu'"
@@ -138,6 +140,10 @@ FenetreTutoriel::FenetreTutoriel()
 	QVBoxLayout * mainLayout = new QVBoxLayout;
 	mainLayout->addWidget(scrollArea);
 
+	QPushButton * closeButton = new QPushButton("Accepter");
+	mainLayout->addWidget(closeButton, 0, Qt::AlignRight);
+	connect(closeButton, &QPushButton::clicked, this, &QDialog::close);
+
 	setLayout(mainLayout);
 }
 
@@ -159,6 +165,9 @@ FenetreVersion::FenetreVersion()
 	QGroupBox * group = new QGroupBox("Cr" + QString(233) + "dits additionnels");
 	QVBoxLayout * layout = new QVBoxLayout;
 
+	QPushButton * closeButton = new QPushButton("Accepter");
+	connect(closeButton, &QPushButton::clicked, this, &QDialog::close);
+
 	m_ligne1->setFont(QFont("fantasque sans mono", 10));
 	m_ligne2->setFont(QFont("fantasque sans mono", 10));
 	m_ligne3->setFont(QFont("fantasque sans mono", 10));
@@ -174,5 +183,6 @@ FenetreVersion::FenetreVersion()
 	vertical->addWidget(m_ligne4, 1, Qt::AlignCenter);
 	vertical->addWidget(m_ligne5, 1, Qt::AlignCenter);
 	vertical->addWidget(group, 1, Qt::AlignCenter);
+	vertical->addWidget(closeButton, 0, Qt::AlignRight);
 	setLayout(vertical);
 }

@@ -256,7 +256,7 @@ void GameWindow::resizeEvent(QResizeEvent *event)
 
 void GameWindow::closeEvent(QCloseEvent *event)
 {
-	QMessageBox *quitMessage = new QMessageBox(QMessageBox::Information, "Quitter", QString(202) + "tes vous sur de vouloir quitter?", QMessageBox::Yes | QMessageBox::No);
+	QMessageBox *quitMessage = new QMessageBox(QMessageBox::Question, "Quitter", QString(202) + "tes vous sur de vouloir quitter?", QMessageBox::Yes | QMessageBox::No);
 
 	quitMessage->setWindowIcon(QIcon(QPixmap(":/resources/icon_big.png")));
 	quitMessage->setFixedSize(80, 220);

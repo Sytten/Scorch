@@ -112,12 +112,12 @@ FenetreTutoriel::FenetreTutoriel()
 
 	QGroupBox * group4 = new QGroupBox("Dialogue de nouvelle partie");
 	QVBoxLayout * fourthRow = new QVBoxLayout;
-	QLabel * fourthText = new QLabel("Dans le menu de nouvelle partie, il est possible de s" + QString(233) + "lectionner un mode de jeu entre \"un joueur\" et \"deux joueurs\". Le mode simple joueur inclut une intelligence pour l'adversaire." + QString("Aussi dans la cr" + QString(233) + "ation d'une nouvelle partie, il est possible de s" + QString(233) + "lectionner le difficult" + QString(233) + ", qui ajuste premi" + QString(232) + "rement le niveau de difficult" + QString(233) + " du terrain."));
-	fourthText->setWordWrap(true);
+	QLabel * fourthText = new QLabel("Dans le menu de nouvelle partie, il est possible de s" + QString(233) + "lectionner un mode de jeu entre \"un joueur\" et \"deux joueurs\".\n Le mode simple joueur inclut une intelligence pour l'adversaire." + QString("Aussi dans la cr" + QString(233) + "ation d'une nouvelle partie, \n il est possible de s" + QString(233) + "lectionner le difficult" + QString(233) + ", qui ajuste premi" + QString(232) + "rement le niveau de difficult" + QString(233) + " du terrain."));
+	//fourthText->setWordWrap(true);
 	QLabel * fourthPicture = new QLabel;
 	fourthPicture->setPixmap(QPixmap(":/resources/tutoriel/fenetre_nouvelle_partie.jpg"));
-	fourthRow->addWidget(fourthText, 0, Qt::AlignLeft);
-	fourthRow->addWidget(fourthPicture, 0, Qt::AlignLeft);
+	fourthRow->addWidget(fourthText, 0, Qt::AlignJustify);
+	fourthRow->addWidget(fourthPicture, 0, Qt::AlignCenter);
 	group4->setLayout(fourthRow);
 
 	window->addWidget(group0);
@@ -140,7 +140,7 @@ FenetreTutoriel::FenetreTutoriel()
 	QVBoxLayout * mainLayout = new QVBoxLayout;
 	mainLayout->addWidget(scrollArea);
 
-	QPushButton * closeButton = new QPushButton("Accepter");
+	QPushButton * closeButton = new QPushButton("Ok");
 	mainLayout->addWidget(closeButton, 0, Qt::AlignRight);
 	connect(closeButton, &QPushButton::clicked, this, &QDialog::close);
 
@@ -165,7 +165,7 @@ FenetreVersion::FenetreVersion()
 	QGroupBox * group = new QGroupBox("Cr" + QString(233) + "dits additionnels");
 	QVBoxLayout * layout = new QVBoxLayout;
 
-	QPushButton * closeButton = new QPushButton("Accepter");
+	QPushButton * closeButton = new QPushButton("Ok");
 	connect(closeButton, &QPushButton::clicked, this, &QDialog::close);
 
 	m_ligne1->setFont(QFont("fantasque sans mono", 10));

@@ -3,7 +3,7 @@
 
 enum InputState {Angle = 0, Power, Fire, NoState};
 
-enum GameState {Play = 0, Pause, Menu, Exit};
+enum GameState {Play = 0, Pause, Transition, Exit};
 
 enum Difficulty {Easy = 0, Intermediate, Hard, Random};
 

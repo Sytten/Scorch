@@ -16,37 +16,43 @@ void FPGAReceiver::updateFPGA()
 {
 	//If OS is windows, use FPGA
 #ifdef Q_OS_WIN
+	int isVoice = 0;
 	if (!m_fpga.estOk()) {
 		emit fpgaError(QString::fromUtf8(m_fpga.messageErreur()));
 		return;
 	}
 
-	if (!m_fpga.lireRegistre(0, m_indexRead)) {
-		emit fpgaError(QString::fromUtf8(m_fpga.messageErreur()));
-		m_indexRead = -1;
-		return;
-	} else {
-		switch (m_indexRead)
-		{
-		case 1:
-			m_lastCommandSent = Increase;
-			QCoreApplication::postEvent(m_receiver, new FPGAEvent(Increase));
-			break;
-		case 2:
-			if(m_lastCommandSent != Change)
+	if (m_fpga.lireRegistre(1,isVoice) && isVoice)
+	{
+		if (!m_fpga.lireRegistre(0, m_indexRead)) {
+			emit fpgaError(QString::fromUtf8(m_fpga.messageErreur()));
+			m_indexRead = -1;
+			return;
+		}
+		else {
+			switch (m_indexRead)
 			{
-				m_lastCommandSent = Change;
-				QCoreApplication::postEvent(m_receiver, new FPGAEvent(Change));
+			case 1:
+				m_lastCommandSent = Increase;
+				QCoreApplication::postEvent(m_receiver, new FPGAEvent(Increase));
+				break;
+			case 2:
+				if (m_lastCommandSent != Change)
+				{
+					m_lastCommandSent = Change;
+					QCoreApplication::postEvent(m_receiver, new FPGAEvent(Change));
+				}
+				break;
+			case 3:
+				m_lastCommandSent = Decrease;
+				QCoreApplication::postEvent(m_receiver, new FPGAEvent(Decrease));
+				break;
+			default:
+				break;
 			}
-			break;
-		case 3:
-			m_lastCommandSent = Decrease;
-			QCoreApplication::postEvent(m_receiver, new FPGAEvent(Decrease));
-			break;
-		default:
-			break;
 		}
 	}
+	
 #endif
 }
 

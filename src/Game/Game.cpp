@@ -214,7 +214,8 @@ void Game::newGame(Difficulty p_difficulty, int p_player, Player p_startingPlaye
 		bezier = BezierMode::HighCurves;
 		break;
 	case Difficulty::Random:
-		bezier = BezierMode(rand() % 4);
+        bezier = BezierMode(rand() % 3 + 1);
+        m_gameDifficulty = Difficulty(rand() % 3 + 1);
 	}
 
 	/**Add castles**/
@@ -280,7 +281,7 @@ void Game::newGame(Difficulty p_difficulty, int p_player, Player p_startingPlaye
     }
 
     if(p_player == 1) {
-        m_IA = new IA(Player2, p_difficulty, castle1->mapToScene(castle1->boundingRect()).boundingRect(), cannon2->mapToScene(cannon2->shotPoint()),this);
+        m_IA = new IA(Player2, m_gameDifficulty, castle1->mapToScene(castle1->boundingRect()).boundingRect(), cannon2->mapToScene(cannon2->shotPoint()),this);
         connect(cannon2, &Cannon::angleChanged, m_IA, &IA::newAngle);
         connect(cannon2, &Cannon::powerChanged, m_IA, &IA::newPower);
         connect(this, &Game::playerChanged, m_IA, &IA::newPlayer);

@@ -70,30 +70,12 @@ void IA::newInputState(InputState state)
 void IA::calculateNewTargetParameters()
 {
     bool found = false;
+    int i = 0;
 
     while(!found) {
         m_targetPower = rand() % 20 + 70;
 
         QPointF target(m_target.center().x(),m_target.top()+50);
-
-        /*double alpha = m_startingPoint.x() - target.x();
-        double beta = m_startingPoint.y() - target.y();
-        double eff = 2 * (2*m_targetPower) * (2*m_targetPower) / m_gravity;
-        double rootTerm = eff*(eff - 2*beta) - 2*alpha*alpha;
-
-        if(rootTerm < 0) {
-            //impossible
-        } else {
-            found = true;
-            double gamma_first = (eff + sqrt(rootTerm))/2;
-            double gamma_second = (eff - sqrt(rootTerm))/2;
-            double theta_first = atan2(gamma_first, alpha) *180.0 /3.1416;
-            double theta_second = atan2(gamma_second, alpha) *180.0 /3.1416;
-            if(theta_first < theta_second)
-                m_targetAngle = theta_first;
-            else
-                m_targetAngle = theta_second;
-        }*/
 
         double x = m_startingPoint.x() - target.x();
         double y = m_startingPoint.y() - target.y();
@@ -101,7 +83,11 @@ void IA::calculateNewTargetParameters()
         long double rootTerm = pow((2*m_targetPower), 4) - m_gravity*(m_gravity*pow(x,2) + 2*y*pow((2*m_targetPower),2));
 
         if(rootTerm < 0) {
-            //impossible
+            i++;
+            if(i > 100) {
+                found = true;
+                m_targetAngle = rand() % 20 + 10;
+            }
         } else {
             found = true;
             double first = (pow((2*m_targetPower),2) + sqrt(rootTerm))/(m_gravity*x);
@@ -113,6 +99,13 @@ void IA::calculateNewTargetParameters()
                 m_targetAngle = theta_first;
             else
                 m_targetAngle = theta_second;
+
+            if(m_difficulty == Easy)
+                 m_targetAngle += rand() % 40 -20;
+            else if(m_difficulty == Intermediate)
+                 m_targetAngle += rand() % 20 -10;
+            else if(m_difficulty == Hard)
+                 m_targetAngle += rand() % 10 -5;
         }
     }
 }

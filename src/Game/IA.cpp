@@ -74,9 +74,9 @@ void IA::calculateNewTargetParameters()
     while(!found) {
         m_targetPower = rand() % 20 + 70;
 
-        QPoint target(m_target.center().x(),m_target.top()-50);
+        QPointF target(m_target.center().x(),m_target.top()+50);
 
-        double alpha = m_startingPoint.x() - target.x();
+        /*double alpha = m_startingPoint.x() - target.x();
         double beta = m_startingPoint.y() - target.y();
         double eff = 2 * (2*m_targetPower) * (2*m_targetPower) / m_gravity;
         double rootTerm = eff*(eff - 2*beta) - 2*alpha*alpha;
@@ -89,7 +89,27 @@ void IA::calculateNewTargetParameters()
             double gamma_second = (eff - sqrt(rootTerm))/2;
             double theta_first = atan2(gamma_first, alpha) *180.0 /3.1416;
             double theta_second = atan2(gamma_second, alpha) *180.0 /3.1416;
-            if(rand()%2)
+            if(theta_first < theta_second)
+                m_targetAngle = theta_first;
+            else
+                m_targetAngle = theta_second;
+        }*/
+
+        double x = m_startingPoint.x() - target.x();
+        double y = m_startingPoint.y() - target.y();
+
+        long double rootTerm = pow((2*m_targetPower), 4) - m_gravity*(m_gravity*pow(x,2) + 2*y*pow((2*m_targetPower),2));
+
+        if(rootTerm < 0) {
+            //impossible
+        } else {
+            found = true;
+            double first = (pow((2*m_targetPower),2) + sqrt(rootTerm))/(m_gravity*x);
+            double second = (pow((2*m_targetPower),2) - sqrt(rootTerm))/(m_gravity*x);
+            double theta_first = atan(first) *180.0 /3.1416;
+            double theta_second = atan(second) *180.0 /3.1416;
+
+            if(theta_first < theta_second)
                 m_targetAngle = theta_first;
             else
                 m_targetAngle = theta_second;

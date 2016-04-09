@@ -319,7 +319,10 @@ void Game::createNewTerrain()
     }
 
 	/**Generate new terrain**/
-    newGame(m_gameDifficulty, 2, m_currentPlayer);
+    if(m_IA)
+        newGame(m_gameDifficulty, 1, m_currentPlayer);
+    else
+        newGame(m_gameDifficulty, 2, m_currentPlayer);
 	m_gameState = Play;
 
 	/**Set back the finormation in the new scene**/

@@ -21,6 +21,7 @@ Description: Handles all the game logic and foward events to the right objects
 #include "Game/Cannon.h"
 #include "Game/PauseOverlay.h"
 #include "Game/GameOverlay.h"
+#include "Game/WinOverlay.h"
 #include "Game/Animation.h"
 #include "Terrain/Terrain.h"
 
@@ -52,6 +53,7 @@ protected slots:
     void update();
 	void newCannonball();
 	void cannonBallDestroyed();
+    void castleDestroyed(Player player);
 
 private:
     QGraphicsScene m_scene;

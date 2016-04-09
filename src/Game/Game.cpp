@@ -25,11 +25,11 @@ void Game::setPause(bool pause)
 {
     if (m_gameState == Play && pause){
 		m_gameState = Pause;
-		m_scene.addItem(new PauseOverlay(m_scene.sceneRect()));
+        m_scene.addItem(new PauseOverlay(m_scene.sceneRect()));
 	}	
 	else if (m_gameState == Pause && !pause) {
 		for (auto item : m_scene.items()) { //Remove pause overlay when resuming
-			if (PauseOverlay* pauseOverlay = dynamic_cast<PauseOverlay*>(item)) {
+            if (PauseOverlay* pauseOverlay = dynamic_cast<PauseOverlay*>(item)) {
 				m_scene.removeItem(item);
 				delete pauseOverlay;
 			}
@@ -104,7 +104,18 @@ void Game::newCannonball()
 
 void Game::cannonBallDestroyed()
 {
-	m_cannonballFired = false;
+    m_cannonballFired = false;
+}
+
+void Game::castleDestroyed(Player player)
+{
+    WinOverlay* overlay = Q_NULLPTR;
+    if (player == Player1)
+        overlay = new WinOverlay("Player 2", m_scene.sceneRect());
+    else if (player == Player2)
+        overlay = new WinOverlay("Player 1", m_scene.sceneRect());
+    m_scene.addItem(overlay);
+    m_gameState = Win;
 }
 
 void Game::update()
@@ -203,10 +214,12 @@ void Game::newGame(Difficulty p_difficulty, int p_player, Player p_startingPlaye
 	/**Add castles**/
     Castle * castle1 = new Castle(QPixmap(":/resources/long_castle_p1.png"),Player::Player1, 100);
         castle1->setScale(2);
+        connect(castle1, &Castle::destroyed, this, &Game::castleDestroyed);
 		m_scene.addItem(castle1);
 
 	Castle * castle2 = new Castle(QPixmap(":/resources/long_castle_p2.png"), Player::Player2, 100);
         castle2->setScale(2);
+        connect(castle2, &Castle::destroyed, this, &Game::castleDestroyed);
 		m_scene.addItem(castle2);
 	
 	/**Add terrain**/

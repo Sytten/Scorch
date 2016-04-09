@@ -30,6 +30,7 @@ private:
 
 signals:
     void damageTaken(Player player, int life);
+    void destroyed(Player player);
 };
 
 #endif // CASTLE_H

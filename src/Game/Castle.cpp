@@ -15,7 +15,10 @@ bool Castle::isAlive()
 void Castle::takeDamage(int p_damage)
 {
     m_life -= p_damage;
-    if(m_life < 0)
+    if(m_life <= 0) {
         m_life = 0;
+        emit destroyed(owner());
+    }
+
     emit damageTaken(owner(), m_life);
 }

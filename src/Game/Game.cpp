@@ -13,7 +13,10 @@ Game::Game(QObject *parent) : QObject(parent), m_timeLastUpdate(QTime::currentTi
 
 Game::~Game()
 {
-
+    if(m_IA) {
+        delete m_IA;
+        m_IA = Q_NULLPTR;
+    }
 }
 
 bool Game::pause()
@@ -122,6 +125,9 @@ void Game::update()
 {
     if (m_gameState == Play || m_gameState == Transition) { //Only update when playing or during transition between terrains
         m_scene.advance();
+
+        if(m_IA)
+            m_IA->update();
 
 		for (auto item : m_scene.items()) { // Update the cannonball
 			if (CannonBall* cannonball = dynamic_cast<CannonBall*>(item)) {
@@ -266,6 +272,20 @@ void Game::newGame(Difficulty p_difficulty, int p_player, Player p_startingPlaye
     connect(castle1, &Castle::damageTaken, overlay, &GameOverlay::newPlayerLife);
     connect(castle2, &Castle::damageTaken, overlay, &GameOverlay::newPlayerLife);
     m_scene.addItem(overlay);
+
+    /**Setup IA**/
+    if(m_IA) {
+        delete m_IA;
+        m_IA = Q_NULLPTR;
+    }
+
+    if(p_player == 1) {
+        m_IA = new IA(Player2, p_difficulty, castle1->mapToScene(castle1->boundingRect()).boundingRect(), cannon2->mapToScene(cannon2->shotPoint()),this);
+        connect(cannon2, &Cannon::angleChanged, m_IA, &IA::newAngle);
+        connect(cannon2, &Cannon::powerChanged, m_IA, &IA::newPower);
+        connect(this, &Game::playerChanged, m_IA, &IA::newPlayer);
+        connect(this, &Game::stateChanged, m_IA, &IA::newInputState);
+    }
 
 	/**Save some stuff and emit new changes**/
 	m_inputState = Angle;

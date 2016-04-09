@@ -218,7 +218,7 @@ void GameWindow::openNewGame()
 	FenetreNewGame fenNewGame;
 	fenNewGame.exec();
 	if (fenNewGame.result() == QDialog::Accepted) {
-		m_game.newGame(fenNewGame.getChosenDifficulty(), 2);
+        m_game.newGame(fenNewGame.getChosenDifficulty(), fenNewGame.getNumberPlayers());
 		m_game.startPlaying();
 	}
 }
@@ -240,9 +240,9 @@ void GameWindow::openMainMenu()
 	FenetreNewGame fenNewGame;
 	fenNewGame.exec();
 	if (fenNewGame.result() == QDialog::Accepted) {
-		m_game.newGame(fenNewGame.getChosenDifficulty(), 2);
+        m_game.newGame(fenNewGame.getChosenDifficulty(), fenNewGame.getNumberPlayers());
 		m_game.startPlaying();
-		m_musicPlayer.play();
+        //m_musicPlayer.play();
 	}
 	else
 		this->close();

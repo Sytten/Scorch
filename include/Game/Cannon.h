@@ -8,6 +8,8 @@ Description: Entity cannon can fire cannonball and maintains the properties set 
 #ifndef CANNON_H
 #define CANNON_H
 
+#include <QPointF>
+
 #include "Game/Entity.h"
 #include "Game/CannonBall.h"
 
@@ -19,6 +21,8 @@ public:
     Cannon(const QPixmap &cannon, const QPixmap &base, QPointF cannonRelativePosition, bool reversed, Player owner, QGraphicsItem *parent = 0);
 
     void updateEntity(double deltaTime) { Q_UNUSED(deltaTime) }
+
+    QPointF shotPoint() { return m_cannon->mapToParent(m_cannon->transformOriginPoint()); }
 
     int type() const { return UserType + 1; }
 

@@ -64,7 +64,15 @@ Difficulty FenetreNewGame::getChosenDifficulty()
 		return Difficulty::Intermediate;
 	else if (m_difficile->isChecked())
 		return Difficulty::Hard;
-	return Difficulty::Random;
+    return Difficulty::Random;
+}
+
+int FenetreNewGame::getNumberPlayers()
+{   if (m_un->isChecked())
+        return 1;
+    else if (m_deux->isChecked())
+        return 2;
+    return -1;
 }
 
 FenetreTutoriel::FenetreTutoriel()

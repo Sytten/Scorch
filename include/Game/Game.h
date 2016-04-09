@@ -23,6 +23,7 @@ Description: Handles all the game logic and foward events to the right objects
 #include "Game/GameOverlay.h"
 #include "Game/WinOverlay.h"
 #include "Game/Animation.h"
+#include "Game/IA.h"
 #include "Terrain/Terrain.h"
 
 class Game : public QObject
@@ -65,6 +66,7 @@ private:
 	GameState m_gameState;
 
 	Terrain * m_terrain;
+    IA* m_IA;
 
 	bool m_cannonballFired;
     Difficulty m_gameDifficulty;

@@ -30,6 +30,7 @@ public:
 	FenetreNewGame();
 
 	Difficulty getChosenDifficulty();
+    int getNumberPlayers();
 private:
 
 	QGroupBox *group1;

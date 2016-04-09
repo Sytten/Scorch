@@ -1,7 +1,7 @@
 #include "GameWindow.h"
 
 
-GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 0), m_game()
+GameWindow::GameWindow(QMainWindow *parent) : QMainWindow(parent), m_fpga(this, 0), m_game(), m_IAPlaying(false), m_numberPlayers(0)
 {
 	/****General setup****/
 	this->setWindowTitle("Scorch");
@@ -147,6 +147,11 @@ void GameWindow::displayStatusMessage(QString message)
 
 void GameWindow::playerChanged(Player p_player)
 {
+     if(p_player == Player2 && m_numberPlayers == 1)
+        m_IAPlaying = true;
+     else
+        m_IAPlaying = false;
+
 	emit changePlayer(p_player);
 }
 
@@ -206,7 +211,7 @@ void GameWindow::keyPressEvent(QKeyEvent * KeyEvent)
 
 void GameWindow::customEvent(QEvent *event)
 {
-	if (event->type() == FPGAEvent::customFPGAEvent) {
+     if (event->type() == FPGAEvent::customFPGAEvent && !m_IAPlaying) {
 		FPGAEvent* fpgaEvent = static_cast<FPGAEvent *>(event);
 
 		QCoreApplication::postEvent(&m_game, new FPGAEvent(*fpgaEvent));
@@ -219,7 +224,8 @@ void GameWindow::openNewGame()
 	fenNewGame.exec();
 	if (fenNewGame.result() == QDialog::Accepted) {
         m_game.newGame(fenNewGame.getChosenDifficulty(), fenNewGame.getNumberPlayers());
-		m_game.startPlaying();
+       m_game.startPlaying();
+        m_numberPlayers = fenNewGame.getNumberPlayers();
 	}
 }
 
@@ -241,8 +247,9 @@ void GameWindow::openMainMenu()
 	fenNewGame.exec();
 	if (fenNewGame.result() == QDialog::Accepted) {
         m_game.newGame(fenNewGame.getChosenDifficulty(), fenNewGame.getNumberPlayers());
-		m_game.startPlaying();
-        //m_musicPlayer.play();
+        m_game.startPlaying();
+        m_musicPlayer.play();
+        m_numberPlayers = fenNewGame.getNumberPlayers();
 	}
 	else
 		this->close();

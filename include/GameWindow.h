@@ -73,6 +73,9 @@ private:
     QMediaPlayer m_musicPlayer;
     FPGAReceiver m_fpga;
     Game m_game;
+
+    bool m_IAPlaying;
+    int m_numberPlayers;
 	
 private slots:
 	void openNewGame();

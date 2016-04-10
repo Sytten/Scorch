@@ -1,4 +1,5 @@
 #include <iostream>
+#include <time.h>
 #include <QApplication>
 
 #include "GameWindow.h"

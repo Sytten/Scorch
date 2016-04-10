@@ -1,6 +1,6 @@
 #include "Game/Game.h"
 
-Game::Game(QObject *parent) : QObject(parent), m_timeLastUpdate(QTime::currentTime()), m_currentPlayer(Player1), m_inputState(Angle), m_gameState(Menu), m_cannonballFired(false)
+Game::Game(QObject *parent) : QObject(parent), m_timeLastUpdate(QTime::currentTime()), m_currentPlayer(Player1), m_inputState(Angle), m_gameState(Menu), m_IA(nullptr) , m_cannonballFired(false), m_gameDifficulty(Random)
 {
     m_view = new QGraphicsView(&m_scene);
     newGame();

@@ -15,5 +15,5 @@ void WinOverlay::paint(QPainter * painter, const QStyleOptionGraphicsItem * opti
     font.setBold(true);
     painter->setFont(font);
 
-    painter->drawText(rect(), "VICTORY!\n" + m_winner, QTextOption(Qt::AlignCenter));
+    painter->drawText(rect(), "VICTOIRE!\n" + m_winner, QTextOption(Qt::AlignCenter));
 }

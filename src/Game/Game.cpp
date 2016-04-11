@@ -114,9 +114,9 @@ void Game::castleDestroyed(Player player)
 {
     WinOverlay* overlay = Q_NULLPTR;
     if (player == Player1)
-        overlay = new WinOverlay("Player 2", m_scene.sceneRect());
+        overlay = new WinOverlay("Joueur 2", m_scene.sceneRect());
     else if (player == Player2)
-        overlay = new WinOverlay("Player 1", m_scene.sceneRect());
+        overlay = new WinOverlay("Joueur 1", m_scene.sceneRect());
     m_scene.addItem(overlay);
     m_gameState = Win;
 }

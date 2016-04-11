@@ -22,7 +22,7 @@ Description: Handles all the game logic and foward events to the right objects
 #include "Game/PauseOverlay.h"
 #include "Game/GameOverlay.h"
 #include "Game/WinOverlay.h"
-#include "Game/Animation.h"
+#include "Game/AnimationWithSound.h"
 #include "Game/IA.h"
 #include "Terrain/Terrain.h"
 

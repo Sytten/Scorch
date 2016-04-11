@@ -26,6 +26,7 @@ HEADERS     += \
     include/Game/Player.h \
 	include/Terrain/Terrain.h \
     include/Game/Animation.h \
+	include/Game/AnimationWithSound.h \
     include/Game/WinOverlay.h \
     include/Game/IA.h
 
@@ -51,6 +52,7 @@ SOURCES     += \
     src/Input/FPGAReceiver.cpp \
 	src/Terrain/Terrain.cpp \  	
     src/Game/Animation.cpp \
+	src/Game/AnimationWithSound.cpp \
     src/Game/WinOverlay.cpp \
     src/Game/IA.cpp
 INCLUDEPATH += include

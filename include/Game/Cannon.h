@@ -9,6 +9,8 @@ Description: Entity cannon can fire cannonball and maintains the properties set 
 #define CANNON_H
 
 #include <QPointF>
+#include <QMediaPlayer>
+#include <QDir>
 
 #include "Game/Entity.h"
 #include "Game/CannonBall.h"
@@ -40,6 +42,8 @@ private:
 
 	QGraphicsPixmapItem* m_cannon;
 	QGraphicsPixmapItem* m_base;
+
+	QMediaPlayer m_fireSound;
 
 	double m_power;
 	double m_angle;

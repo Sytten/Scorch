@@ -9,6 +9,8 @@ Cannon::Cannon(const QPixmap & cannon, const QPixmap & base, QPointF cannonRelat
 	m_cannon->setRotation(-m_angle);
 	m_cannon->setTransformOriginPoint(280, 110);
 
+	m_fireSound.setMedia(QUrl::fromLocalFile(QDir::currentPath() + "/resources/music/Cannon_Sounds_1.wav"));
+
 	emit angleChanged(m_angle);
 	emit powerChanged(m_power);
 }
@@ -85,6 +87,7 @@ CannonBall * Cannon::fire()
 	if (m_reversed)
 		power *= -1;
 
+	m_fireSound.play();
 	emit fired();
     //return new CannonBall(QPixmap(":/resources/cannonball.png"), QVector2D(power * 2 * cos(toRadians(m_angle)), m_power * 2 * sin(toRadians(m_angle))), QVector2D(m_cannon->mapToScene(m_cannon->boundingRect().right(), m_cannon->boundingRect().top())), owner());
     return new CannonBall(QPixmap(":/resources/cannonball.png"), QVector2D(power * 2 * cos(toRadians(m_angle)), m_power * 2 * sin(toRadians(m_angle))), QVector2D(m_cannon->mapToScene(shotPoint())), owner());

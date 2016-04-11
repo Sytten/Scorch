@@ -138,7 +138,7 @@ void Game::update()
 				if (cannonball->outsideOfScene() || 
 							m_terrain->mapToScene(m_terrain->PointAtX(cannonball->pos().rx())).ry() < cannonball->pos().ry()) {
 					m_scene.removeItem(item);
-					Animation* explosion = new Animation(QPixmap(":/resources/explosion.png"), 25, 64, 64);
+					Animation* explosion = new AnimationWithSound(QPixmap(":/resources/explosion.png"), 25, 64, 64, "/resources/music/Cannon_Sounds_2.mp3");
 						explosion->setPos(item->pos());
 						m_scene.addItem(explosion);
 					delete item;
@@ -148,7 +148,7 @@ void Game::update()
 						if (Castle* castle = dynamic_cast<Castle*>(collider)) {
 							if (castle->owner() != cannonball->owner()) {
 								m_scene.removeItem(item);
-                                Animation* explosion = new Animation(QPixmap(":/resources/explosion.png"),25,64,64);
+								Animation* explosion = new AnimationWithSound(QPixmap(":/resources/explosion.png"), 25, 64, 64, "/resources/music/Cannon_Sounds_2.mp3");
                                     explosion->setPos(item->pos());
                                     m_scene.addItem(explosion);
 								delete item;

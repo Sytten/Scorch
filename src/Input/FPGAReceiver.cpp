@@ -2,7 +2,7 @@
 
 FPGAReceiver::FPGAReceiver(QObject * receiver, QObject * parent) : QObject(parent), m_indexRead(-1), m_lastCommandSent(None), m_receiver(receiver)
 {
-	m_updateTimer.setInterval(5);
+	m_updateTimer.setInterval(10);
     connect(&m_updateTimer, &QTimer::timeout, this, &FPGAReceiver::updateFPGA);
 	m_updateTimer.start();
 }
@@ -33,11 +33,11 @@ void FPGAReceiver::updateFPGA()
 			switch (m_indexRead)
 			{
 				
-				case 2:
+				case 3:
 				m_lastCommandSent = Increase;
 				QCoreApplication::postEvent(m_receiver, new FPGAEvent(Increase));
 				break;
-				case 3:
+				case 1:
 					if (m_lastCommandSent != Change)
 					{
 						m_lastCommandSent = Change;
@@ -45,7 +45,7 @@ void FPGAReceiver::updateFPGA()
 					}
 					break;
 		
-			case 1:
+			case 2:
 				m_lastCommandSent = Decrease;
 				QCoreApplication::postEvent(m_receiver, new FPGAEvent(Decrease));
 				break;

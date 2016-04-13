@@ -2,7 +2,7 @@
 
 FPGAReceiver::FPGAReceiver(QObject * receiver, QObject * parent) : QObject(parent), m_indexRead(-1), m_lastCommandSent(None), m_receiver(receiver)
 {
-	m_updateTimer.setInterval(8);
+	m_updateTimer.setInterval(5);
     connect(&m_updateTimer, &QTimer::timeout, this, &FPGAReceiver::updateFPGA);
 	m_updateTimer.start();
 }
@@ -22,9 +22,9 @@ void FPGAReceiver::updateFPGA()
 		return;
 	}
 
-	if (m_fpga.lireRegistre(1,isVoice) && isVoice)
+	if (m_fpga.lireRegistre(2,isVoice) && isVoice)
 	{
-		if (!m_fpga.lireRegistre(0, m_indexRead)) {
+		if (!m_fpga.lireRegistre(1, m_indexRead)) {
 			emit fpgaError(QString::fromUtf8(m_fpga.messageErreur()));
 			m_indexRead = -1;
 			return;
@@ -32,22 +32,25 @@ void FPGAReceiver::updateFPGA()
 		else {
 			switch (m_indexRead)
 			{
-			case 1:
+				
+				case 2:
 				m_lastCommandSent = Increase;
 				QCoreApplication::postEvent(m_receiver, new FPGAEvent(Increase));
 				break;
-			case 2:
-				if (m_lastCommandSent != Change)
-				{
-					m_lastCommandSent = Change;
-					QCoreApplication::postEvent(m_receiver, new FPGAEvent(Change));
-				}
-				break;
-			case 3:
+				case 3:
+					if (m_lastCommandSent != Change)
+					{
+						m_lastCommandSent = Change;
+						QCoreApplication::postEvent(m_receiver, new FPGAEvent(Change));
+					}
+					break;
+		
+			case 1:
 				m_lastCommandSent = Decrease;
 				QCoreApplication::postEvent(m_receiver, new FPGAEvent(Decrease));
 				break;
 			default:
+				m_lastCommandSent = Command::None;
 				break;
 			}
 		}

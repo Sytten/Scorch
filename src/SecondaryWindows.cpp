@@ -91,8 +91,8 @@ FenetreTutoriel::FenetreTutoriel()
 
 	QGroupBox * group0 = new QGroupBox("G" + QString(233) + "n" + QString(233) + "ral");
 	QHBoxLayout * zeroRow = new QHBoxLayout;
-	content = new QLabel("Pour ajuster les param" + QString(232) + "tres du canon, dite 'A' ou 'O' et le tenir jusqu'"
-		+ QString(224) + " ce que vous vouliez arr" + QString(234) + "ter.\nPour changer le mode, il faut prononcer la lettre 'I'. Le clavier peut aussi contr" + QString(244) + "ler les activit" + QString(233) + "s de tir,\nles fl" + QString(232) + "ches gauche et droite permettent de modifier le mode d'ajustement.\nFinalement, les fl" + QString(232) + "ches haut et bas permettent d'ajuster le param" + QString(232) + "tre.\nLa barre espace permet quant " + QString(224) + " elle de provoquer le tir lorsque le mode est \"tir\"");
+	content = new QLabel("Pour ajuster les param" + QString(232) + "tres du canon, dite 'O' ou 'U' et le tenir jusqu'"
+		+ QString(224) + " ce que vous vouliez arr" + QString(234) + "ter.\nPour changer le mode, il faut prononcer la lettre 'A'. Le clavier peut aussi contr" + QString(244) + "ler les activit" + QString(233) + "s de tir,\nles fl" + QString(232) + "ches gauche et droite permettent de modifier le mode d'ajustement.\nFinalement, les fl" + QString(232) + "ches haut et bas permettent d'ajuster le param" + QString(232) + "tre.\nLa barre espace permet quant " + QString(224) + " elle de provoquer le tir lorsque le mode est \"tir\"");
 	//content->setWordWrap(true);
 	zeroRow->addWidget(content, 0, Qt::AlignJustify);
 	group0->setLayout(zeroRow);

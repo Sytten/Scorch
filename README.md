@@ -3,7 +3,7 @@
 ### Description
 Second semester project (Computer Engineering Sherbrooke) by team M.A.G.I.E.
 
-The project depencies are Qt 5.5 and the costum FPGA communication library (onyl works on windows, but won't create errors on other platforms). On windows, the project generate a Visual Studio project. On other platforms, we recommend the usage of Qt Creator.
+The project depencies are Qt 5.5 and the costum FPGA communication library (only works on Windows, but won't create errors on other platforms). On windows, the project generate a Visual Studio project. On other platforms, we recommend the usage of Qt Creator.
 
 ![Gameplay Image](/Window.png "Gameplay")
 

@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2016 Émile Fugulin
+Copyright (c) 2016 Magiciens Apprentis en Génie Informatique et Électrique (M.A.G.I.E)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
